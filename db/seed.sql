@@ -64,7 +64,7 @@ CREATE TABLE chats (
 	chat_content varchar(255) NOT NULL,
 	user_id INT,
     FOREIGN KEY (user_id) REFERENCES users(user_id),
-	timestamp TIME NOT NULL
+	time_stamp TEXT NOT NULL
 );
 
 
