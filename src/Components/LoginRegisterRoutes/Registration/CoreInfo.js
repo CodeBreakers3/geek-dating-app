@@ -1,0 +1,1 @@
+//CoreInfo component
