@@ -25,5 +25,6 @@ photo_two = $23,
 photo_three = $24,
 photo_four = $25,
 photo_five = $26,
-user_id = $27,
-WHERE profile_id = $1;
+user_id = $27
+WHERE profile_id = $1
+returning *;
