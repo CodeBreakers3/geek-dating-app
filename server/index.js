@@ -4,6 +4,8 @@ require('dotenv').config({ path: path.resolve(__dirname, '../.env')});
 const massive = require('massive');
 const session = require('express-session');
 const express = require('express');
+const profileController = require('./controllers/profileController');
+const matchesController = require('./controllers/matchesController');
 
 const {SERVER_PORT, CONNECTION_STRING, SESSION_SECRET} = process.env;
 
@@ -12,7 +14,13 @@ app.use(express.json());
 
 //Controller endpoints here
 
+//PROFILE ENDPOINTS
+//update profile: receives a profile object and sends it to the DB to update that profile object in the DB. 
+app.put('/api/updateprofile/', profileController.updateProfile);
 
+//MATCHES ENDPOINTS
+//Update like table : Check for match on like table: If matched, update match=> create chat in chat table * The front end should send an ID parameter in the URL. 
+app.post('/api/like/:userId', matchesController.like);
 
 
 app.use(session({
