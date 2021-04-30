@@ -13,7 +13,7 @@ CREATE TABLE profiles (
 	about_me varchar(255),
 	sexual_orientation varchar(100) NOT NULL,
 	sex varchar(50) NOT NULL,
-	prefered_pronount text,
+	preferred_pronoun text,
 	height varchar(10),
 	activity_level varchar(50),
 	religion varchar(255),
