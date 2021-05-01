@@ -30,7 +30,8 @@ app.use(express.json());
     app.put('/api/dislike/:profile_id', matchesController.dislike);
 
     //UNMATCH: *Remove match from matches table, remove like from likes table, Create a bogus update for the unmatch profile on the profile table**
-    //front end should send the match ID in the url params
+    //front end should send the match ID in the url params. The unmatching user_id in the query string, and the unmatched profile_id in the query string. 
+    //?user_id=X&profile_id=Y
     app.delete('/api/unmatch/:match_id', matchesController.unmatch);
 
 
