@@ -44,8 +44,8 @@ module.exports = {
             //send the updated profile back to the front end. 
             res.status(200).send(updatedProfile);
         } catch (err) {
-            console.log(err);
-            res.status(500).send(err);
+            console.log("Error updating profile - " + err);
+            res.status(500).send("Error updating profile - " + err);
         }
     }
 }
