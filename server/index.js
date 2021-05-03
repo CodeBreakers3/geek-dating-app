@@ -29,8 +29,6 @@ app.use(session({
 }))
 
 
-
-
 //establish the database connection and start the server
 massive({
     connectionString: CONNECTION_STRING,
