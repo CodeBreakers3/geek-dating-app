@@ -50,6 +50,7 @@ module.exports = {
         }
     },
     dislike: async function(req, res) {
+    //THIS IS CURRENTLY NOT BEING USED - THE DB UPDATE DID NOT FUNCTION LIKE WE EXPECTED. Instead we will just have dislikes do nothing in the DB. 
     //DISLIKE: Create a bogus update for the unliked profile on the profile table*
     //The front end should send the unliked profile in the body. 
 
