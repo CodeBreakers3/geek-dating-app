@@ -2,7 +2,7 @@ import axios from 'axios'
 
 const initialState ={
     user:[],
-    isLoggedin:true,
+    isLoggedIn:false,
     isLoading:false
 };
 
