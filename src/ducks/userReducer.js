@@ -6,8 +6,9 @@ const initialState ={
     isLoading:false
 };
 
-const REGISTER_USER = 'REGISTER_USER'
+const REGISTER_USER = 'REGISTER_USER';
 const LOGIN_USER = 'LOGIN_USER';
+
 // const LOGOUT_USER = 'LOGOUT_USER';
 
 export const loginUser=(email,password) => {
@@ -18,10 +19,10 @@ export const loginUser=(email,password) => {
     }
 }
 export const registerUser=(email,password) => {
-    let login = axios.post('/auth/signUp', {email,password}).then(res => res.data)
+    let register = axios.post('/auth/signUp', {email,password}).then(res => res.data)
     return {
         type: REGISTER_USER,
-        payload: login
+        payload: register
     }
 }
 
@@ -29,15 +30,15 @@ export default function reducer(state = initialState, action) {
     switch(action.type) {
         case LOGIN_USER + '_FULFILLED':
             return {
-                ...initialState,
+                ...state,
               user: action.payload,
               isLoading:false
             }
         case LOGIN_USER + '_PENDING':
             return {
-                ...initialState,
+                ...state,
                 isLoading:true
             }
-        default: return initialState;
+        default: return state;
     }
 }

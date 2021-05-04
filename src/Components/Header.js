@@ -1,6 +1,9 @@
 //Header component
+import {connect} from 'react-redux'
 
-function Header() {
+
+const Header = ()=> {
+    
     return (
         <header>
             <p>Header</p>
@@ -8,4 +11,7 @@ function Header() {
     )
 }
 
-export default Header;
+const mapStateToProps = reduxState => {
+    return reduxState.userReducer
+  }
+  export default connect(mapStateToProps)(Header)

@@ -37,5 +37,14 @@ module.exports = {
     res.status(200).send(dbRes)
     })
     .catch(err => console.log(err))
+    },
+    getMatchedChat:(req,res) => {
+        const db = req.app.get('db');
+        const {chat_id}=req.params
+        db.get_single_chat(chat_id)
+        .then(dbRes => {
+            res.status(200).send(dbRes)
+        })
+        .catch(err => console.log(err))
     }
 }

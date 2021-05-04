@@ -30,6 +30,22 @@ module.exports = {
     //     "user_id": 1,
     //     "profile_id": 1
     // }
+
+
+
+    createProfile: async function(req, res) {
+        //get the database instance
+        const db = req.app.get('db');
+        const {profile_id,first_name, last_name, gamer_tag, location, about_me, sexual_orientation, sex,preferred_pronoun, height, activity_level, religion, education, occupation, kids, alcohol, cannabis, recreational_drugs, favorite_food, current_game, photo_one, photo_two, photo_three, photo_four, photo_five, user_id} = req.body;
+        try {
+            let newProfile = await db.create_profile(profile_id,first_name, last_name, gamer_tag, location, about_me, sexual_orientation, sex,preferred_pronoun, height, activity_level, religion, education, occupation, kids, alcohol, cannabis, recreational_drugs, favorite_food, current_game, photo_one, photo_two, photo_three, photo_four, photo_five, user_id);
+            //send the updated profile back to the front end. 
+            res.status(200).send(newProfile);
+        } catch (err) {
+            console.log("Error updating profile - " + err);
+            res.status(500).send("Error updating profile - " + err);
+        }
+    },
     updateProfile: async function(req, res) {
         //get the database instance
         const db = req.app.get('db');
@@ -49,4 +65,3 @@ module.exports = {
         }
     }
 }
-

@@ -11,6 +11,7 @@ import mainRoutes from './routes/mainRoutes';
 
 
 function App(props) {
+
     return (
         <div className="App">
           {/* Only display the header if the user is logged in */}
