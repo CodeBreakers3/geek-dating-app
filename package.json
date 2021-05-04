@@ -2,7 +2,7 @@
   "name": "one-up",
   "version": "0.1.0",
   "private": true,
-  "main": "server/index.js",
+  "main": "./server/index.js",
   "proxy": "http://localhost:5050",
   "dependencies": {
     "@testing-library/jest-dom": "^5.12.0",
@@ -20,6 +20,8 @@
     "react-redux": "^7.2.4",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
+    "redux-devtools-extension": "^2.13.9",
+    "redux-promise-middleware": "^6.1.2",
     "socket.io": "^4.0.1",
     "socket.io-client": "^4.0.1",
     "web-vitals": "^1.1.1"

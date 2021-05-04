@@ -51,6 +51,7 @@ app.use(session({
     app.put('/api/chat/:chat_id', chatsController.updateChatReply);
     app.delete('/api/chat/:chat_id', chatsController.deleteChatReply);
 
+    // app.post(`/auth/register`, authController.login);
 
 // Authentication Controller Endpoints
 app.post("/auth/signup",  authCtrl.register)
