@@ -13,6 +13,16 @@ const {SERVER_PORT, CONNECTION_STRING, SESSION_SECRET} = process.env;
 const app = express();
 app.use(express.json());
 
+app.use(session({
+    secret: SESSION_SECRET,
+    resave: true,
+    saveUninitialized: false,
+    cookie: {
+        maxAge: 1000 * 60 * 525600
+    }
+}))
+
+
 //Controller endpoints here
 
 //PROFILE ENDPOINTS
@@ -43,14 +53,13 @@ app.use(express.json());
 
     // app.post(`/auth/register`, authController.login);
 
-app.use(session({
-    secret: SESSION_SECRET,
-    resave: true,
-    saveUninitialized: false,
-    cookie: {
-        maxAge: 1000 * 60 * 525600
-    }
-}))
+// Authentication Controller Endpoints
+app.post("/auth/signup",  authCtrl.register)
+app.post("/auth/login", authCtrl.login)
+app.delete("/auth/logout", authCtrl.logOut)
+app.put("/auth/updateuser/:id", authCtrl.updateUser)
+
+
 
 
 //establish the database connection and start the server
