@@ -3,10 +3,19 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import {Provider} from 'react-redux';
+import {HashRouter} from 'react-router-dom';
+import {createBrowserHistory} from 'history';
+import store from './ducks/store'
+const customHistory = createBrowserHistory()
 
 ReactDOM.render(
   <React.StrictMode>
+    <Provider store={store}>
+      <HashRouter history={customHistory}>
     <App />
+    </HashRouter>
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

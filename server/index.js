@@ -41,6 +41,7 @@ app.use(express.json());
     app.put('/api/chat/:chat_id', chatsController.updateChatReply);
     app.delete('/api/chat/:chat_id', chatsController.deleteChatReply);
 
+    // app.post(`/auth/register`, authController.login);
 
 app.use(session({
     secret: SESSION_SECRET,
