@@ -1,6 +1,5 @@
 import './App.css';
 import { HashRouter } from 'react-router-dom';
-import { connect } from 'react-redux';
 
 //import the routes for the auth/registration views
 import authRoutes from './routes/authRoutes';
@@ -13,7 +12,6 @@ import mainRoutes from './routes/mainRoutes';
 
 
 function App(props) {
-
     return (
         <HashRouter>
         <div className="App">
@@ -26,10 +24,4 @@ function App(props) {
     );
 }
 
-function mapStateToProps(state) {
-  return {
-    isLoggedIn: state.isLoggedIn
-  }
-}
-
-export default connect(mapStateToProps)(App);
+export default App;
