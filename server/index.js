@@ -10,15 +10,6 @@ const {SERVER_PORT, CONNECTION_STRING, SESSION_SECRET} = process.env;
 
 const app = express();
 app.use(express.json());
-
-//Controller endpoints here
-
-// Authentication Controller Endpoints
-app.post("/auth/signup",  authCtrl.register)
-app.post("/auth/user/", authCtrl.logIn)
-app.delete("/auth/logout", authCtrl.logOut)
-app.put("/auth/updateuser", authCtrl.updateUser)
-
 app.use(session({
     secret: SESSION_SECRET,
     resave: true,
@@ -27,6 +18,16 @@ app.use(session({
         maxAge: 1000 * 60 * 525600
     }
 }))
+
+//Controller endpoints here
+
+// Authentication Controller Endpoints
+app.post("/auth/signup",  authCtrl.register)
+app.post("/auth/login", authCtrl.login)
+app.delete("/auth/logout", authCtrl.logOut)
+app.put("/auth/updateuser/:id", authCtrl.updateUser)
+
+
 
 
 //establish the database connection and start the server
