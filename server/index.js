@@ -6,6 +6,7 @@ const session = require('express-session');
 const express = require('express');
 const profileController = require('./controllers/profileController');
 const matchesController = require('./controllers/matchesController');
+const chatsController = require('./controllers/chatsController');
 
 const {SERVER_PORT, CONNECTION_STRING, SESSION_SECRET} = process.env;
 
@@ -33,6 +34,12 @@ app.use(express.json());
     //front end should send the match ID in the url params. The unmatching user_id in the query string, and the unmatched profile_id in the query string. 
     //?user_id=X&profile_id=Y
     app.delete('/api/unmatch/:match_id', matchesController.unmatch);
+    
+    
+    app.get(`/api/chat`, chatsController.getChats);
+    app.post(`/api/chat`, chatsController.addChatReply);
+    app.put('/api/chat/:chat_id', chatsController.updateChatReply);
+    app.delete('/api/chat/:chat_id', chatsController.deleteChatReply);
 
 
 app.use(session({
