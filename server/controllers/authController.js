@@ -72,7 +72,7 @@ module.exports = {
         } else {
             let salt = bcrypt.genSaltSync(10);
             let hash = bcrypt.hashSync(password, salt);
-        }
+
 // did they type in the password input ? yes, then hash it regardless : if no input, then revert to old password
 
         console.log(hash)
@@ -86,7 +86,7 @@ module.exports = {
             
             res.status(200).send(req.session.user)
             
-            }) .catch(err => console.log(err))
-        
+            }).catch(err => console.log(err))
+        }
     }
 }

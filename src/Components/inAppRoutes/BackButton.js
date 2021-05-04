@@ -1,8 +1,12 @@
 //BackButton component
-function BackButton() {
+import {useHistory} from 'react-router-dom'
+
+const BackButton = () => {
+let history = useHistory()
+
     return (
         <header>
-            <p>BackButton</p>
+            <p onClick={history.goBack()}>BackButton</p>
         </header>
     )
 }
