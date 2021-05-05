@@ -5,6 +5,18 @@ import BackButton from './../BackButton';
 
 //EditFilters Component
 function EditFilters() {
+
+    const updateProfile = () => {
+        //THIS STILL NEEDS TO BE BUILT OUT - WAITING ON REDUX FUNCTIONALITY
+        alert(`You've updated your profile.`);
+    }
+
+    const updateCredentials = () => {
+        //THIS STILL NEEDS TO BE BUILT OUT - WAITING ON REDUX FUNCTIONALITY
+        alert(`You've updated your credentials.`);
+    }
+
+
     return (
         <div className="edit-filters-container">
             <BackButton/>
@@ -26,7 +38,7 @@ function EditFilters() {
                 </div>
 
                 <div className="edit-filters-topics-save-button">
-                    <button>Save Topics</button>    
+                    <button onClick={updateProfile}>Save Topics</button>    
                 </div>
 
             </div>
@@ -151,7 +163,57 @@ function EditFilters() {
                 </div>
 
                 <div className="edit-filters-discovery-save-button">
-                        <button>Save Filters</button>
+                        <button onClick={updateProfile}>Save Filters</button>
+                </div>
+
+            </div>
+
+            <div className="edit-filters-account-settings-flex-container">
+                <div className="edit-filters-account-settings-header">
+                    <p>Account settings</p>
+                </div>
+
+                <div className="edit-filters-account-settings-settings-flex-container">
+
+                    <div className="edit-filters-account-settings-settings-username-container">
+                        <div className="edit-filters-account-settings-settings-username-text">
+                            <p>Username:</p>
+                        </div>
+                        <div className="edit-filters-account-settings-settings-username-input">
+                            <input></input>
+                        </div>
+                    </div>
+
+                    <div className="edit-filters-account-settings-settings-old-password-container">
+                        <div className="edit-filters-account-settings-settings-old-password-text">
+                            <p>Old Password:</p>
+                        </div>
+                        <div className="edit-filters-account-settings-settings-old-password-input">
+                            <input></input>
+                        </div>
+                    </div>
+
+                    <div className="edit-filters-account-settings-settings-new-password-container">
+                        <div className="edit-filters-account-settings-settings-new-password-text">
+                            <p>New Password:</p>
+                        </div>
+                        <div className="edit-filters-account-settings-settings-new-password-input">
+                            <input></input>
+                        </div>
+                    </div>
+
+                    <div className="edit-filters-account-settings-settings-confirm-password-container">
+                        <div className="edit-filters-account-settings-settings-confirm-password-text">
+                            <p>Confirm New Password:</p>
+                        </div>
+                        <div className="edit-filters-account-settings-settings-confirm-password-input">
+                            <input></input>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="edit-filters-account-settings-save-button">
+                    <button onClick={updateCredentials}>Update Credentials</button>
                 </div>
 
             </div>
