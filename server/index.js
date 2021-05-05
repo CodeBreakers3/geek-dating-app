@@ -28,6 +28,7 @@ app.use(session({
 
 //PROFILE ENDPOINTS
     //update profile: receives a profile object and sends it to the DB to update that profile object in the DB. 
+    app.post('/api/createprofile', profileController.createProfile);
     app.put('/api/updateprofile/', profileController.updateProfile);
 
 //MATCHES ENDPOINTS

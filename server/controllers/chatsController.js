@@ -1,4 +1,22 @@
 //chatsController
+const express = require('express')
+const http = require("http")
+const app = express();
+const server = http.createServer(app)
+const socket = require('socket.io')
+const io = socket(server)
+
+io.on('connection', socket => {
+    socket.emit('your id', socket.id);
+    socket.on('send Message',body => {
+        io.emit('message',body)
+    })
+})
+
+
+server.listen(3111, ()=> console.log('socket server running 3111'))
+
+
 module.exports = {
     getChats: (req,res) =>{
         const db = req.app.get('db')

@@ -27,8 +27,7 @@ module.exports = {
     //     "photo_three": "https://scontent-hou1-1.xx.fbcdn.net/v/t1.18169-9/13254402_10153966928410865_3994538279770474787_n.jpg?_nc_cat=109&ccb=1-3&_nc_sid=174925&_nc_ohc=O7kcJqhDUQ0AX_2n1z7&_nc_ht=scontent-hou1-1.xx&oh=abf206ae916b6aed909d06a1a7d2f1e5&oe=60B0009B",
     //     "photo_four": "https://scontent-hou1-1.xx.fbcdn.net/v/t1.18169-9/10405430_10152724053705865_5503561984453623128_n.jpg?_nc_cat=106&ccb=1-3&_nc_sid=174925&_nc_ohc=IRZPE2aO5cEAX8DSxoE&_nc_ht=scontent-hou1-1.xx&oh=aa7fafefc88b97fc61030094ffd56c46&oe=60B32447",
     //     "photo_five": "",
-    //     "user_id": 1,
-    //     "profile_id": 1
+    //     "user_id": 1
     // }
 
 
