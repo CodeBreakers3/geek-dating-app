@@ -72,10 +72,7 @@ module.exports = {
             let hash = bcrypt.hashSync(password, salt);
 
 // did they type in the password input ? yes, then hash it regardless : if no input, then revert to old password
-
-        
         db.edit_user([id, (email || req.session.user.email), ( password !== "" ? hash : verifiedUser.hash )])
-        
         .then(([updatedUser]) => {
             
             delete updatedUser.hash
