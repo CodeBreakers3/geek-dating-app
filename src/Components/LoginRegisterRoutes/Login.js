@@ -2,6 +2,7 @@
 import React, { useState }from 'react'
 import axios from "axios"
 import {loginUser} from '../../ducks/userReducer'
+import {getViewableProfiles} from '../../ducks/profileReducer'
 import {connect} from 'react-redux'
 
 
@@ -11,31 +12,25 @@ const Login = (props) => {
     const [password, setPassword] = useState("");
     const [failedLogin, setFailedLogin] = useState(false);
 
-    // const login = () => {
-    //     let loginResults = '';
-    //     axios.post('/auth/login', {email,password})
-
-    //     .then(res => {
-    //         loginResults = res.data 
-    //         console.log(loginResults)
-    //     })
-
-    //     .catch(err => (err))
-    //     console.log(loginResults)
-    // }
-
     const login = async () => {
-        let loginResults = '';
+        let loggedInUser = '';
+        
         try {
-            loginResults = await axios.post('/auth/login', {email, password})
-            console.log(loginResults)
+            loggedInUser = await axios.post('/auth/login', {email, password})
         }
         catch (err){
             setFailedLogin(true)
         }
+       
         // Next step: give redux or object we got from backend
-        props.loginUser(loginResults)
+        props.loginUser(loggedInUser.data)
+       
         props.history.push('/');
+        console.log(props)
+
+        // Next step: get swipe-able profiles onto redux
+        
+        // props.getViewableProfiles(props.userReducer.user.profile_id)
     }
 
 
@@ -71,4 +66,4 @@ const Login = (props) => {
 const mapStateToProps = reduxState => {
     return reduxState
 }
-export default connect (mapStateToProps,{loginUser})(Login);
+export default connect (mapStateToProps,{loginUser, getViewableProfiles})(Login);

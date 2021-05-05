@@ -32,12 +32,12 @@ export const logoutUser=()=>{
 }
 
 export default function reducer(state = initialState, action) {
-    console.log(action)
+    
     switch(action.type) {
         case LOGIN_USER:
             return {
                 ...state,
-              user: action.payload.data,
+              user: action.payload,
               isLoggedIn: true
             }
         case LOGOUT_USER + "_PENDING":

@@ -28,6 +28,9 @@ app.use(
 //Controller endpoints here
 
 //PROFILE ENDPOINTS
+    //update profile: receives a profile object and sends it to the DB to update that profile object in the DB. 
+    app.put('/api/updateprofile/', profileController.updateProfile);
+    app.get('/api/getviewableprofiles/:profile_id', profileController.getViewableProfiles);
 //update profile: receives a profile object and sends it to the DB to update that profile object in the DB.
 app.get("/api/getprofile/:profile_id", profileController.getProfile);
 app.put("/api/updateprofile/:profile_id", profileController.updateProfile);

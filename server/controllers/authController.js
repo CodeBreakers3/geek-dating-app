@@ -62,8 +62,7 @@ module.exports = {
 // To get old hash, must set up through DB, not in controller/session
 // get_user
 // just kidding
-        console.log(req.body)
-        console.log(password !== "")
+        
         const [verifiedUser] = await db.get_user(req.session.user.email)
 
         if (verifiedUser){
@@ -75,7 +74,7 @@ module.exports = {
 // did they type in the password input ? yes, then hash it regardless : if no input, then revert to old password
         db.edit_user([id, (email || req.session.user.email), ( password !== "" ? hash : verifiedUser.hash )])
         .then(([updatedUser]) => {
-            console.log(updatedUser)
+            
             delete updatedUser.hash
             req.session.user = updatedUser
             
