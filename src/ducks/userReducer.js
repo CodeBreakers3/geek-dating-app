@@ -1,20 +1,19 @@
 import axios from 'axios'
 
 const initialState ={
-    user:[],
-    isLoggedIn:false,
-    isLoading:false
+    user:{},
+    isLoggedIn:false
 };
 
-const REGISTER_USER = 'REGISTER_USER'
+const REGISTER_USER = 'REGISTER_USER';
 const LOGIN_USER = 'LOGIN_USER';
 // const LOGOUT_USER = 'LOGOUT_USER';
 
-export const loginUser=(email,password) => {
-    let login = axios.post('/auth/login', {email,password}).then(res => res.data)
+export function loginUser(loggedInUser) {
+    console.log("hit 1")
     return {
         type: LOGIN_USER,
-        payload: login
+        payload: loggedInUser
     }
 }
 export const registerUser=(email,password) => {
@@ -26,18 +25,17 @@ export const registerUser=(email,password) => {
 }
 
 export default function reducer(state = initialState, action) {
+    console.log("hit 2")
+    console.log(action)
     switch(action.type) {
-        case LOGIN_USER + '_FULFILLED':
+        case LOGIN_USER:
+            console.log("hit 4")
             return {
-                ...initialState,
-              user: action.payload,
-              isLoading:false
+                ...state,
+              user: action.payload.data,
+              isLoggedIn: true
             }
-        case LOGIN_USER + '_PENDING':
-            return {
-                ...initialState,
-                isLoading:true
-            }
-        default: return initialState;
+      
+        default: return state;
     }
 }
