@@ -1,6 +1,9 @@
 //non component imports
 import {Link} from 'react-router-dom';
 
+//component imports
+import AchievementBar from './AchievementBar';
+
 //MyProfile component
 function MyProfile() {
 
@@ -12,9 +15,7 @@ function MyProfile() {
     return (
         <div className="my-profile-container">
             <div className="my-profile-achievement-bar-flex-container">
-                <div className="my-profile-achievement-bar-container">
-                    <span className="my-profile-achievement-bar">X%</span>
-                </div>
+                <AchievementBar/>
             </div>
 
             <div className="my-profile-image-flex-container">
