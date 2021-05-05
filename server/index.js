@@ -29,6 +29,7 @@ app.use(session({
 //PROFILE ENDPOINTS
     //update profile: receives a profile object and sends it to the DB to update that profile object in the DB. 
     app.put('/api/updateprofile/', profileController.updateProfile);
+    app.get('/api/getviewableprofiles/:profile_id', profileController.getViewableProfiles);
 
 //MATCHES ENDPOINTS
     //LIKE: add to the like table, check for match on like table, if matched, add match in the match table. 

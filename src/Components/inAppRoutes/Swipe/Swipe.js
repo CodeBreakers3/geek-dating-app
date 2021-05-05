@@ -1,12 +1,13 @@
 //non-component imports
 import {useState} from 'react';
+import {connect} from 'react-redux'
 
 //component imports
 import Matched from './Matched';
 import ProfileSmall from './ProfileSmall';
 
 //Swipe component
-function Swipe() {
+function Swipe(props) {
     
     const [isMatch, setIsMatch] = useState(false);
 
@@ -34,4 +35,7 @@ function Swipe() {
     )
 }
 
-export default Swipe;
+const mapStateToProps = reduxState => {
+    return reduxState
+}
+export default connect(mapStateToProps)(Swipe);

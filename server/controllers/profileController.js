@@ -52,7 +52,7 @@ module.exports = {
 
         //get the new profile object from req.body. 
         const newProfile = {...req.body};
-        console.log(newProfile);
+        
 
         //send the updated profile to the DB using the DB SQL function
         try {
@@ -62,6 +62,22 @@ module.exports = {
         } catch (err) {
             console.log("Error updating profile - " + err);
             res.status(500).send("Error updating profile - " + err);
+        }
+    },
+
+    getViewableProfiles: async function (req, res) {
+        // get profiles from the db
+        const db = req.app.get('db');
+        // Get the profile id from the logged in user form the params
+        const {profile_id} = req.params;
+        
+        try{
+            let allViewableProfiles = await db.get_viewable_profiles(profile_id)
+            res.status(200).send(allViewableProfiles)
+        }
+        catch(err) {
+            console.log("Can't retrieve profiles")
+            res.status(500).send(err)
         }
     }
 }
