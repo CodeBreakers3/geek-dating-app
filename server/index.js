@@ -7,7 +7,7 @@ const express = require('express');
 const profileController = require('./controllers/profileController');
 const matchesController = require('./controllers/matchesController');
 const chatsController = require('./controllers/chatsController');
-const authCtrl = require('./controllers/authController')
+const authCtrl = require('./controllers/authController');
 
 const {SERVER_PORT, CONNECTION_STRING, SESSION_SECRET} = process.env;
 

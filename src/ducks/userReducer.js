@@ -7,6 +7,7 @@ const initialState ={
 
 const REGISTER_USER = 'REGISTER_USER';
 const LOGIN_USER = 'LOGIN_USER';
+
 // const LOGOUT_USER = 'LOGOUT_USER';
 
 export function loginUser(loggedInUser) {
@@ -17,10 +18,10 @@ export function loginUser(loggedInUser) {
     }
 }
 export const registerUser=(email,password) => {
-    let login = axios.post('/auth/signUp', {email,password}).then(res => res.data)
+    let register = axios.post('/auth/signUp', {email,password}).then(res => res.data)
     return {
         type: REGISTER_USER,
-        payload: login
+        payload: register
     }
 }
 
