@@ -36,7 +36,6 @@ module.exports = {
               res.status(403).send('Email or password does not match ')
             } else{
             
-            // verifiedUser.isLoggedIn = true
             delete verifiedUser.hash
             req.session.user = verifiedUser
             res.status(200).send(req.session.user)
