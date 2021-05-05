@@ -13,12 +13,12 @@ import Welcome from '../Components/LoginRegisterRoutes/Registration/Welcome';
 export default (
     <Switch>
         <Route exact path="/" component={AuthHome}/>
-        <Route exact path="/login" component={Login}/>
-        <Route exact path="/credentials" component={Credentials}/>
-        <Route exact path="/coreinfo" component={CoreInfo}/>
-        <Route exact path="/profpics" component={ProfPic}/>
-        <Route exact path="/interests" component={Interests}/>
-        <Route exact path="/subinterests" component={SubInterest}/>
-        <Route exact path="/welcome" component={Welcome}/>
+        <Route path="/login" component={Login}/>
+        <Route path="/credentials" component={Credentials}/>
+        <Route path="/coreinfo" component={CoreInfo}/>
+        <Route path="/profpics" component={ProfPic}/>
+        <Route path="/interests" component={Interests}/>
+        <Route path="/subinterests" component={SubInterest}/>
+        <Route path="/welcome" component={Welcome}/>
     </Switch>
 )

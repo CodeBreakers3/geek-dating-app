@@ -28,7 +28,7 @@ module.exports = {
        try{
            const [verifiedUser] = await db.get_user(email)
             if(!verifiedUser){
-                res.status(403).send('There is not account matched with that email, maybe you need to register?')
+                res.status(403).send('There is no account matched with that email, maybe you need to register?')
             } else{
             const isAuthenticated = bcrypt.compareSync(password, verifiedUser.hash)
 
@@ -36,7 +36,6 @@ module.exports = {
               res.status(403).send('Email or password does not match ')
             } else{
             
-            verifiedUser.isLoggedIn = true
             delete verifiedUser.hash
             req.session.user = verifiedUser
             res.status(200).send(req.session.user)

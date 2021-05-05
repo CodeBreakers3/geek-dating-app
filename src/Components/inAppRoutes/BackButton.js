@@ -5,9 +5,7 @@ const BackButton = () => {
 let history = useHistory()
 
     return (
-        <header>
-            <p onClick={history.goBack()}>BackButton</p>
-        </header>
+        <button onClick={() => history.goBack()}>&#8592; Go Back</button>
     )
 }
 
