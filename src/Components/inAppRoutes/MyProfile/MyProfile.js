@@ -1,15 +1,17 @@
 //non component imports
 import {Link} from 'react-router-dom';
+import {connect} from 'react-redux';
+import {logoutUser} from './../../../ducks/userReducer';
 
 //component imports
 import AchievementBar from './AchievementBar';
 
 //MyProfile component
-function MyProfile() {
+function MyProfile(props) {
 
     const logout = () => {
-        //THIS STILL NEEDS TO BE BUILT OUT - WAITING FOR REDUX FUNCTIONALITY
-        alert("You have logged out.");
+        props.logoutUser();
+        props.history.push('/');
     }
 
     return (
@@ -44,4 +46,4 @@ function MyProfile() {
     )
 }
 
-export default MyProfile;
+export default connect(null,{logoutUser})(MyProfile);

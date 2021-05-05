@@ -35,6 +35,7 @@ const Login = (props) => {
         }
         // Next step: give redux or object we got from backend
         props.loginUser(loginResults)
+        props.history.push('/');
     }
 
 
