@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import axios from 'axios'
 import { connect } from "react-redux";
 import { getMatches,getMatchedChat } from "../../../ducks/profileReducer";
-import "../../../reset.css";
 import "./matches.css";
 
 const Matches = (props) => {
