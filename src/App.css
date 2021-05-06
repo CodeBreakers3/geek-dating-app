@@ -1,12 +1,35 @@
-.App {
-  text-align: center;
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500&display=swap");
+
+/* Our CSS for the entire app.*/
+* {
+  box-sizing: border-box;
 }
 
-div[class*="image-container"] {
-  max-width: 400px;
+html {
+  height: 100%;
+  font-family: "Space Grotesk", sans-serif;
+}
+
+body {
+  height: 100%;
+}
+
+#root {
+  height: 100%;
+}
+
+.App {
+  text-align: center;
+  background-color: #636363;
+  height: 100%;
+  display: flex;
 }
 
 img {
-  max-height: 100%;
   max-width: 100%;
+}
+
+.main-display {
+  overflow: hidden;
+  width: 100%;
 }

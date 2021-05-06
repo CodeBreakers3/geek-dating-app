@@ -1,10 +1,12 @@
 //non-component imports
+import './swipe.css';
 import {useState} from 'react';
 import {connect} from 'react-redux'
 
 //component imports
 import Matched from './Matched';
 import ProfileSmall from './ProfileSmall';
+import Header from './../../Header';
 
 //Swipe component
 function Swipe(props) {
@@ -21,15 +23,27 @@ function Swipe(props) {
         alert(`You've disliked someone.`);
     }
 
-    const mainDisplay = 
-        <div className="swipe-main-display-container">
-            <ProfileSmall />
-            <button onClick={dislikeProfile}>Dislike</button>
-            <button onClick={likeProfile}>Like</button>
-        </div>
+    const mainDisplay =
+                <div className="swipe-main-display-container">
+                    <ProfileSmall matched={false}/>
+                    <div className="swipe-main-display-buttons-container">
+                        <div className="swipe-main-display-icon-container" onClick={dislikeProfile}>
+                            <div className="swipe-main-display-icon">
+                                <img alt="dislike-icon" src="https://staticsiteimages.s3-us-west-2.amazonaws.com/dislike2.svg"/>
+                            </div>
+                        </div>
+
+                        <div className="swipe-main-display-icon-container" onClick={likeProfile}>
+                            <div className="swipe-main-display-icon">
+                                <img alt="like-icon" src="https://staticsiteimages.s3-us-west-2.amazonaws.com/like2.svg"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
     return (
-        <div className="swipe-container">
+        <div className="main-display">
+            {isMatch?null:<Header/>}
             {isMatch?<Matched setIsMatch={setIsMatch}/>:mainDisplay}
         </div>
     )

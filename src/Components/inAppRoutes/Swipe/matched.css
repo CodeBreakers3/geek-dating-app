@@ -1,0 +1,32 @@
+.matched {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding: 10px;
+}
+
+.matched-its-a-match {
+  background-color: #61c692;
+  margin-bottom: 10px;
+  height: 75px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 1px 1px 3px black;
+}
+
+.matched-buttons-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 100px;
+}
+
+.matched-buttons {
+  background-color: #61c692;
+  height: 35px;
+  padding: 10px;
+  cursor: pointer;
+  box-shadow: 1px 1px 3px black;
+}
