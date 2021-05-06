@@ -1,6 +1,26 @@
+#matches-view{
+    background-color: rgb(97, 198, 146);
+    height: 100vh;
+}
+.matches-picture-view{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    width:100vw;
+
+}
+
 .matches-profile-photo{
-    height:3vh;
-    width:3vh;
+    height:4vh;
+    width:4vh;
+    border:2.5px inset rgb(68,103,85);
+border-radius: 50%;
+}
+.matches-picture{
+    height: 4rem;
+    width: 4rem;
+border:5px inset rgb(68,103,85);
+border-radius: 50%;
 }
 .row{
     display: flex;
