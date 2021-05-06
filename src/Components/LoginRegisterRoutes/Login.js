@@ -35,7 +35,7 @@ const Login = (props) => {
 
 
     return (
-        <div className="login-view-container">
+        <div className="login-view-wrapper-container">
 
             <div className="login-view-image-container">
             <img alt="Main OneUp Logo"></img>
