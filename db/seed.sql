@@ -17,21 +17,21 @@ CREATE TABLE profiles (
 	gamer_tag varchar(255) UNIQUE,
 	location varchar(255) NOT NULL,
 	about_me varchar(255),
-	sexual_orientation varchar(100) NOT NULL,
-	sex varchar(50) NOT NULL,
+	sexual_orientation varchar(255) NOT NULL,
+	sex varchar(255) NOT NULL,
 	preferred_pronoun text,
-	height varchar(10),
-	activity_level varchar(50),
+	height varchar(255),
+	activity_level varchar(255),
 	religion varchar(255),
 	education varchar(255),
 	occupation varchar(100),
-	kids varchar(50),
-	alcohol varchar(25),
-	smoking varchar(25),
-	cannabis varchar(25),
-	recreational_drugs varchar(10),
-	favorite_food varchar(50),
-	current_game varchar(100),
+	kids varchar(255),
+	alcohol varchar(255),
+	smoking varchar(255),
+	cannabis varchar(255),
+	recreational_drugs varchar(255),
+	favorite_food varchar(255),
+	current_game varchar(255),
 	photo_one text DEFAULT 'https://bit.ly/2RpyDE0',
 	photo_two text DEFAULT 'https://bit.ly/2RpyDE0',
 	photo_three text DEFAULT 'https://bit.ly/2RpyDE0',
@@ -43,18 +43,18 @@ CREATE TABLE profiles (
 
 CREATE TABLE likes (
 	like_id SERIAL PRIMARY KEY,
-	user_id INT,
-  FOREIGN KEY (user_id) REFERENCES users(user_id),
-profile_id INT,
-  FOREIGN KEY (profile_id) REFERENCES users(user_id)
+	profile_id_1 INT,
+  FOREIGN KEY (profile_id_1) REFERENCES profiles(profile_id),
+profile_id_2 INT,
+  FOREIGN KEY (profile_id_2) REFERENCES profiles(profile_id)
 );
 
 CREATE TABLE matches (
 	match_id SERIAL PRIMARY KEY,
-	user_id INT,
-  FOREIGN KEY (user_id) REFERENCES users(user_id),
-	profile_id INT,
-	FOREIGN key (profile_id) REFERENCES profiles(profile_id)
+	profile_id_1 INT,
+  FOREIGN KEY (profile_id_1) REFERENCES profiles(profile_id),
+	profile_id_2 INT,
+	FOREIGN key (profile_id_2) REFERENCES profiles(profile_id)
 );
 
 CREATE TABLE chats (
@@ -62,36 +62,205 @@ CREATE TABLE chats (
 	match_id int,
     FOREIGN KEY (match_id) REFERENCES matches(match_id),
 	chat_content varchar(255) NOT NULL,
-	user_id INT,
-    FOREIGN KEY (user_id) REFERENCES users(user_id),
+	profile_id INT,
+    FOREIGN KEY (profile_id) REFERENCES profiles(profile_id),
 	time_stamp TEXT NOT NULL
 );
 
-
--- Create a fake user for Tanner - Password = 'password'
 INSERT INTO users(email, hash)
 VALUES ('Tanner.Francis11@gmail.com', '$2y$10$o.agZGzQMbecrkt13OOsI.yod6bG0Uz7tXccL9P61h6BrdpyeLMpm'), --user_id 1
 ('thejaredandersen@gmail.com','$2y$10$o.agZGzQMbecrkt13OOsI.yod6bG0Uz7tXccL9P61h6BrdpyeLMpm'),--user_id 2
 ('sn3541@gmail.com','$2y$10$o.agZGzQMbecrkt13OOsI.yod6bG0Uz7tXccL9P61h6BrdpyeLMpm'),--user_id 3
-('lisa@oneup.com','$2y$10$o.agZGzQMbecrkt13OOsI.yod6bG0Uz7tXccL9P61h6BrdpyeLMpm');--user_id 4
+('lisa@gmail.com','$2y$10$o.agZGzQMbecrkt13OOsI.yod6bG0Uz7tXccL9P61h6BrdpyeLMpm'),--user_id 4
+('moe@gmail.com', '$2y$10$o.agZGzQMbecrkt13OOsI.yod6bG0Uz7tXccL9P61h6BrdpyeLMpm'),-->5
+('curlina@gmail.com', '$2y$10$o.agZGzQMbecrkt13OOsI.yod6bG0Uz7tXccL9P61h6BrdpyeLMpm'),-->6
+('sophie@gmail.com', '$2y$10$o.agZGzQMbecrkt13OOsI.yod6bG0Uz7tXccL9P61h6BrdpyeLMpm'),-->7
+('jessica@gmail.com', '$2y$10$o.agZGzQMbecrkt13OOsI.yod6bG0Uz7tXccL9P61h6BrdpyeLMpm');-->8
 
--- create a fake profile for Tanner (ID=1) using the user ID from the fake user (which will be '1' because the seed file will clear the data)
 INSERT INTO profiles (first_name, last_name, gamer_tag, location, about_me, sexual_orientation, sex, preferred_pronoun, height, activity_level, religion, education, occupation, kids, alcohol, smoking, cannabis, recreational_drugs, favorite_food, current_game, photo_one, photo_two, photo_three, photo_four, photo_five, user_id)
 VALUES ('Tanner','Francis','Financ3', 'Austin, TX', 'This is a super short intro to who I am. Hi everyone!','Straight', 'Male', 'He/Him', '5 ft 10 in', 'Active', 'Agnostic','BYU','Web Developer','No Kids', 'Socially','Never','Sometimes','Never','','Valheim','https://scontent-hou1-1.xx.fbcdn.net/v/t31.18172-8/16462954_10154716244105865_4173466093140820629_o.jpg?_nc_cat=102&ccb=1-3&_nc_sid=09cbfe&_nc_ohc=8CgKs38cNHcAX_wUty9&_nc_ht=scontent-hou1-1.xx&oh=44a47bcb7c41c2ad73f2c1b7e261bae9&oe=60B2DFC4', 'https://scontent-hou1-1.xx.fbcdn.net/v/t1.18169-9/15895377_10154637553195865_5109707149084553030_n.jpg?_nc_cat=105&ccb=1-3&_nc_sid=174925&_nc_ohc=DwnINbOj9a8AX8A2bn_&_nc_ht=scontent-hou1-1.xx&oh=6fd5a9b463b2cc43fdd6cca0cb4a1f5f&oe=60B1F280', 'https://scontent-hou1-1.xx.fbcdn.net/v/t1.18169-9/13254402_10153966928410865_3994538279770474787_n.jpg?_nc_cat=109&ccb=1-3&_nc_sid=174925&_nc_ohc=O7kcJqhDUQ0AX_2n1z7&_nc_ht=scontent-hou1-1.xx&oh=abf206ae916b6aed909d06a1a7d2f1e5&oe=60B0009B','https://scontent-hou1-1.xx.fbcdn.net/v/t1.18169-9/10405430_10152724053705865_5503561984453623128_n.jpg?_nc_cat=106&ccb=1-3&_nc_sid=174925&_nc_ohc=IRZPE2aO5cEAX8DSxoE&_nc_ht=scontent-hou1-1.xx&oh=aa7fafefc88b97fc61030094ffd56c46&oe=60B32447','',1),--profile_id 1
-('Jared','Andersen','Glassinthegrass', 'Chandler, AZ', 'Im super cool and Im a dope programmer.','Straight', 'Male', 'Dude','5 ft 10 in','wannabe', 'Iwanttoknowwhatloveis','some college','Web Developer','No Kids','never','never','UACOP?','RUACOP?','Pizza','HADES','data:image/jpeg;base64,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', '', '','','',2),--profile_id 2
-('Steven','Nersesian','SNersesian', 'SLC, UT', 'Im Steven and I like to party.','straight', 'male', 'fella', 'ok height', '50', 'huh','obsDEVMTN','Web Developer Extraordinaire','no', 'solution','significant other','lookatmyhands','r u a cop','ru a cop','AmongUs','data:image/jpeg;base64,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', '', '','','',3),--profile_id 3
-('Lisa','Andersen','normie', 'Chandler, AZ', 'im a boss bitch.','Straight','Female','norm','5ft 6in', 'meh', 'agnostic','ASU','Director of Marketing','buninoven','socially','never','never','never','cheese','scamming amazon','', '', '','','',4);--profile_id 4
+('Jared','Andersen','Glassinthegrass', 'Chandler, AZ', 'Im super cool and Im a dope programmer.','Straight', 'Male', 'Dude','5 ft 10 in','wannabe', 'Iwanttoknowwhatloveis','some college','Web Developer','No Kids','never','never','UACOP?','RUACOP?','Pizza','HADES','https://www.clipartmax.com/png/middle/200-2009323_the-legend-of-zelda-link-from-wind-waker.png', 'https://www.pikpng.com/pngl/m/2-22486_samus-nes-remastered-8-bit-samus-sprite-clipart.png', 'https://i.pinimg.com/originals/6e/45/f8/6e45f874ba6f11d8ae1f0974be496f76.jpg','','',2),--profile_id 2
+('Steven','Nersesian','SNersesian', 'SLC, UT', 'Im Steven and I like to party.','straight', 'male', 'fella', 'ok height', '50', 'huh','obsDEVMTN','Web Developer Extraordinaire','no', 'solution','significant other','lookatmyhands','r u a cop','ru a cop','AmongUs','https://i.pinimg.com/originals/6e/45/f8/6e45f874ba6f11d8ae1f0974be496f76.jpg', '', '','','',3),--profile_id 3
+('Lisa','Andersen','normie', 'Chandler, AZ', 'im a boss bitch.','Straight','Female','norm','5ft 6in', 'meh', 'agnostic','ASU','Director of Marketing','buninoven','socially','never','never','never','cheese','scamming amazon','https://www.pikpng.com/pngl/m/2-22486_samus-nes-remastered-8-bit-samus-sprite-clipart.png', 'https://www.pikpng.com/pngl/m/2-22486_samus-nes-remastered-8-bit-samus-sprite-clipart.png', 'https://www.pikpng.com/pngl/m/2-22486_samus-nes-remastered-8-bit-samus-sprite-clipart.png','','',4),--profile_id 4
+('Moe','Horwitz','stooge1', 'Brooklyn, NY', 'im the leader of little known group of stooges','Straight','Male','','5ft 4in', 'somewhat', 'christian','self-taught','stooge leader','yes','yes','yes','maybe','maybe','pizza','craps','https://images.bookstore.ipgbook.com/images/author_image_1/large/271015.jpg', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAEErfXrDN6aXu-TuSuK33yAmME3IBj609cA&usqp=CAU', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKVE5kqHprRlQSb46uZniCay4Y44R7YIQPUA&usqp=CAU','','',5),--profile_id 5
+('Curlina', 'Horwitz', 'stooge2', 'Brooklyn, NY', 'im the genderbender version of the brother of the leader of the stooges', 'guess', 'female', 'curly', 'short', 'slapstic', 'comedy', 'hard knox', 'jack of all trades', 'yes', 'duh', 'probs', 'hippy','youd have to' , 'knuckle sandwich', 'running from moe', 'https://i.pinimg.com/originals/94/c0/80/94c080e8fc9e630050fc7ce777080598.jpg', 'https://mediad.publicbroadcasting.net/p/wmky/files/styles/x_large/public/201810/curly.jpg', 'https://i.pinimg.com/236x/cc/d9/13/ccd913abfbfc0ea39fc9c115d1b496c0--the-stooges-the-three-stooges.jpg', '', '', 6),
+('Sophie', 'Choice', 'gottaChoose', 'Sophies Island', 'im sophie and im really indecisive', 'straight', 'female', 'decide', '4 ft 6in', 'anxiety', 'baptist', 'Harvard of illinois', 'piano player', 'maybe', 'hell yeah', 'no', 'hate it', 'no-deal breaker', 'dont make me choose', 'sorry', 'https://images-na.ssl-images-amazon.com/images/S/pv-target-images/c37edd28e66dff18ab42b53e51e03f5a76884d90d962f25fc915920de213752c._RI_V_TTW_.jpg', 'https://i.pinimg.com/originals/44/06/92/440692aab21c79e832ee7fe94e0c8b31.jpg', 'https://i.pinimg.com/originals/d4/a5/ee/d4a5eeee1811fffae0b0f3bd652b4a01.jpg','https://upload.wikimedia.org/wikipedia/en/thumb/4/47/Sophie%27s_Choice1.jpg/220px-Sophie%27s_Choice1.jpg', '', 7),
+('Jessica', 'Alba', 'humina-humina', 'LA', 'pretty homely girl next door that loves nerdy things','straight', 'female','not-a-bot', '5ft 5in', 'active', 'worshiped', 'acting school', 'actress', 'yes', 'no', 'no', 'no', 'no', 'anything', 'WoW', 'https://resizing.flixster.com/AS5tIdPt_e19aV5aekYnNCqKJtM=/506x652/v2/https://flxt.tmsimg.com/v9/AllPhotos/165531/165531_v9_bb.jpg', 'https://hips.hearstapps.com/cosmouk.cdnds.net/16/08/1456486010-jessica-alba.jpg', 'https://media4.s-nbcnews.com/j/newscms/2019_46/1506211/jessica-alba-dress-today-main-tease-191112_01f9439a3d1938768ad3e9847a3f941b.fit-760w.jpg', 'https://deadline.com/wp-content/uploads/2021/02/Jessica-Alba-2-Photo-Credit-Nino-Munoz-e1613676696826.jpg','https://imgix.bustle.com/uploads/image/2021/3/18/092a2111-ec12-4171-ac13-05c024d22272-jessicaalba_article_header.jpg?w=2000&h=1090&fit=crop&crop=faces&auto=format%2Ccompress', 8);
 
-INSERT INTO likes (user_id, profile_id)
+INSERT INTO likes (profile_id_1, profile_id_2)
 VALUES (1,2),
-VALUES (2,3),
-VALUES (3,2);
+(1,4),
+(1,6),
+(1,5),
+(1,8),
+(2,4),
+(2,1),
+(2,3),
+(2,5),
+(2,7),
+(3,1),
+(3,2),
+(3,4),
+(3,5),
+(3,6),
+(3,7),
+(3,8),
+(4,2),
+(4,1),
+(4,5),
+(4,3),
+(4,6),
+(4,7),
+(5,2),
+(5,3),
+(8,1),
+(8,2),
+(8,3),
+(1,8),
+(2,8),
+(3,8);
 
--- add a match to the match table such that Jared matched with Steven
-INSERT INTO matches (user_id, profile_id)
-VALUES (2,3);
+INSERT INTO matches (profile_id_1, profile_id_2)
+VALUES 
+(1,2),-->1
+(1,4),-->2
+(1,8),-->3
+(2,3),-->4
+(4,2),-->5
+(5,2),-->6
+(2,8),-->7
+(4,3),-->8
+(5,3),-->9
+(8,3);-->10
 
--- add a chat to the chat table for the match between Jared and Steven - Jared says hi!
-INSERT INTO chats (match_id, chat_content, user_id, time_stamp)
+INSERT INTO chats (match_id, chat_content, profile_id, time_stamp)
 VALUES (1, 'hi!', 2, '2021-04-30T23:22:31+00:00'),
-VALUES (1, 'well hi to you too!', 3, '2021-04-30T23:23:00+00:00');
+ (1, 'well hi to you too!', 1, '2021-04-30T23:23:00+00:00'),
+ (1, 'i just met you', 2, '2021-04-30T23:22:31+00:00'),
+ (1, 'oh no', 1, '2021-04-30T23:23:00+00:00'),
+ (1, 'and this is crazy', 2, '2021-04-30T23:22:31+00:00'),
+ (1, 'please dont', 1, '2021-04-30T23:23:00+00:00'),
+ (1, 'but heres my...', 2, '2021-04-30T23:22:31+00:00'),
+ (1, 'i thought i didnt want you to say number but now im just praying its just a number', 1, '2021-04-30T23:23:00+00:00'),
+ (1, 'number #########', 2, '2021-04-30T23:22:31+00:00'),
+ (1, 'yeah not gonna happen', 1, '2021-04-30T23:23:00+00:00'),
+ (1, 'please love me maybe', 2, '2021-04-30T23:22:31+00:00'),
+ (1, 'no thanks', 1, '2021-04-30T23:23:00+00:00'),
+ (1, 'ok bye', 2, '2021-04-30T23:22:31+00:00'),
+ (2, 'hi!', 1, '2021-04-30T23:22:31+00:00'),
+ (2, 'well hi to you too!', 4, '2021-04-30T23:23:00+00:00'),
+ (2, 'i just met you', 1, '2021-04-30T23:22:31+00:00'),
+ (2, 'oh no', 4, '2021-04-30T23:23:00+00:00'),
+ (2, 'and this is crazy', 1, '2021-04-30T23:22:31+00:00'),
+ (2, 'please dont', 4, '2021-04-30T23:23:00+00:00'),
+ (2, 'but heres my...', 1, '2021-04-30T23:22:31+00:00'),
+ (2, 'i thought i didnt want you to say number but now im just praying its just a number', 4, '2021-04-30T23:23:00+00:00'),
+ (2, 'number #########', 1, '2021-04-30T23:22:31+00:00'),
+ (2, 'yeah not gonna happen', 4, '2021-04-30T23:23:00+00:00'),
+ (2, 'please love me maybe',1, '2021-04-30T23:22:31+00:00'),
+ (2, 'no thanks', 4, '2021-04-30T23:23:00+00:00'),
+ (2, 'ok bye', 1, '2021-04-30T23:22:31+00:00'),
+ (3, 'hi!', 8, '2021-04-30T23:22:31+00:00'),
+ (3, 'well hi to you too!', 1, '2021-04-30T23:23:00+00:00'),
+ (3, 'i just met you', 8, '2021-04-30T23:22:31+00:00'),
+ (3, 'oh no', 1, '2021-04-30T23:23:00+00:00'),
+ (3, 'and this is crazy', 8, '2021-04-30T23:22:31+00:00'),
+ (3, 'please dont', 1, '2021-04-30T23:23:00+00:00'),
+ (3, 'but heres my...', 8, '2021-04-30T23:22:31+00:00'),
+ (3, 'i thought i didnt want you to say number but now im just praying its just a number', 1, '2021-04-30T23:23:00+00:00'),
+ (3, 'number #########', 8, '2021-04-30T23:22:31+00:00'),
+ (3, 'yeah not gonna happen', 1, '2021-04-30T23:23:00+00:00'),
+ (3, 'please love me maybe', 8, '2021-04-30T23:22:31+00:00'),
+ (3, 'no thanks', 1, '2021-04-30T23:23:00+00:00'),
+ (3, 'ok bye', 8, '2021-04-30T23:22:31+00:00'),
+ (4, 'hi!', 2, '2021-04-30T23:22:31+00:00'),
+ (4, 'well hi to you too!', 3, '2021-04-30T23:23:00+00:00'),
+ (4, 'i just met you', 2, '2021-04-30T23:22:31+00:00'),
+ (4, 'oh no', 3, '2021-04-30T23:23:00+00:00'),
+ (4, 'and this is crazy', 2, '2021-04-30T23:22:31+00:00'),
+ (4, 'please dont', 3, '2021-04-30T23:23:00+00:00'),
+ (4, 'but heres my...', 2, '2021-04-30T23:22:31+00:00'),
+ (4, 'i thought i didnt want you to say number but now im just praying its just a number', 3, '2021-04-30T23:23:00+00:00'),
+ (4, 'number #########', 2, '2021-04-30T23:22:31+00:00'),
+ (4, 'yeah not gonna happen', 3, '2021-04-30T23:23:00+00:00'),
+ (4, 'please love me maybe', 2, '2021-04-30T23:22:31+00:00'),
+ (4, 'no thanks', 3, '2021-04-30T23:23:00+00:00'),
+ (4, 'ok bye', 2, '2021-04-30T23:22:31+00:00'),
+ (5, 'hi!', 2, '2021-04-30T23:22:31+00:00'),
+ (5, 'well hi to you too!', 4, '2021-04-30T23:23:00+00:00'),
+ (5, 'i just met you', 2, '2021-04-30T23:22:31+00:00'),
+ (5, 'oh no', 4, '2021-04-30T23:23:00+00:00'),
+ (5, 'and this is crazy', 2, '2021-04-30T23:22:31+00:00'),
+ (5, 'please dont', 4, '2021-04-30T23:23:00+00:00'),
+ (5, 'but heres my...', 2, '2021-04-30T23:22:31+00:00'),
+ (5, 'i thought i didnt want you to say number but now im just praying its just a number', 4, '2021-04-30T23:23:00+00:00'),
+ (5, 'number #########', 2, '2021-04-30T23:22:31+00:00'),
+ (5, 'yeah not gonna happen', 4, '2021-04-30T23:23:00+00:00'),
+ (5, 'please love me maybe', 2, '2021-04-30T23:22:31+00:00'),
+ (5, 'no thanks', 4, '2021-04-30T23:23:00+00:00'),
+ (5, 'ok bye', 2, '2021-04-30T23:22:31+00:00'),
+ (6, 'hi!', 2, '2021-04-30T23:22:31+00:00'),
+ (6, 'well hi to you too!', 5, '2021-04-30T23:23:00+00:00'),
+ (6, 'i just met you', 2, '2021-04-30T23:22:31+00:00'),
+ (6, 'oh no', 5, '2021-04-30T23:23:00+00:00'),
+ (6, 'and this is crazy', 2, '2021-04-30T23:22:31+00:00'),
+ (6, 'please dont', 5, '2021-04-30T23:23:00+00:00'),
+ (6, 'but heres my...', 2, '2021-04-30T23:22:31+00:00'),
+ (6, 'i thought i didnt want you to say number but now im just praying its just a number', 5, '2021-04-30T23:23:00+00:00'),
+ (6, 'number #########', 2, '2021-04-30T23:22:31+00:00'),
+ (6, 'yeah not gonna happen', 5, '2021-04-30T23:23:00+00:00'),
+ (6, 'please love me maybe', 2, '2021-04-30T23:22:31+00:00'),
+ (6, 'no thanks', 5, '2021-04-30T23:23:00+00:00'),
+ (6, 'ok bye', 2, '2021-04-30T23:22:31+00:00'), 
+ (7, 'hi!', 2, '2021-04-30T23:22:31+00:00'),
+ (7, 'well hi to you too!', 8, '2021-04-30T23:23:00+00:00'),
+ (7, 'i just met you', 2, '2021-04-30T23:22:31+00:00'),
+ (7, 'oh no', 8, '2021-04-30T23:23:00+00:00'),
+ (7, 'and this is crazy', 2, '2021-04-30T23:22:31+00:00'),
+ (7, 'please dont', 8, '2021-04-30T23:23:00+00:00'),
+ (7, 'but heres my...', 2, '2021-04-30T23:22:31+00:00'),
+ (7, 'i thought i didnt want you to say number but now im just praying its just a number', 8, '2021-04-30T23:23:00+00:00'),
+ (7, 'number #########', 2, '2021-04-30T23:22:31+00:00'),
+ (7, 'yeah not gonna happen', 8, '2021-04-30T23:23:00+00:00'),
+ (7, 'please love me maybe', 2, '2021-04-30T23:22:31+00:00'),
+ (7, 'no thanks', 8, '2021-04-30T23:23:00+00:00'),
+ (7, 'ok bye', 2, '2021-04-30T23:22:31+00:00'),
+ (8, 'hi!', 4, '2021-04-30T23:22:31+00:00'),
+ (8, 'well hi to you too!', 3, '2021-04-30T23:23:00+00:00'),
+ (8, 'i just met you', 4, '2021-04-30T23:22:31+00:00'),
+ (8, 'oh no', 3, '2021-04-30T23:23:00+00:00'),
+ (8, 'and this is crazy', 4, '2021-04-30T23:22:31+00:00'),
+ (8, 'please dont', 3, '2021-04-30T23:23:00+00:00'),
+ (8, 'but heres my...', 4, '2021-04-30T23:22:31+00:00'),
+ (8, 'i thought i didnt want you to say number but now im just praying its just a number', 3, '2021-04-30T23:23:00+00:00'),
+ (8, 'number #########', 3, '2021-04-30T23:22:31+00:00'),
+ (8, 'yeah not gonna happen', 4, '2021-04-30T23:23:00+00:00'),
+ (8, 'please love me maybe', 3, '2021-04-30T23:22:31+00:00'),
+ (8, 'no thanks', 4, '2021-04-30T23:23:00+00:00'),
+ (8, 'ok bye', 3, '2021-04-30T23:22:31+00:00'),
+ (9, 'hi!', 5, '2021-04-30T23:22:31+00:00'),
+ (9, 'well hi to you too!', 3, '2021-04-30T23:23:00+00:00'),
+ (9, 'i just met you', 5, '2021-04-30T23:22:31+00:00'),
+ (9, 'oh no', 3, '2021-04-30T23:23:00+00:00'),
+ (9, 'and this is crazy', 5, '2021-04-30T23:22:31+00:00'),
+ (9, 'please dont', 3, '2021-04-30T23:23:00+00:00'),
+ (9, 'but heres my...', 5, '2021-04-30T23:22:31+00:00'),
+ (9, 'i thought i didnt want you to say number but now im just praying its just a number', 3, '2021-04-30T23:23:00+00:00'),
+ (9, 'number #########', 5, '2021-04-30T23:22:31+00:00'),
+ (9, 'yeah not gonna happen', 3, '2021-04-30T23:23:00+00:00'),
+ (9, 'please love me maybe', 5, '2021-04-30T23:22:31+00:00'),
+ (9, 'no thanks', 3, '2021-04-30T23:23:00+00:00'),
+ (9, 'ok bye', 5, '2021-04-30T23:22:31+00:00'),
+ (10, 'hi!', 8, '2021-04-30T23:22:31+00:00'),
+ (10, 'well hi to you too!', 3, '2021-04-30T23:23:00+00:00'),
+ (10, 'i just met you', 8, '2021-04-30T23:22:31+00:00'),
+ (10, 'oh no', 3, '2021-04-30T23:23:00+00:00'),
+ (10, 'and this is crazy', 8, '2021-04-30T23:22:31+00:00'),
+ (10, 'please dont', 3, '2021-04-30T23:23:00+00:00'),
+ (10, 'but heres my...', 8, '2021-04-30T23:22:31+00:00'),
+ (10, 'i thought i didnt want you to say number but now im just praying its just a number', 3, '2021-04-30T23:23:00+00:00'),
+ (10, 'number #########', 8, '2021-04-30T23:22:31+00:00'),
+ (10, 'yeah not gonna happen', 3, '2021-04-30T23:23:00+00:00'),
+ (10, 'please love me maybe', 8, '2021-04-30T23:22:31+00:00'),
+ (10, 'no thanks', 3, '2021-04-30T23:23:00+00:00'),
+ (10, 'ok bye', 8, '2021-04-30T23:22:31+00:00');
