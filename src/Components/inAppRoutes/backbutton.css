@@ -1,0 +1,13 @@
+.back-button-icon-container {
+  background-color: #2f2f2d7e;
+  padding: 10px;
+  border-radius: 25px;
+  position: fixed;
+  left: 20px;
+  top: 20px;
+  width: 75px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+}

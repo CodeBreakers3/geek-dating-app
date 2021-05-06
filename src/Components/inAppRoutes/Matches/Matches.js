@@ -1,9 +1,15 @@
+//non component imports
+
+//component imports
+import Header from './../../Header';
+
 //Matches component
 function Matches() {
     return (
-        <header>
+        <div className="main-display">
+            <Header/>
             <p>Matches</p>
-        </header>
+        </div>
     )
 }
 

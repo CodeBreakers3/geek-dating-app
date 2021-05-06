@@ -1,5 +1,15 @@
 header {
-  background-color: grey;
+  background-color: #2f2f2d;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  padding: 0px 15px;
+  height: 75px;
+  width: 100%;
+  box-shadow: 1px 1px 3px black;
+}
+
+div[class*="header-icon"] {
+  max-width: 35px;
+  cursor: pointer;
 }
