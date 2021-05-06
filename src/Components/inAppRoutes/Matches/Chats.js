@@ -1,5 +1,21 @@
 // import React, {useState, useEffect, useRef} from 'react'
+import React from 'react'
+import {connect} from 'react-redux';
 // import io from 'socket.io-client';
+
+const Chats = ()=> {
+  
+
+    return(
+    <div>
+aaaaaaaaa
+    </div>
+    )
+}
+const mapStateToProps = reduxState => {
+    return reduxState
+  }
+  export default connect(mapStateToProps)(Chats)
 
 // const Chat = ()=> {
 //     const [yourID, setYourID] = useState();

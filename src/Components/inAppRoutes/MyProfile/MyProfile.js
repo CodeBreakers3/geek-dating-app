@@ -51,4 +51,8 @@ function MyProfile(props) {
     )
 }
 
-export default connect(null,{logoutUser})(MyProfile);
+const mapStateToProps = reduxState => {
+    return reduxState
+}
+
+export default connect(mapStateToProps,{logoutUser})(MyProfile);

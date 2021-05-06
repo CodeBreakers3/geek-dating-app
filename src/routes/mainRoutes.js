@@ -7,12 +7,15 @@ import Matches from '../Components/inAppRoutes/Matches/Matches';
 import LargeProfile from './../Components/inAppRoutes/Swipe/ProfileLarge';
 import EditFilters from './../Components/inAppRoutes/MyProfile/EditFilters';
 import EditProfile from './../Components/inAppRoutes/MyProfile/EditProfile';
+import Chats from '../Components/inAppRoutes/Matches/Chats'
+
 
 export default (
     <Switch>
         <Route exact path="/" component={Swipe}/>
         <Route path="/myprofile" component={MyProfile}/>
-        <Route path="/matches" component={Matches}/>
+        <Route path="/matches" render={()=><Matches/>}/>
+        <Route path="/chats" render={()=><Chats/>}/>
         <Route path="/largeprofile" component={LargeProfile}/>
         <Route path="/editfilters" component={EditFilters}/>
         <Route path="/editprofile" component={EditProfile}/>
