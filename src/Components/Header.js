@@ -12,19 +12,25 @@ const Header = ()=> {
         <header>
             <div className="header-profile-icon-container">
                 <Link to="/myprofile">
-                    <div className="header-profile-icon">PROFILE</div>
+                    <div className="header-icon-profile">
+                        <img alt="my profile icon" src="https://staticsiteimages.s3-us-west-2.amazonaws.com/profile2.svg"/>
+                    </div>
                 </Link>
             </div>
 
             <div className="header-logo-icon-container">
                 <Link to="/">
-                    <div className="header-logo-icon">LOGO</div>
+                    <div className="header-icon-logo">
+                        <img alt="my profile icon" src="https://staticsiteimages.s3-us-west-2.amazonaws.com/logo2.svg"/>
+                    </div>
                 </Link>
             </div>
 
             <div className="header-matches-icon-container">
                 <Link to="/matches">
-                    <div className="header-matches-icon">MATCHES</div>
+                    <div className="header-icon-matches">
+                        <img alt="my profile icon" src="https://staticsiteimages.s3-us-west-2.amazonaws.com/matches2.svg"/>
+                    </div>
                 </Link>
             </div>
         </header>

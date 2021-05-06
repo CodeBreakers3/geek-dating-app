@@ -1,0 +1,30 @@
+.swipe-main-display-container {
+  padding: 10px 10px 0px 10px;
+  height: -moz-calc(100% - (85px));
+  height: -webkit-calc(100% - (85px));
+  height: calc(100% - (85px));
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.swipe-main-display-buttons-container {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  padding: 15px 0px;
+}
+
+.swipe-main-display-icon-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #2f2f2d;
+  padding: 15px;
+  border-radius: 50%;
+  box-shadow: 1px 1px 3px black;
+}
+
+.swipe-main-display-icon {
+  width: 50px;
+}

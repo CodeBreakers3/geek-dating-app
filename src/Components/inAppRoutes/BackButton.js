@@ -1,11 +1,17 @@
-//BackButton component
-import {useHistory} from 'react-router-dom'
+//non component imports
+import './backbutton.css';
+import {useHistory} from 'react-router-dom';
 
+//BackButton component
 const BackButton = () => {
 let history = useHistory()
 
     return (
-        <button onClick={() => history.goBack()}>&#8592; Go Back</button>
+        <div className="back-button-component" onClick={() => history.goBack()}>
+            <div className="back-button-icon-container">
+                <img alt="back button" src="https://staticsiteimages.s3-us-west-2.amazonaws.com/back3.svg"/>
+            </div>
+        </div>
     )
 }
 
