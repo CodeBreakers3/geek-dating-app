@@ -17,7 +17,7 @@ const GET_MATCHED_CHAT = "GET_MATCHED_CHAT";
 export const getViewableProfiles = (profile_id) => {
   return {
     type: GET_VIEWABLE_PROFILES,
-    payload: axios.get(`/api/getviewableprofiles/${profile_id}`).then(res=>res.data)
+    payload: axios.get(`/api/getviewableprofiles/${profile_id}`)
   };
 };
 

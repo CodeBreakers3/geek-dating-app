@@ -1,4 +1,3 @@
-import './reset.css';
 import './App.css';
 import {connect} from 'react-redux';
 //import the routes for the auth/registration views
