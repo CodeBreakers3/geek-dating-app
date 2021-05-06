@@ -1,0 +1,8 @@
+.matches-profile-photo{
+    height:3vh;
+    width:3vh;
+}
+.row{
+    display: flex;
+    flex-direction: row;
+}

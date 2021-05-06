@@ -29,7 +29,7 @@ app.use(
 
 //PROFILE ENDPOINTS
     //update profile: receives a profile object and sends it to the DB to update that profile object in the DB. 
-    app.put('/api/updateprofile/', profileController.updateProfile);
+
     app.get('/api/getviewableprofiles/:profile_id', profileController.getViewableProfiles);
 //update profile: receives a profile object and sends it to the DB to update that profile object in the DB.
 app.get("/api/getprofile/:profile_id", profileController.getProfile);
@@ -53,7 +53,8 @@ app.put("/api/dislike/:profile_id", matchesController.dislike);
 //?user_id=X&profile_id=Y
 app.delete("/api/unmatch/:match_id", matchesController.unmatch);
 
-app.get(`/api/chat`, chatsController.getChats);
+app.get(`/api/matches/:profile_id`, chatsController.getChats);
+app.get(`/api/matchedchat/:match_id`, chatsController.getMatchedChat);
 app.post(`/api/chat`, chatsController.addChatReply);
 app.put("/api/chat/:chat_id", chatsController.updateChatReply);
 app.delete("/api/chat/:chat_id", chatsController.deleteChatReply);
