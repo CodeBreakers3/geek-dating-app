@@ -27,7 +27,7 @@ export const registerUser=(email,password) => {
 export const logoutUser=()=>{
     return {
         type: LOGOUT_USER,
-        payload: axios.delete('/auth/logout').then(res=>res.data)
+        payload: axios.delete('/auth/logout')
     }
 }
 
