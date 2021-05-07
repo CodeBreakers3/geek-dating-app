@@ -48,6 +48,8 @@ export default function reducer(state = initialState, action) {
         case LOGOUT_USER + "_FULFILLED":
             return {
                 ...state,
+                user: {},
+                isLoading: false,
                 isLoggedIn: false
             }
             

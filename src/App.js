@@ -1,13 +1,23 @@
 import './App.css';
 import {connect} from 'react-redux';
+import {useEffect} from 'react';
 //import the routes for the auth/registration views
 import authRoutes from './routes/authRoutes';
 
 //import components for the main app routes
 import mainRoutes from './routes/mainRoutes';
 
+import {loginUser} from './ducks/userReducer';
+
 
 function App(props) {
+
+  useEffect(() => {
+    if(JSON.parse(localStorage.getItem('isLoggedIn'))) {
+      props.loginUser(JSON.parse(localStorage.getItem('loggedInUser')));
+    }
+
+  }, props)
 
     return (
         <div className="App">
@@ -19,4 +29,5 @@ function App(props) {
 const mapStateToProps = reduxState => {
   return reduxState.userReducer
 }
-export default connect(mapStateToProps)(App)
+
+export default connect(mapStateToProps, {loginUser})(App)
