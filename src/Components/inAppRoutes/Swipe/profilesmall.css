@@ -31,7 +31,8 @@
   font-size: medium;
 }
 
-.small-profile-details-container p {
+.small-profile-details-container p,
+.small-profile-details-container h1 {
   margin: 0px;
   padding: 1px 15px;
 }

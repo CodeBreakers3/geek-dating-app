@@ -12,15 +12,6 @@ const GET_VIEWABLE_PROFILES = "GET_VIEWABLE_PROFILES";
 const GET_MATCHES = "GET_MATCHES";
 const GET_MATCHED_CHAT = "GET_MATCHED_CHAT";
 
-// const LOGOUT_USER = 'LOGOUT_USER';
-
-export const getViewableProfiles = (profile_id) => {
-  return {
-    type: GET_VIEWABLE_PROFILES,
-    payload: axios.get(`/api/getviewableprofiles/${profile_id}`)
-  };
-};
-
 export const getMatches = (profile_id) => {
   let matches = axios.get(`/api/matches/${profile_id}`).then(res => res.data)
     return {
@@ -39,17 +30,6 @@ export const getMatchedChat = (match_id) => {
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
-    case GET_VIEWABLE_PROFILES + "_FULFILLED":
-      return {
-        ...state,
-        viewableProfiles: action.payload,
-        isLoading: false,
-      };
-    case GET_VIEWABLE_PROFILES + "_PENDING":
-      return {
-        ...state,
-        isLoading: true,
-      };
     case GET_MATCHES + "_FULFILLED":
       return {
         ...state,
