@@ -1,6 +1,7 @@
 //non component imports
 import './profilesmall.css';
 import {Link} from 'react-router-dom';
+import {connect} from 'react-redux';
 
 //component imports
 
@@ -25,7 +26,7 @@ function ProfileSmall(props) {
                 
                 <div className="small-profile-details-container">
                     <div className="small-profile-name-container">
-                        <h1>First Name, Last Name</h1>
+                        <h1>{props.userReducer.user.viewableProfiles[0].first_name}</h1>
                     </div>
                     <div className="small-profile-gamertag-container">
                         <p>Gamertag</p>
@@ -39,4 +40,8 @@ function ProfileSmall(props) {
     )
 }
 
-export default ProfileSmall;
+const mapStateToProps = reduxState => {
+    return reduxState
+}
+
+export default connect(mapStateToProps)(ProfileSmall);
