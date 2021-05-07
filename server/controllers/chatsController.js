@@ -8,6 +8,15 @@ module.exports = {
       })
       .catch((err) => console.log(err));
   },
+  getAllChats: (req, res) => {
+    const db = req.app.get("db");
+    const {profile_id} =req.params
+    db.get_all_matches(profile_id)
+      .then((dbRes) => {
+        res.status(200).send(dbRes);
+      })
+      .catch((err) => console.log(err));
+  },
   addChatReply: (req, res) => {
     const db = req.app.get("db");
     const { match_id, chat_content, user_id, time_stamp } = req.body;

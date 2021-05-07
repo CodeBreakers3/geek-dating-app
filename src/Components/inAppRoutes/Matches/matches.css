@@ -16,12 +16,14 @@
     width:3rem;
     border:2.5px inset rgb(68,103,85);
 border-radius: 50%;
+box-shadow: 3px 3px 6px 1px rgb(88,88, 88)
 }
 .matches-picture{
     height: 6rem;
     width: 6rem;
 border:5px inset rgb(68,103,85);
 border-radius: 50%;
+box-shadow: 3px 3px 6px 1px rgb(62, 62, 62)
 }
 .row{
     display: flex;
@@ -29,6 +31,9 @@ border-radius: 50%;
 }
 h1{
     font-family: 'Space Grotesk SemiBold' 
+}
+h6{
+    font-family: 'Space Grotesk Light'
 }
 p{
     font-family:'Poppins ExtraLight', Poppins

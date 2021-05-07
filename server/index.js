@@ -53,6 +53,7 @@ app.put("/api/dislike/:profile_id", matchesController.dislike);
 //?user_id=X&profile_id=Y
 app.delete("/api/unmatch/:match_id", matchesController.unmatch);
 
+app.get(`/api/allmatches/:profile_id`, chatsController.getAllChats);
 app.get(`/api/matches/:profile_id`, chatsController.getChats);
 app.get(`/api/matchedchat/:match_id`, chatsController.getMatchedChat);
 app.get(`/api/message/:match_id`, chatsController.getMessage);

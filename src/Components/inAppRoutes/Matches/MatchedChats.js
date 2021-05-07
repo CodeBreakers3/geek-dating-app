@@ -1,4 +1,5 @@
 import React, { useEffect,useState } from "react";
+import {Link }from 'react-router-dom'
 import axios from 'axios'
 import {connect} from 'react-redux';
 import "./matches.css";
@@ -14,32 +15,37 @@ const {match_id}=match
 axios.get(`/api/message/${match_id}`).then(res=>{
     setMessage(res.data[0].message)
 }).catch(err=>console.log(err))
-  }, []);
+  }, [match_id]);
 
 return (
-    (props.userReducer.user.profile_id === match.profile1 ? (
+    (props.userReducer.user.profile_id === match.profile1 && message !== undefined ? (
  <div id="matches" className="row">
+<Link to='/chats'>
         <div className="row">
           <img
             className="matches-profile-photo"
             src={match.photo2}
             alt="1"
           ></img>
-          <h1>{match.firstname2} {match.lastname2}</h1>
-          <h6>{match.gamertag2}</h6>
+
+          <h1>{match.gamertag2}</h1>
           <p>{message}</p>
         </div>
-      </div>) : (<div id="matches" className="row">
+        </Link>
+      </div>) : (
+      <div id="matches" className="row">
+        <Link to='/chats'>
         <div className="row">
           <img
             className="matches-profile-photo"
             src={match.photo1}
             alt="1"
           ></img>
-          <h6>{match.firstname1}</h6>
-          <h3>{match.gamertag1}</h3>
+
+          <h1>{match.gamertag1}</h1>
            <p>{message}</p>
         </div>
+        </Link>
       </div>) 
 ))
     }

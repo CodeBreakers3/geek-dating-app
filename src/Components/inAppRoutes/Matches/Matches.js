@@ -1,31 +1,40 @@
-import React, { useEffect } from "react";
+import React, { useEffect,useState } from "react";
+import {Link} from 'react-router-dom'
+import { connect } from "react-redux";
+import axios from "axios";
 import Header from '../../Header'
 import MatchedChats from './MatchedChats'
-import { connect } from "react-redux";
 import { getMatches,getMatchedChat } from "../../../ducks/profileReducer";
 import "./matches.css";
 
 
 const Matches = (props) => {
-  console.log(props);
+  const [allMatches,setAllMatches]= useState([])
+  const {profile_id}= props.userReducer.user
+
 
   useEffect(() => {
-    const { profile_id } = props.userReducer.user;
     props.getMatches(profile_id);
+    axios.get(`/api/allmatches/${profile_id}`).then(res=>{
+      setAllMatches(res.data)
+    }).catch(err=>console.log(err))
+    console.log(profile_id)
+  },[profile_id]);
 
-  }, []);
 
-  let mappedPhotos = props.profileReducer.matches.map((match, i) => {
 
+  let mappedPhotos = allMatches.map((match, i) => {
     return (
-
       (props.userReducer.user.profile_id === match.profile1 ? (
         <div key={i}>
+          <Link to='/'></Link>
         <img className="matches-picture" src={match.photo2} alt={"p"}></img>
+      <h6>{match.gamertag2}</h6>
       </div>
       ):(
       <div key={i}>
         <img className="matches-picture" src={match.photo1} alt={"p"}></img>
+        <h6>{match.gamertag1}</h6>
       </div>
       ))
       )
@@ -37,6 +46,7 @@ const Matches = (props) => {
     );
   });
 
+
   return (
     <div id="matches-view">
       <Header/>
@@ -46,8 +56,11 @@ const Matches = (props) => {
     </div>
   );
 };
+
+
 const mapStateToProps = (reduxState) => {
   return reduxState;
 };
+
 
 export default connect(mapStateToProps, { getMatches,getMatchedChat })(Matches);
