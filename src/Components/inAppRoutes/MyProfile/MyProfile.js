@@ -33,7 +33,7 @@ function MyProfile(props) {
                 <div className="my-profile-details-flex-container">
                     <div className="my-profile-details-container">
                         <div className="my-profile-details-name-container"><h1>Tanner Francis</h1></div>
-                        <div className="my-profile-details-gamertage-container">Gamertag: Financ3</div>
+                        <div className="my-profile-details-gamertag-container">Gamertag: Financ3</div>
                     </div>
                 </div>
 
