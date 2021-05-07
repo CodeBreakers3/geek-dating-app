@@ -49,4 +49,13 @@ module.exports = {
       })
       .catch((err) => console.log(err));
   },
+  getMessage: (req,res) => {
+    const db = req.app.get("db");
+    const {match_id} =req.params
+    db.get_message(match_id)
+    .then(dbRes => {
+      res.status(200).send(dbRes)
+    })
+    .catch(err=> console.log(err));
+  }
 };

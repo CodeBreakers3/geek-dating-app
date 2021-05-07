@@ -30,9 +30,10 @@ export const getMatches = (profile_id) => {
 };
 
 export const getMatchedChat = (match_id) => {
+  let chat = axios.get(`/api/matchedchat/${match_id}`).then(res=> res.data)
   return {
     type: GET_MATCHED_CHAT,
-    payload: axios.get(`/api/matchedchat/${match_id}`).then(res=> res.data),
+    payload: chat
   };
 };
 

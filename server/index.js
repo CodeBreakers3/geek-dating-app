@@ -55,6 +55,7 @@ app.delete("/api/unmatch/:match_id", matchesController.unmatch);
 
 app.get(`/api/matches/:profile_id`, chatsController.getChats);
 app.get(`/api/matchedchat/:match_id`, chatsController.getMatchedChat);
+app.get(`/api/message/:match_id`, chatsController.getMessage);
 app.post(`/api/chat`, chatsController.addChatReply);
 app.put("/api/chat/:chat_id", chatsController.updateChatReply);
 app.delete("/api/chat/:chat_id", chatsController.deleteChatReply);
