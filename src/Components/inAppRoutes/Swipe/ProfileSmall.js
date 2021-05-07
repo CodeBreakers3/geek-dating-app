@@ -25,7 +25,7 @@ function ProfileSmall(props) {
                 
                 <div className="small-profile-details-container">
                     <div className="small-profile-name-container">
-                        <p>First Name, Last Name</p>
+                        <h1>First Name, Last Name</h1>
                     </div>
                     <div className="small-profile-gamertag-container">
                         <p>Gamertag</p>

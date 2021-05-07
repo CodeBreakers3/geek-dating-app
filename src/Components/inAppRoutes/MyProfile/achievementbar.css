@@ -1,0 +1,20 @@
+.achievement-bar-container {
+  position: relative;
+  width: 100%;
+  box-shadow: 1px 1px 3px black;
+  background-color: #ece1cb;
+}
+
+.achievement-bar {
+  background-color: #61c692;
+  height: 40px;
+}
+
+.achievement-percent {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 40px;
+  width: 100%;
+  line-height: 40px;
+}
