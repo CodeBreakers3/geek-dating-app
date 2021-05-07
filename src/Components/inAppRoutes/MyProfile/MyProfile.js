@@ -32,19 +32,27 @@ function MyProfile(props) {
 
                 <div className="my-profile-details-flex-container">
                     <div className="my-profile-details-container">
-                        <div className="my-profile-details-name-container">Tanner Francis</div>
+                        <div className="my-profile-details-name-container"><h1>Tanner Francis</h1></div>
                         <div className="my-profile-details-gamertage-container">Gamertag: Financ3</div>
                     </div>
                 </div>
 
                 <div className="my-profile-buttons-flex-container">
-                    <Link to="/editfilters">
-                        <button className="my-profile-button">Settings</button>
-                    </Link>
-                    <button className="my-profile-button" onClick={logout}>Logout</button>
-                    <Link to="/editprofile">
-                        <button className="my-profile-button">Character Sheet</button>
-                    </Link>
+                    
+                        <div className="my-profile-button" id="my-profile-filter-settings">
+                            <Link to="/editfilters">
+                                <img alt="filter settings" src="https://staticsiteimages.s3-us-west-2.amazonaws.com/settings2.svg"/>
+                            </Link>
+                        </div>
+                    
+                    <div className="my-profile-button" id="my-profile-logout" onClick={logout}>Logout</div>
+                    
+                    <div className="my-profile-button" id="my-profile-profile-settings">
+                        <Link to="/editprofile">
+                            <img alt="profile settings" src="https://staticsiteimages.s3-us-west-2.amazonaws.com/preferences2.svg"/>
+                        </Link>
+                    </div>
+                    
                 </div>
             </div>
         </div>
