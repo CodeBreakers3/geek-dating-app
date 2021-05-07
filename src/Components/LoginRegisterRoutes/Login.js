@@ -24,9 +24,9 @@ const Login = (props) => {
        
         // Next step: give redux or object we got from backend
         props.loginUser(loggedInUser.data)
-       
-        props.history.push('/');
         console.log(props)
+        props.history.push('/');
+        
 
         // Next step: get swipe-able profiles onto redux
         
