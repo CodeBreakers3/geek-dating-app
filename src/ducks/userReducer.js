@@ -2,11 +2,9 @@ import axios from 'axios'
 
 const initialState ={
     user:{},
-
     isLoggedIn:false,
     isLoading:false
 };
-
 
 const REGISTER_USER = 'REGISTER_USER';
 const LOGIN_USER = 'LOGIN_USER';
