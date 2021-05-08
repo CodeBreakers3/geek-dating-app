@@ -1,5 +1,5 @@
 import './App.css';
-import React, {useEffect} from 'react'
+// import React, {useEffect} from 'react'
 import {connect} from 'react-redux';
 import {reloadUser} from './ducks/userReducer'
 
@@ -14,10 +14,10 @@ import {loginUser} from './ducks/userReducer';
 
 function App(props) {
 
-useEffect(()=>{
-props.reloadUser()
-console.log(props)
-})
+// useEffect(()=>{
+// props.reloadUser()
+// console.log(props)
+// })
 
     return (
         <div className="App">

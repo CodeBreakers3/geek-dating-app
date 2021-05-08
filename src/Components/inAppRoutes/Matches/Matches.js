@@ -21,7 +21,7 @@ const Matches = (props) => {
     })
     .catch(err=>console.log(err))
     console.log(profile_id)
-  },[]);
+  },[profile_id,props]);
 
 
 
