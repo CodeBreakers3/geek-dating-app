@@ -1,2 +1,2 @@
 SELECT * FROM likes
-WHERE user_id = $1 AND profile_id = $2;
+WHERE profile_id_2= $1 AND profile_id_1 = $2;

@@ -7,26 +7,15 @@ const initialState = {
   isLoading: false
 };
 
-const GET_VIEWABLE_PROFILES = "GET_VIEWABLE_PROFILES";
+
 const GET_MATCHES = "GET_MATCHES";
 const GET_MATCHED_CHAT = "GET_MATCHED_CHAT";
-
-export const getViewableProfiles = (profile_id) => {
-  let profiles = axios
-    .get(`/api/viewableprofiles/${profile_id}`)
-    .then((res) => res.data)
-    .catch((err) => console.log(err));
-  return {
-    type: GET_VIEWABLE_PROFILES,
-    payload: profiles,
-  };
-};
 
 export const getMatches = (profile_id) => {
   let matches = axios.get(`/api/matches/${profile_id}`).then((res) => res.data);
   return {
     type: GET_MATCHES,
-    payload: matches,
+    payload: matches
   };
 };
 
@@ -34,24 +23,12 @@ export const getMatchedChat = (match_id) => {
   let chat = axios.get(`/api/matchedchat/${match_id}`).then((res) => res.data);
   return {
     type: GET_MATCHED_CHAT,
-    payload: chat,
+    payload: chat
   };
 };
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
-    case GET_VIEWABLE_PROFILES + "_FULFILLED":
-      return {
-        ...state,
-        viewableProfiles: action.payload,
-        isLoading: false,
-      };
-    case GET_VIEWABLE_PROFILES + "_PENDING":
-      return {
-        ...state,
-        isLoading: true,
-      };
-
     case GET_MATCHES + "_FULFILLED":
       return {
         ...state,
@@ -63,7 +40,6 @@ export default function reducer(state = initialState, action) {
         ...state,
         isLoading: true,
       };
-
     case GET_MATCHED_CHAT + "_FULFILLED":
       return {
         ...state,
@@ -75,7 +51,6 @@ export default function reducer(state = initialState, action) {
         ...state,
         isLoading: true,
       };
-
     default:
       return state;
   }
