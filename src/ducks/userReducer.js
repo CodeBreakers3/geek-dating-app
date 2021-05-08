@@ -2,14 +2,24 @@ import axios from 'axios'
 
 const initialState ={
     user:{},
+sessionUser:{},
     isLoggedIn:false,
     isLoading:false
 };
 
+const RELOAD_USER = 'REGISTER_USER';
 const REGISTER_USER = 'REGISTER_USER';
 const LOGIN_USER = 'LOGIN_USER';
 const LOGOUT_USER = 'LOGOUT_USER';
 
+export function reloadUser() {
+    let session= axios.get('/auth/reload').then(res =>console.log(res.data))
+    console.log(session)
+    return {
+        type: LOGIN_USER,
+        payload: session
+    }
+}
 export function loginUser(loggedInUser) {
     return {
         type: LOGIN_USER,
@@ -38,6 +48,12 @@ export default function reducer(state = initialState, action) {
             return {
                 ...state,
               user: action.payload,
+              isLoggedIn: true
+            }
+        case RELOAD_USER:
+            return {
+                ...state,
+              sessionUser: action.payload,
               isLoggedIn: true
             }
         case LOGOUT_USER + "_PENDING":

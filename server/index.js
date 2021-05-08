@@ -4,6 +4,7 @@ require("dotenv").config({ path: path.resolve(__dirname, "../.env") });
 const massive = require("massive");
 const session = require("express-session");
 const express = require("express");
+const FileStore = require('session-file-store')(session);
 const profileController = require("./controllers/profileController");
 const matchesController = require("./controllers/matchesController");
 const chatsController = require("./controllers/chatsController");
@@ -16,21 +17,48 @@ app.use(express.json());
 
 app.use(
   session({
+    store: new FileStore({
+      path:'./session-store'
+    }),
+    name:'_one_up_demo',
     secret: SESSION_SECRET,
-    resave: true,
+    resave: false,
     saveUninitialized: false,
-    cookie: {
-      maxAge: 1000 * 60 * 525600,
-    },
-  })
-);
 
+    cookie: {
+
+      maxAge: 1000 * 60 * 525600,
+
+    },
+
+  }));
+
+app.get('/session', function (req, res) {
+  // simple count for the session
+  if (!req.session.count) {
+      req.session.count = 0;
+  }
+  req.session.count += 1;
+  // respond with the session object
+  res.json(req.session);
+});
+
+app.use(require('cookie-parser')());
+
+app.get('/auth/reload',function(req,res){
+  if(!req.session){
+    req.session= req.cookies
+  }
+  res.status(200).send(req.session)
+
+  console.log(req.session.user._one_up_demo)
+})
 //Controller endpoints here
 
 //PROFILE ENDPOINTS
     //update profile: receives a profile object and sends it to the DB to update that profile object in the DB. 
 
-    app.get('/api/getviewableprofiles/:profile_id', profileController.getViewableProfiles);
+    app.get('/api/viewableprofiles/:profile_id', profileController.getViewableProfiles);
 //update profile: receives a profile object and sends it to the DB to update that profile object in the DB.
 app.get("/api/getprofile/:profile_id", profileController.getProfile);
 app.put("/api/updateprofile/:profile_id", profileController.updateProfile);

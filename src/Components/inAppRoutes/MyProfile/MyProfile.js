@@ -12,8 +12,8 @@ import Header from './../../Header';
 function MyProfile(props) {
 
     const logout = () => {
-        localStorage.setItem('isLoggedIn', JSON.stringify(false));
-        localStorage.setItem('loggedInUser', JSON.stringify({}));
+        // localStorage.setItem('isLoggedIn', JSON.stringify(false));
+        // localStorage.setItem('loggedInUser', JSON.stringify({}));
         props.logoutUser();
         props.history.push('/');
     }

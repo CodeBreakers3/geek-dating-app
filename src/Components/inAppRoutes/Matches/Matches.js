@@ -15,11 +15,13 @@ const Matches = (props) => {
 
   useEffect(() => {
     props.getMatches(profile_id);
-    axios.get(`/api/allmatches/${profile_id}`).then(res=>{
+    axios.get(`/api/allmatches/${profile_id}`)
+    .then(res=>{
       setAllMatches(res.data)
-    }).catch(err=>console.log(err))
+    })
+    .catch(err=>console.log(err))
     console.log(profile_id)
-  },[profile_id]);
+  },[]);
 
 
 

@@ -64,15 +64,11 @@ const {profile_id} = req.params
         const db = req.app.get('db');
         // Get the profile id from the logged in user form the params
         const {profile_id} = req.params;
-        
-        try{
-            let allViewableProfiles = await db.get_viewable_profiles(profile_id)
-            res.status(200).send(allViewableProfiles)
-        }
-        catch(err) {
-            console.log("Can't retrieve profiles")
-            res.status(500).send(err)
-        }
+            db.get_viewable_profiles(profile_id)
+              .then((dbRes) => {
+                res.status(200).send(dbRes);
+              })
+              .catch((err) => console.log(err));
     },
     getProfile: async function(req, res) {
         //get the database instance
