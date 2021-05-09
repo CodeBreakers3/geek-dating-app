@@ -10,10 +10,8 @@ import "./matches.css";
 const Matches = (props) => {
   const [allMatches,setAllMatches]= useState([])
   const {profile_id}= props.userReducer.user
-
   useEffect(() => {
     props.getMatches(profile_id);
-
     axios.get(`/api/allmatches/${profile_id}`)
     .then(res=>{
       setAllMatches(res.data)

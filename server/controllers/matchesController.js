@@ -25,7 +25,7 @@ module.exports = {
         let matchCheck;
         try {
             //check the likes table to see if the liked profile has already liked the liker.
-            [matchCheck] = await db.check_for_match(profile_id_2, profile_id_1);
+            [matchCheck] = await db.check_for_match(profile_id_1, profile_id_2);
 
             if(matchCheck) {
                 //If there's a matching like on the like table, then add a match to the match table.

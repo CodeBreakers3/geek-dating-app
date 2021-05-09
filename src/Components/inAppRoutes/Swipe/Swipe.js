@@ -1,22 +1,26 @@
 //non-component imports
 import './swipe.css';
+import React, {useEffect} from 'react'
 import {useState} from 'react';
 import {connect} from 'react-redux'
-
+import axios from 'axios';
 //component imports
 import Matched from './Matched';
 import ProfileSmall from './ProfileSmall';
 import Header from './../../Header';
-import axios from 'axios';
+import getViewableProfiles from '../../../ducks/profileReducer'
 
 //Swipe component
 function Swipe(props) {
     const [isMatch, setIsMatch] = useState(false);
 const [idx,setIdx] = useState(0)
 const {viewableProfiles}=props.userReducer.user
+const {profile_id}= props.userReducer.user
 const profile_id_1 = props.userReducer.user.profile_id
 const profile_id_2 = props.userReducer.user.viewableProfiles[idx].profile_id
+useEffect(()=>{
 
+},[profile_id])
 
     const back = ()=>{  
         console.log(idx) 
@@ -82,4 +86,4 @@ const profile_id_2 = props.userReducer.user.viewableProfiles[idx].profile_id
 const mapStateToProps = reduxState => {
     return reduxState
 }
-export default connect(mapStateToProps)(Swipe);
+export default connect(mapStateToProps,{getViewableProfiles})(Swipe);

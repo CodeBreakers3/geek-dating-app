@@ -66,13 +66,21 @@ const {profile_id} = req.params
         const {profile_id} = req.params;
                     
         try{
-            let allViewableProfiles = await db.get_viewable_profiles(profile_id)
-            res.status(200).send(allViewableProfiles)
+            let viewableProfiles = await db.get_viewable_profiles(profile_id)
+            // if(!viewableProfiles){
+            //    let me = await db.get_single_profile(profile_id)
+            //     res.status(403).send(me)
+            //     console.log(viewableProfiles)
+            // }else{
+                res.status(200).send(viewableProfiles)
+            //     console.log(viewableProfiles)
+            // }
         }
         catch(err) {
             console.log("Can't retrieve profiles")
             res.status(500).send(err)
         }
+        
     },
     getProfile: async function(req, res) {
         //get the database instance
