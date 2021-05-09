@@ -9,21 +9,20 @@ import {connect} from 'react-redux';
 function ProfileSmall(props) {
     console.log(props)
 const {idx}=props
-   const {viewableProfiles}=props.userReducer.user
-   const [profile]=viewableProfiles
+const {profiles}=props.profileReducer
+let profile = profiles[idx]
 const {profile_id}=profile
-   console.log(viewableProfiles)
-    console.log(profile)
+console.log(profiles)
 
 
 
     const imageDisplaySwipe = 
         <Link to={`/largeprofile/${profile_id}`}>
-            <img id='swipe-picture' alt="displayed" src={viewableProfiles[idx].photo_one}/>
+            <img id='swipe-picture' alt="displayed" src={profile.photo_one}/>
         </Link>;
 
     const imageDisplayMatched = 
-        <img alt="displayed" src={viewableProfiles[idx].photo_one}/>;
+        <img alt="displayed" src={profile.photo_one}/>;
 
     return (
         <div className="small-profile-container">
@@ -36,13 +35,13 @@ const {profile_id}=profile
                 
                 <div className="small-profile-details-container">
                     <div className="small-profile-name-container">
-                        <h1>{viewableProfiles[idx].first_name}</h1>
+                        <h1>{profile.first_name}</h1>
                     </div>
                     <div className="small-profile-gamertag-container">
-                        <p>{viewableProfiles[idx].gamer_tag}</p>
+                        <p>{profile.gamer_tag}</p>
                     </div>
                     <div className="small-profile-description-container">
-                        <p>{viewableProfiles[idx].about_me}</p>
+                        <p>{profile.about_me}</p>
                     </div>
                 </div>
             </div>

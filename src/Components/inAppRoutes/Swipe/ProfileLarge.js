@@ -18,8 +18,7 @@ useEffect(()=>{
         setViewableProfile(profile)
     }).catch(err =>console.log(err))
 }
-
-})
+},[props.match.params])
 console.log(viewableProfile)
     return (
         <div className="large-profile">

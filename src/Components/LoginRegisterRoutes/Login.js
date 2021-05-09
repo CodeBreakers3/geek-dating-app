@@ -21,9 +21,9 @@ const Login = (props) => {
             setFailedLogin(true)
         }
 
-        // add the logged in user to local storage
-        localStorage.setItem('isLoggedIn', JSON.stringify(true));
-        localStorage.setItem('loggedInUser', JSON.stringify(loggedInUser.data));
+        // // add the logged in user to local storage
+        // localStorage.setItem('isLoggedIn', JSON.stringify(true));
+        // localStorage.setItem('loggedInUser', JSON.stringify(loggedInUser.data));
         
         // Next step: give redux or object we got from backend
         props.loginUser(loggedInUser.data);

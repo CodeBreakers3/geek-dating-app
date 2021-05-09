@@ -18,7 +18,7 @@ const Matches = (props) => {
     })
     .catch(err=>console.log(err))
   
-  },[]);
+  },[profile_id]);
 
   let mappedPhotos = allMatches.map((match, i) => {
     return (
