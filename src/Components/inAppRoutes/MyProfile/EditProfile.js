@@ -1,5 +1,5 @@
 //non component imports
-
+import React from 'react'
 //component imports
 import BackButton from './../BackButton';
 import AchievementBar from './AchievementBar';

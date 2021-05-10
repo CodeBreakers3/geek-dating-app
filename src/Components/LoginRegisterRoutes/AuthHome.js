@@ -9,7 +9,7 @@ function AuthHome (){
             <header>
                 <div> Auth</div>
                 <Link to="/login">Log In</Link>
-                <Link to="/credentials">Sign Up</Link>
+                <Link to="/registerpath">Sign Up</Link>
             </header>
         )
     

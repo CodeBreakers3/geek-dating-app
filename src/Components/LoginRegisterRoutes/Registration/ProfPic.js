@@ -1,5 +1,24 @@
+import React, {useState} from 'react'
+
 //ProfPic component
-function ProfPic() {
+function ProfPic(props) {
+    const [profilePic1, setprofilePic1] = useState("")
+    const [profilePic2, setprofilePic2] = useState("")
+    const [profilePic3, setprofilePic3] = useState("")
+    const [profilePic4, setprofilePic4] = useState("")
+    
+    const nextView = () => {
+        props.setNewProfile({
+            ...props.actualProfile,
+           profilePic1,
+           profilePic2,
+           profilePic3,
+           profilePic4
+        }) 
+        props.setIndexTracker(3)
+        }
+
+
     return (
         <div>
             <div>
@@ -18,7 +37,7 @@ function ProfPic() {
         </div>
 
         <div>
-            <button>Save and Continue</button>
+            <button onClick={() => nextView()}>Save and Continue</button>
         </div>
                 
         </div>

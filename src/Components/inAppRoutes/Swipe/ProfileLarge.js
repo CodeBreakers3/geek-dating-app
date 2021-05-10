@@ -1,4 +1,5 @@
 //non-component imports
+import React from 'react'
 import './profilelarge.css';
 
 //component imports

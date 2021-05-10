@@ -50,6 +50,18 @@ export default function reducer(state = initialState, action) {
                 ...state,
                 isLoggedIn: false
             }
+
+        case REGISTER_USER + "_FULLFILLED":
+            return {
+                ...state,
+                user: action.payload
+            }
+
+        case REGISTER_USER + "_PENDING":
+            return {
+                ...state,
+                isLoading: true
+            }
             
         default: return state;
     }

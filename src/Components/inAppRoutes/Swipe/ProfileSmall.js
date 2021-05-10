@@ -1,4 +1,5 @@
 //non component imports
+import React from 'react'
 import './profilesmall.css';
 import {Link} from 'react-router-dom';
 

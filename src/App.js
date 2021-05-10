@@ -1,4 +1,5 @@
 import './App.css';
+import React from 'react'
 import {connect} from 'react-redux';
 //import the routes for the auth/registration views
 import authRoutes from './routes/authRoutes';
@@ -6,6 +7,7 @@ import authRoutes from './routes/authRoutes';
 //import components for the main app routes
 import mainRoutes from './routes/mainRoutes';
 
+// users table or own table : have a login bool, identifies a user id
 
 function App(props) {
 

@@ -1,4 +1,5 @@
 //non-component imports
+import React from 'react'
 import './swipe.css';
 import {useState} from 'react';
 import {connect} from 'react-redux'
