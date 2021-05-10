@@ -2,7 +2,6 @@
 import axios from 'axios';
 import React, {useState,useEffect} from 'react';
 import {connect} from 'react-redux';
-import f from 'session-file-store';
 import BackButton from './../BackButton';
 import AchievementBar from './AchievementBar';
 
@@ -36,18 +35,53 @@ const{user_id}=props.userReducer.user
     const [photo_three,setphoto_three]=useState(user.photo_three)
     const [photo_four,setphoto_four]=useState(user.photo_four)
     const [photo_five,setphoto_five]=useState(user.photo_five)
+    const [count,setCount]=useState(0)
 
+let values ={
+    first_name:first_name, last_name:last_name, gamer_tag:gamer_tag, location:location, about_me:about_me, sexual_orientation:sexual_orientation, sex:sex,preferred_pronoun:preferred_pronoun, height:height, activity_level:activity_level, religion:religion, education:education, occupation:occupation, kids:kids, alcohol:alcohol, smoking:smoking, cannabis:cannabis, recreational_drugs:recreational_drugs, favorite_food:favorite_food, current_game:current_game, photo_one:photo_one, photo_two:photo_two, photo_three:photo_three, photo_four:photo_four, photo_five:photo_five, user_id:user_id        
+}
+        console.log(values)
     
     const handleClick=()=>{
         axios.put(`/api/updateprofile/${profile_id}`,{first_name, last_name, gamer_tag, location, about_me, sexual_orientation, sex,preferred_pronoun, height, activity_level, religion, education, occupation, kids, alcohol, smoking, cannabis, recreational_drugs, favorite_food, current_game, photo_one, photo_two, photo_three, photo_four, photo_five, user_id}).then(res =>console.log(res.data)).catch(err =>console.log(err))
-    }
-    
-    console.log(props)
+    }  
+    let i = 0;
+useEffect(()=>{
+  setCount(i)
+    !current_game ? i++: console.log(i)
+    !first_name ? i++: console.log(i)
+!last_name ? i++: console.log(i)
+!gamer_tag ? i++: console.log(i)
+!location ? i++: console.log(i)
+!about_me ? i++: console.log(i)
+!sexual_orientation ? i++: console.log(i)
+!sex ? i++: console.log(i)
+!preferred_pronoun ? i++: console.log(i)
+!height ? i++: console.log(i)
+!activity_level ? i++: console.log(i)
+!religion ? i++: console.log(i)
+!education ? i++: console.log(i)
+!occupation ? i++: console.log(i)
+!kids ? i++: console.log(i)
+!alcohol ? i++: console.log(i)
+!smoking ? i++: console.log(i)
+!cannabis ? i++: console.log(i)
+!recreational_drugs ? i++: console.log(i)
+!favorite_food ? i++: console.log(i)
+!current_game ? i++: console.log(i)
+!photo_one ? i++: console.log(i)
+!photo_two ? i++: console.log(i)
+!photo_three ? i++: console.log(i)
+!photo_four ? i++: console.log(i)
+!photo_five ? i++: console.log(i)
+
+console.log(i)
+})
     return (
         <div className="edit-profile-container">
             <BackButton/>
             <div className="my-profile-achievement-bar-flex-container">
-                <AchievementBar/>
+                <AchievementBar count={count}/>
             </div>
 
             <div className="edit-profile-edit-images-flex-container">
