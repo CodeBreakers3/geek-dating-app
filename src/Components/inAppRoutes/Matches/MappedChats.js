@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux';
 
@@ -6,6 +6,7 @@ const MappedChats = (props)=> {
 const {message} =props
 const {user}=props.userReducer
 const {profile_id}=props.message
+const[toggle,setToggle]=useState(false)
     return(
         <div id='mappedChats'>
     {message.replying_profile_id === user.profile_id ? (

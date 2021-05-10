@@ -48,7 +48,6 @@ const Chats = (props) => {
 
   return (
     <div id="chatsHolderHolder">
-    
       <div className="chatsHolder">
         <div className="mappedChats">{mappedChats}</div>
         <section id="chat_contentSection">
