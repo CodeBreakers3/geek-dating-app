@@ -85,6 +85,9 @@ console.log(i)
             </div>
 
             <div className="edit-profile-edit-images-flex-container">
+                <div className="edit-profile-edit-images-title-text">
+                    <h1>Profile Images</h1>
+                </div>
                 <div className="edit-profile-edit-images-image-container">
                     <img alt='.' src={user.photo_one}/>
                     <input value={photo_one} onChange={(e)=>setphoto_one(e.target.value)} ></input>
