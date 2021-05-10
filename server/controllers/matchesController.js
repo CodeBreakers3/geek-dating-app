@@ -32,7 +32,6 @@ module.exports = {
                 try {
                     const match = await db.create_match(profile_id_2, profile_id_1);
                     //return a successful status with the match object to indicate there was a match
-                    console.log(match);
                     res.status(200).send(match)
                 } catch (err) {
                     console.log("Error adding match to the match table in the database - " + err);
@@ -48,9 +47,6 @@ module.exports = {
             console.log("Error checking for a match in the database - " + err);
             res.status(500).send("Error checking for a match in the database - " + err);
         }
-
-        //if there was a matching like then matchCheck will have data, otherwise it will be an empty array. 
-     
     },
     dislike: async function(req, res) {
     //THIS IS CURRENTLY NOT BEING USED - THE DB UPDATE DID NOT FUNCTION LIKE WE EXPECTED. Instead we will just have dislikes do nothing in the DB. 
@@ -75,7 +71,6 @@ module.exports = {
         //update the profile with its own data.
         try {
             await db.edit_profile(profile.profile_id, profile.first_name, profile.last_name, profile.gamer_tag, profile.location, profile.about_me, profile.sexual_orientation, profile.sex, profile.preferred_pronoun, profile.height, profile.activity_level, profile.religion, profile.education, profile.occupation, profile.kids, profile.alcohol, profile.smoking, profile.cannabis, profile.recreational_drugs, profile.favorite_food, profile.current_game, profile.photo_one, profile.photo_two, profile.photo_three, profile.photo_four, profile.photo_five, profile.user_id);
-            console.log('hit');
         } catch (err) {
             console.log("Error making the update to the disliked profile - " + err);
             res.status(500).send("Error making the update to the disliked profile - " + err)

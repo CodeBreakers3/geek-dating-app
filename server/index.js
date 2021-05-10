@@ -37,9 +37,10 @@ app.use(
 //Controller endpoints here
 
 //PROFILE ENDPOINTS
-    //update profile: receives a profile object and sends it to the DB to update that profile object in the DB. 
+//update profile: receives a profile object and sends it to the DB to update that profile object in the DB. 
 
-    app.get('/api/viewableprofiles/:profile_id', profileController.getViewableProfiles);
+app.get('/api/viewableprofiles/:profile_id', profileController.getViewableProfiles);
+
 //update profile: receives a profile object and sends it to the DB to update that profile object in the DB.
 app.get("/api/getprofile/:profile_id", profileController.getProfile);
 app.put("/api/updateprofile/:profile_id", profileController.updateProfile);
@@ -78,6 +79,9 @@ app.post("/auth/login", authCtrl.login);
 app.delete("/auth/logout", authCtrl.logOut);
 app.put("/auth/updateuser/:id", authCtrl.updateUser);
 
+
+
+
 //establish the database connection and start the server
 massive(
   {
@@ -95,24 +99,3 @@ massive(
     });
   })
   .catch((err) => console.log(err));
-
-  // app.get('/session', function (req, res) {
-//   // simple count for the session
-//   if (!req.session.count) {
-//       req.session.count = 0;
-//   }
-//   req.session.count += 1;
-//   // respond with the session object
-//   res.json(req.session);
-// });
-
-// app.use(require('cookie-parser')());
-
-// app.get('/auth/reload',function(req,res){
-//   if(!req.session){
-//     req.session= req.cookies
-//   }
-//   res.status(200).send(req.session)
-
-//   console.log(req.session.user._one_up_demo)
-// })
