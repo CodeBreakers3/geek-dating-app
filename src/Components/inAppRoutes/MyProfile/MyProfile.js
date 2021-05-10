@@ -9,8 +9,10 @@ import AchievementBar from './AchievementBar';
 import Header from './../../Header';
 
 //MyProfile component
-function MyProfile(props) {
+const MyProfile=(props)=> {
 
+    console.log(props)
+    const {user}=props.userReducer
     const logout = () => {
         localStorage.setItem('isLoggedIn', JSON.stringify(false));
         localStorage.setItem('loggedInUser', JSON.stringify({}));
@@ -28,14 +30,14 @@ function MyProfile(props) {
 
                 <div className="my-profile-image-flex-container">
                     <div className="my-profile-image-container">
-                        <img alt="my profile" src="https://scontent-hou1-1.xx.fbcdn.net/v/t1.6435-0/p526x296/169026503_10158922184255865_2897365770549964527_n.jpg?_nc_cat=101&ccb=1-3&_nc_sid=730e14&_nc_ohc=R0lYh7yPAUAAX-3dLCX&_nc_ht=scontent-hou1-1.xx&tp=6&oh=99a1bdde22707402fbf056b829c0a024&oe=60B8100E"/>
+                        <img alt="my profile" src={user.photo_one}/>
                     </div>
                 </div>
 
                 <div className="my-profile-details-flex-container">
                     <div className="my-profile-details-container">
-                        <div className="my-profile-details-name-container"><h1>Tanner Francis</h1></div>
-                        <div className="my-profile-details-gamertag-container">Gamertag: Financ3</div>
+                        <div className="my-profile-details-name-container"><h1>{user.first_name} {user.last_name}</h1></div>
+                        <div className="my-profile-details-gamertag-container">{`gamer tag: ${user.gamer_tag}`}</div>
                     </div>
                 </div>
 

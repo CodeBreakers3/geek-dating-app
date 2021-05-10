@@ -79,6 +79,9 @@ app.post("/auth/login", authCtrl.login);
 app.delete("/auth/logout", authCtrl.logOut);
 app.put("/auth/updateuser/:id", authCtrl.updateUser);
 
+
+
+
 //establish the database connection and start the server
 massive(
   {

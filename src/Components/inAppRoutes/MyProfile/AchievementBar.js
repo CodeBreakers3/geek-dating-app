@@ -1,9 +1,14 @@
 //non component imports
 import './achievementbar.css';
-import {useState} from 'react';
+import {useState,useEffect} from 'react';
 
-export default function AchievementBar() {
-    const [percentage, setPercentage] = useState(50);
+export default function AchievementBar(props) {
+    const [percentage, setPercentage] = useState(0);
+const {count}=props
+useEffect(()=>{
+    setPercentage(count/25)
+    console.log(percentage)
+})
 
     const achievementBarStyles = {
         width: `${percentage}%`
