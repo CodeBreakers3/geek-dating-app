@@ -1,6 +1,6 @@
 import './App.css';
 import {connect} from 'react-redux';
-import {useEffect} from 'react';
+import React, {useEffect} from 'react';
 //import the routes for the auth/registration views
 import authRoutes from './routes/authRoutes';
 
@@ -12,12 +12,13 @@ import {loginUser} from './ducks/userReducer';
 
 function App(props) {
 
+
   useEffect(() => {
     if(JSON.parse(localStorage.getItem('isLoggedIn'))) {
       props.loginUser(JSON.parse(localStorage.getItem('loggedInUser')));
     }
 
-  }, props)
+  },[])
 
     return (
         <div className="App">

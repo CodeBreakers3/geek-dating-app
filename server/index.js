@@ -4,6 +4,7 @@ require("dotenv").config({ path: path.resolve(__dirname, "../.env") });
 const massive = require("massive");
 const session = require("express-session");
 const express = require("express");
+// const FileStore = require('session-file-store')(session);
 const profileController = require("./controllers/profileController");
 const matchesController = require("./controllers/matchesController");
 const chatsController = require("./controllers/chatsController");
@@ -16,21 +17,29 @@ app.use(express.json());
 
 app.use(
   session({
+    // store: new FileStore({
+    //   path:'./session-store'
+    // }),
+    // name:'_one_up_demo',
     secret: SESSION_SECRET,
-    resave: true,
+    resave: false,
     saveUninitialized: false,
+
     cookie: {
+
       maxAge: 1000 * 60 * 525600,
+
     },
-  })
-);
+
+  }));
+
 
 //Controller endpoints here
 
 //PROFILE ENDPOINTS
     //update profile: receives a profile object and sends it to the DB to update that profile object in the DB. 
 
-    app.get('/api/getviewableprofiles/:profile_id', profileController.getViewableProfiles);
+    app.get('/api/viewableprofiles/:profile_id', profileController.getViewableProfiles);
 //update profile: receives a profile object and sends it to the DB to update that profile object in the DB.
 app.get("/api/getprofile/:profile_id", profileController.getProfile);
 app.put("/api/updateprofile/:profile_id", profileController.updateProfile);
@@ -42,7 +51,7 @@ app.delete("/api/deleteprofile/:profile_id", profileController.deleteProfile);
 //The front end should send the liking users ID as a parameter in the URL. The liked users profile ID will be in the query string variables ?profile_id=X.
 
 //endpoint will return the match ID if there was a match, a boolean "false" if there was no match. Either way the like will be logged in the database.
-app.post("/api/like/:user_id", matchesController.like);
+app.post("/api/like/:profile_id_1/liked/:profile_id_2", matchesController.like);
 
 //DISLIKE: Create a bogus update for the unliked profile on the profile table*
 //The front end should send the id for the unliked profile in the URL parameters
@@ -53,9 +62,11 @@ app.put("/api/dislike/:profile_id", matchesController.dislike);
 //?user_id=X&profile_id=Y
 app.delete("/api/unmatch/:match_id", matchesController.unmatch);
 
+app.get(`/api/allmatches/:profile_id`, chatsController.getAllChats);
 app.get(`/api/matches/:profile_id`, chatsController.getChats);
 app.get(`/api/matchedchat/:match_id`, chatsController.getMatchedChat);
-app.post(`/api/chat`, chatsController.addChatReply);
+app.get(`/api/message/:match_id`, chatsController.getMessage);
+app.post(`/api/chat/:match_id`, chatsController.addChatReply);
 app.put("/api/chat/:chat_id", chatsController.updateChatReply);
 app.delete("/api/chat/:chat_id", chatsController.deleteChatReply);
 
@@ -84,3 +95,24 @@ massive(
     });
   })
   .catch((err) => console.log(err));
+
+  // app.get('/session', function (req, res) {
+//   // simple count for the session
+//   if (!req.session.count) {
+//       req.session.count = 0;
+//   }
+//   req.session.count += 1;
+//   // respond with the session object
+//   res.json(req.session);
+// });
+
+// app.use(require('cookie-parser')());
+
+// app.get('/auth/reload',function(req,res){
+//   if(!req.session){
+//     req.session= req.cookies
+//   }
+//   res.status(200).send(req.session)
+
+//   console.log(req.session.user._one_up_demo)
+// })

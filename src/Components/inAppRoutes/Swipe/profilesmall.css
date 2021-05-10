@@ -44,3 +44,6 @@
 .small-profile-gamertag-container {
   font-style: italic;
 }
+#swipe-picture{
+  max-height: 70vh;
+}

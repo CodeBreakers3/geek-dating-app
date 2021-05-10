@@ -1,36 +1,51 @@
 //non-component imports
+import React, {useState,useEffect} from 'react';
 import './profilelarge.css';
-
+import {connect} from 'react-redux';
 //component imports
 import BackButton from './../BackButton';
+import axios from 'axios';
 
 //ProfileLarge component
-function ProfileLarge() {
+function ProfileLarge(props) {
+
+const [viewableProfile,setViewableProfile]=useState({})
+const {profile_id}=props.match.params
+useEffect(()=>{
+    if(viewableProfile){    
+        axios.get(`/api/getprofile/${profile_id}`).then(res=>{
+            const[profile]=res.data
+        setViewableProfile(profile)
+    }).catch(err =>console.log(err))
+}
+},[props.match.params])
+console.log(viewableProfile)
     return (
         <div className="large-profile">
+            
         <BackButton />
             {/* First large profile section - an image and the name/gamertag/pronouns/primary interest/location. */}
             <div className="large-profile-details">
 
                 <div className="large-profile-details-image">
-                    <img alt="main-profile" src="https://scontent-hou1-1.xx.fbcdn.net/v/t31.18172-8/16462954_10154716244105865_4173466093140820629_o.jpg?_nc_cat=102&ccb=1-3&_nc_sid=09cbfe&_nc_ohc=IXk-uNfO-8sAX-_RGXI&_nc_ht=scontent-hou1-1.xx&oh=b00d7bad776bf6f15b44e09fae98e964&oe=60B6D444"/>
+                    <img alt="main-profile" src={viewableProfile.photo_one}/>
                 </div>
 
                 <div className="large-profile-details-text">
                     <div className="large-profile-details-text-sub">
-                        <p>First Name Last Name</p>
+                        <p>{viewableProfile.first_name}</p>
                     </div>
 
                     <div className="large-profile-details-text-sub">
-                        <p>Gamertag</p>
+                        <p>{viewableProfile.gamer_tag}</p>
                     </div>
 
                     <div className="large-profile-details-text-sub">
-                        <p>pronoun/pronoun</p>
+                        <p>{viewableProfile.sex}</p>
                     </div>
 
                     <div className="large-profile-details-text-sub">
-                        <p>Primary Interest: Interest</p>
+                        <p>{viewableProfile.sexual_orientation}</p>
                     </div>
 
                     <div className="large-profile-details-location">
@@ -40,7 +55,7 @@ function ProfileLarge() {
                         </div>
 
                         <div className="large-profile-details-location-text">
-                            <p>City, State</p>
+                            <p>{viewableProfile.location}</p>
                         </div>
                     </div>
                 </div>
@@ -49,12 +64,12 @@ function ProfileLarge() {
             {/* Second large profile section - an image and the full "about" description text. */}
             <div className="large-profile-details">
                 <div className="large-profile-details-image">
-                    <img alt="second" src="https://scontent-hou1-1.xx.fbcdn.net/v/t1.6435-9/40449178_10156818001328939_8286173386472685568_n.jpg?_nc_cat=106&ccb=1-3&_nc_sid=84a396&_nc_ohc=FfV0GCg9bDoAX_EE2-z&_nc_ht=scontent-hou1-1.xx&oh=167769b00a43f3148b98fd2d1f2afc83&oe=60B714BF"/>
+                    <img alt="second" src={viewableProfile.photo_two}/>
                 </div>
 
                 <div className="large-profile-details-text">
                     <div className="large-profile-details-text-sub">
-                        <p>I like to do cool things, and sometimes I don’t. Ya know? It’s really just a matter of the mood I’m in. <br/><br/>I like open world multi-player, sidescrollers, animes, and my dog.</p>
+                        <p>{viewableProfile.about_me}</p>
                     </div>
                 </div>
             </div>
@@ -62,33 +77,33 @@ function ProfileLarge() {
             {/* Third large profile section - an image and all the non-core profile details - IF THEY ARE PROVIDED */}
             <div className="large-profile-details">
                 <div className="large-profile-details-image">
-                    <img alt="third" src="https://scontent-hou1-1.xx.fbcdn.net/v/t31.18172-8/16299617_10154998698963648_1330110250511975667_o.jpg?_nc_cat=111&ccb=1-3&_nc_sid=cdbe9c&_nc_ohc=sO9tJXj8kA0AX9PNO8x&_nc_ht=scontent-hou1-1.xx&oh=3ea9ccf4dc93a7774ebfedb9eaf7dc6d&oe=60B8E038"/>
+                    <img alt="third" src={viewableProfile.photo_three}/>
                 </div>
 
                 <div className="large-profile-details-text">
                     <div className="large-profile-details-text-sub">
-                        <p>Title: title</p>
+                        <p>Relgion: {viewableProfile.height}</p>
                     </div>
                     <div className="large-profile-details-text-sub">
-                        <p>Religion: religion</p>
+                        <p>Education: {viewableProfile.preferred_pronoun}</p>
                     </div>
                     <div className="large-profile-details-text-sub">
-                        <p>Height: height</p>
+                        <p>Occupation: {viewableProfile.favorite_food}</p>
                     </div>
                     <div className="large-profile-details-text-sub">
-                        <p>Fitness: fitness</p>
+                        <p>Fitness: {viewableProfile.activity_level}</p>
                     </div>
                     <div className="large-profile-details-text-sub">
-                        <p>Biological Sex: sex</p>
+                        <p>Alcohol: {viewableProfile.alcohol}</p>
                     </div>
                     <div className="large-profile-details-text-sub">
-                        <p>Orientation: Straight</p>
+                        <p>Smoking: {viewableProfile.smoking}</p>
                     </div>
                     <div className="large-profile-details-text-sub">
-                        <p>Work: work</p>
+                        <p>Cannabis: {viewableProfile.cannabis}</p>
                     </div>
                     <div className="large-profile-details-text-sub">
-                        <p>Education: education</p>
+                        <p>Other Drugs: {viewableProfile.recreational_drugs}</p>
                     </div>
                 </div>
             </div>
@@ -96,24 +111,24 @@ function ProfileLarge() {
             {/* Fourth large profile section - an image and alcohol, smoking, weed, drugs, and kids */}
             <div className="large-profile-details">
                 <div className="large-profile-details-image">
-                    <img alt="fourth" src="https://scontent-hou1-1.xx.fbcdn.net/v/t1.18169-9/22519225_10155685529316772_6139539257972788036_n.jpg?_nc_cat=105&ccb=1-3&_nc_sid=0debeb&_nc_ohc=EQtlL1sSqa4AX9CUZ6R&_nc_ht=scontent-hou1-1.xx&oh=25f3b8db13f44d43ad4c0e722196b278&oe=60B7E6F4"/>
+                    <img alt="fourth" src={viewableProfile.photo_four}/>
                 </div>
 
                 <div className="large-profile-details-text">
                     <div className="large-profile-details-text-sub">
-                        <p>Alcohol: socially</p>
+                        <p>Kids: {viewableProfile.kids}</p>
                     </div>
                     <div className="large-profile-details-text-sub">
-                        <p>Smoking: never</p>
+                        <p>Religion: {viewableProfile.religion}</p>
                     </div>
                     <div className="large-profile-details-text-sub">
-                        <p>Weed: never</p>
+                        <p>Education: {viewableProfile.education}</p>
                     </div>
                     <div className="large-profile-details-text-sub">
-                        <p>Drugs: never</p>
+                        <p>Occupation: {viewableProfile.occupation}</p>
                     </div>
                     <div className="large-profile-details-text-sub">
-                        <p>Kids: No kids - want kids</p>
+                        <p>Current Game: {viewableProfile.current_game}</p>
                     </div>
                 </div>
             </div>
@@ -121,7 +136,7 @@ function ProfileLarge() {
             {/* Fifth large profile section - an image and Interests */}
             <div className="large-profile-details">
                 <div className="large-profile-details-image">
-                    <img alt="fifth" src="https://scontent-hou1-1.xx.fbcdn.net/v/t1.18169-9/10405430_10152724053705865_5503561984453623128_n.jpg?_nc_cat=106&ccb=1-3&_nc_sid=174925&_nc_ohc=ehbxPRUf-IUAX8Ik77n&_nc_ht=scontent-hou1-1.xx&oh=bcb02608a380a87a41933a0224bc8b42&oe=60B718C7"/>
+                    <img alt="fifth" src={viewableProfile.photo_five}/>
                 </div>
 
                 <div className="large-profile-details-text">
@@ -139,5 +154,7 @@ function ProfileLarge() {
         </div>
     )
 }
-
-export default ProfileLarge;
+const mapStateToProps = reduxState => {
+    return reduxState
+  }
+  export default connect(mapStateToProps)(ProfileLarge)

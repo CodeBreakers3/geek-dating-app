@@ -7,6 +7,7 @@ module.exports = {
         const db = req.app.get('db');
         try{
             const [existingUser] = await db.get_user(email)
+            
             if (existingUser){
                 res.status(409).send("User already registered!")
             } else {
@@ -47,7 +48,7 @@ module.exports = {
             }}
             
        } catch(err) {
-           console.log(err)
+
             res.sendStatus(500)
        }
     },
@@ -58,7 +59,7 @@ module.exports = {
         res.status(200).send(req.session)
     },
 
-
+    
     updateUser: async (req,res) => {
         const db = req.app.get("db");
         const {id} = req.params;

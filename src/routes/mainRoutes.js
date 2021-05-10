@@ -15,8 +15,8 @@ export default (
         <Route exact path="/" component={Swipe}/>
         <Route path="/myprofile" component={MyProfile}/>
         <Route path="/matches" render={()=><Matches/>}/>
-        <Route path="/chats" render={()=><Chats/>}/>
-        <Route path="/largeprofile" component={LargeProfile}/>
+        <Route path="/chats/:match_id" component={Chats}/>
+        <Route path="/largeprofile/:profile_id" component={LargeProfile}/>
         <Route path="/editfilters" component={EditFilters}/>
         <Route path="/editprofile" component={EditProfile}/>
     </Switch>

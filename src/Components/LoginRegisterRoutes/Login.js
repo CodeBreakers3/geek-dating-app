@@ -21,7 +21,7 @@ const Login = (props) => {
             setFailedLogin(true)
         }
 
-        // add the logged in user to local storage
+        // // add the logged in user to local storage
         localStorage.setItem('isLoggedIn', JSON.stringify(true));
         localStorage.setItem('loggedInUser', JSON.stringify(loggedInUser.data));
         

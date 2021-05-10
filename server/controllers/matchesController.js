@@ -9,13 +9,13 @@ module.exports = {
 
     //get the ID for the liked and the liking user from the parameters
         //user_id for the liking user
-        const {user_id} = req.params;
+        const {profile_id_1,profile_id_2} = req.params;
         //profile id for the liked user
-        const {profile_id} = req.query;
+
 
     //add this like to the like table
         try {
-            await db.create_like(user_id, profile_id);
+            await db.create_like(profile_id_1, profile_id_2);
         } catch (err) {
             console.log("Unable to add this like to the database - " + err);
             res.status(500).send("Unable to add this like to the database - " + err);
@@ -25,29 +25,32 @@ module.exports = {
         let matchCheck;
         try {
             //check the likes table to see if the liked profile has already liked the liker.
-            matchCheck = await db.check_for_match(profile_id, user_id);
+            [matchCheck] = await db.check_for_match(profile_id_1, profile_id_2);
+
+            if(matchCheck) {
+                //If there's a matching like on the like table, then add a match to the match table.
+                try {
+                    const match = await db.create_match(profile_id_2, profile_id_1);
+                    //return a successful status with the match object to indicate there was a match
+                    console.log(match);
+                    res.status(200).send(match)
+                } catch (err) {
+                    console.log("Error adding match to the match table in the database - " + err);
+                    res.status(500).send("Error adding match to the match table in the database - " + err);
+                }
+            }
+            //If there was not a match, then send a successful status with a false indicating there was NOT a match. 
+            else {
+                res.status(200).send(false);
+            }
+            
         } catch (err) {
             console.log("Error checking for a match in the database - " + err);
             res.status(500).send("Error checking for a match in the database - " + err);
         }
 
         //if there was a matching like then matchCheck will have data, otherwise it will be an empty array. 
-        if(matchCheck[0]) {
-            //If there's a matching like on the like table, then add a match to the match table.
-            try {
-                const match = await db.create_match(user_id, profile_id);
-                //return a successful status with the match object to indicate there was a match
-                console.log(match);
-                res.status(200).send(match)
-            } catch (err) {
-                console.log("Error adding match to the match table in the database - " + err);
-                res.status(500).send("Error adding match to the match table in the database - " + err);
-            }
-        } 
-        //If there was not a match, then send a successful status with a false indicating there was NOT a match. 
-        else {
-            res.status(200).send(false);
-        }
+     
     },
     dislike: async function(req, res) {
     //THIS IS CURRENTLY NOT BEING USED - THE DB UPDATE DID NOT FUNCTION LIKE WE EXPECTED. Instead we will just have dislikes do nothing in the DB. 

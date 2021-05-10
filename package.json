@@ -10,6 +10,7 @@
     "@testing-library/user-event": "^12.8.3",
     "axios": "^0.21.1",
     "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-session": "^1.17.1",
@@ -22,6 +23,7 @@
     "react-scripts": "4.0.3",
     "redux-devtools-extension": "^2.13.9",
     "redux-promise-middleware": "^6.1.2",
+    "session-file-store": "^1.5.0",
     "socket.io": "^4.0.1",
     "socket.io-client": "^4.0.1",
     "web-vitals": "^1.1.1"
