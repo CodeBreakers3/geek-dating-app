@@ -1,4 +1,5 @@
 //non component imports
+import {useState} from 'react';
 import './profilesmall.css';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
@@ -7,12 +8,10 @@ import {connect} from 'react-redux';
 
 //ProfileSmall component
 function ProfileSmall(props) {
-    console.log(props)
-const {idx}=props
-const {viewableProfiles}=props.userReducer.user
-let profile =viewableProfiles[idx]
- let profile_id =profile.profile_id
-console.log(profile_id)
+    const {idx}=props
+    const {viewableProfiles}=props.userReducer.user;
+    let profile = viewableProfiles[idx];
+    let profile_id = profile.profile_id;
 
 
 
