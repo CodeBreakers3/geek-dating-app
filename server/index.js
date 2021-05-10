@@ -33,26 +33,7 @@ app.use(
 
   }));
 
-// app.get('/session', function (req, res) {
-//   // simple count for the session
-//   if (!req.session.count) {
-//       req.session.count = 0;
-//   }
-//   req.session.count += 1;
-//   // respond with the session object
-//   res.json(req.session);
-// });
 
-// app.use(require('cookie-parser')());
-
-// app.get('/auth/reload',function(req,res){
-//   if(!req.session){
-//     req.session= req.cookies
-//   }
-//   res.status(200).send(req.session)
-
-//   console.log(req.session.user._one_up_demo)
-// })
 //Controller endpoints here
 
 //PROFILE ENDPOINTS
@@ -85,7 +66,7 @@ app.get(`/api/allmatches/:profile_id`, chatsController.getAllChats);
 app.get(`/api/matches/:profile_id`, chatsController.getChats);
 app.get(`/api/matchedchat/:match_id`, chatsController.getMatchedChat);
 app.get(`/api/message/:match_id`, chatsController.getMessage);
-app.post(`/api/chat`, chatsController.addChatReply);
+app.post(`/api/chat/:match_id`, chatsController.addChatReply);
 app.put("/api/chat/:chat_id", chatsController.updateChatReply);
 app.delete("/api/chat/:chat_id", chatsController.deleteChatReply);
 
@@ -114,3 +95,24 @@ massive(
     });
   })
   .catch((err) => console.log(err));
+
+  // app.get('/session', function (req, res) {
+//   // simple count for the session
+//   if (!req.session.count) {
+//       req.session.count = 0;
+//   }
+//   req.session.count += 1;
+//   // respond with the session object
+//   res.json(req.session);
+// });
+
+// app.use(require('cookie-parser')());
+
+// app.get('/auth/reload',function(req,res){
+//   if(!req.session){
+//     req.session= req.cookies
+//   }
+//   res.status(200).send(req.session)
+
+//   console.log(req.session.user._one_up_demo)
+// })

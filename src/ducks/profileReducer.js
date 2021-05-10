@@ -1,12 +1,13 @@
 import axios from "axios";
 
 const initialState = {
-  profiles: [],
+  viewableProfiles: [],
   matches: [],
   matchedChat: [],
+  userObj:{
+  },
   isLoading: false
 };
-
 
 const GET_MATCHES = "GET_MATCHES";
 const GET_PROFILES = "GET_PROFILES";
@@ -36,7 +37,6 @@ export const getMatchedChat = (match_id) => {
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
-
     case GET_MATCHES + "_FULFILLED":
       return {
         ...state,
@@ -53,7 +53,7 @@ export default function reducer(state = initialState, action) {
     case GET_PROFILES + "_FULFILLED":
       return {
         ...state,
-        profiles: action.payload,
+        viewableProfiles: action.payload,
         isLoading: false,
       };
 

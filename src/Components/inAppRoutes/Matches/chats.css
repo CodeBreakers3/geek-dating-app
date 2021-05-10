@@ -1,0 +1,101 @@
+#chatsHolderHolder{
+    width:100vw;
+    overflow: scroll;
+}
+.chatsHolder{
+    background-color: rgb(88,88,88,);
+    position:absolute;
+    margin-left:10%;
+    bottom:0;
+    overFlow:scroll;
+width:80%;
+}
+#chat_contentSection{
+    display: flex;
+
+}
+.chat_content{
+    float:left;
+    margin-left:3px;
+    height: 2rem;
+    width:80%;
+font-size: 10px;
+
+}
+.messageButton{
+display: flex;
+justify-content: center;
+align-items: center;
+    width:18%;
+ background-color:rgb(255, 255, 255);
+    height: 2rem;
+
+}
+.mappedChats{
+margin-top:3rem;
+max-height: 90%;
+background-color:rgb(255, 255, 255);
+box-shadow: 3px 3px 6px 1px rgb(62, 62, 62);
+border-radius: 15px 15px 0px 0px;
+border-top:5px inset rgb(39, 68, 53);
+border-left:5px inset rgb(39, 68, 53);
+border-right:5px inset rgb(39, 68, 53);
+border-bottom:2px inset rgb(39, 68, 53);
+overflow: scroll;
+}
+
+.userDiv{
+    width:52%;
+    float:right;
+    background-color: rgb(242,230,207);
+border-radius: 30px 30px 30px 30px;
+margin:3px;
+}
+.profileDiv{
+    width:52%;
+    float:left;
+    background-color: rgb(97, 198, 146);
+    border-radius: 30px 30px 30px 30px;
+    margin:3px;
+    padding:3px;
+}
+.name{
+    font-family: 'Poppins ExtraLight',Poppins;
+}
+
+
+.message{
+    font-family: 'Space Grotesk';
+}
+
+#mapeedChats h6{
+    font-family: 'Space Grotesk';
+}
+
+#userIcon{
+    border:2.5px inset rgb(68,103,85);
+border-radius: 50%;
+box-shadow: 3px 3px 3px 1px rgb(62,62, 62);
+    float:right;
+    height: 4vh;
+}
+#profileIcon{
+    border:2.5px inset rgb(68,103,85);
+    border-radius: 50%;
+    box-shadow: -3px 3px 3px 1px rgb(62,62, 62);
+    float:left;
+    height: 4vh;
+}
+.open1{
+    position:absolute;
+    z-index: 1;
+margin-top:5px;
+    height: 1rem;
+}
+.open2{
+    position:absolute;
+    margin-left:180px;
+    margin-top:5px;
+    z-index: 1;
+    height: 1rem;
+}

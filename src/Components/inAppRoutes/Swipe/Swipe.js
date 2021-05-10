@@ -3,7 +3,6 @@ import './swipe.css';
 import React, {useEffect} from 'react'
 import {useState} from 'react';
 import {connect} from 'react-redux'
-import axios from 'axios';
 //component imports
 import Matched from './Matched';
 import ProfileSmall from './ProfileSmall';
@@ -14,7 +13,8 @@ import {getProfiles} from '../../../ducks/profileReducer'
 function Swipe(props) {
     const [isMatch, setIsMatch] = useState(false);
 const [idx,setIdx] = useState(0)
-const {viewableProfiles}=props.userReducer.user
+const {viewableProfiles}=props.profileReducer
+
 const {profile_id}=props.userReducer.user
 
 

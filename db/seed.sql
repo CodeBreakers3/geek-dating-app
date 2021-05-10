@@ -64,7 +64,7 @@ CREATE TABLE chats (
 	chat_content varchar(255) NOT NULL,
 	profile_id INT,
     FOREIGN KEY (profile_id) REFERENCES profiles(profile_id),
-	time_stamp TEXT NOT NULL
+	time_stamp TEXT
 );
 
 INSERT INTO users(email, hash)
@@ -97,7 +97,6 @@ VALUES (1,2),
 (2,1),
 (2,3),
 (2,5),
-(2,7),
 (3,1),
 (3,2),
 (3,4),

@@ -20,7 +20,7 @@ axios.get(`/api/message/${match_id}`).then(res=>{
 return (
     (props.userReducer.user.profile_id === match.profile1 && message !== undefined ? (
  <div id="matches" className="row">
-<Link to='/chats'>
+<Link to={`/chats/${match_id}`}>
         <div className="row">
           <img
             className="matches-profile-photo"
@@ -34,7 +34,7 @@ return (
         </Link>
       </div>) : (
       <div id="matches" className="row">
-        <Link to='/chats'>
+        <Link to={`/chats/${match_id}`}>
         <div className="row">
           <img
             className="matches-profile-photo"
