@@ -16,6 +16,7 @@ export function loginUser(loggedInUser) {
         payload: loggedInUser
     }
 }
+
 export const registerUser=(email,password) => {
     let register = axios.post('/auth/signUp', {email,password}).then(res => res.data)
     return {
@@ -48,6 +49,8 @@ export default function reducer(state = initialState, action) {
         case LOGOUT_USER + "_FULFILLED":
             return {
                 ...state,
+                user: {},
+                isLoading: false,
                 isLoggedIn: false
             }
 

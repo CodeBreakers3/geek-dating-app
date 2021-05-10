@@ -13,11 +13,19 @@ function Matched(props) {
             <div className="matched-its-a-match">
                 <p>It's a Match!</p>
             </div>
-            <ProfileSmall matched={true}/>
+            <ProfileSmall matched={true} idx={props.idx}/>
             <div className="matched-buttons-container">
-                <div className="matched-buttons" onClick={() => props.setIsMatch(false)}>Back to Profiles</div>
+                <div className="matched-buttons" onClick={() => {
+                    props.setIsMatch(false);
+                    //move the displayed profiles forward by one index.
+                    props.forward();
+                }}>Back to Profiles</div>
                 <Link to="/matches">
-                    <div className="matched-buttons" onClick={() => props.setIsMatch(false)}>View Matches</div>
+                    <div className="matched-buttons" onClick={() => {
+                        props.setIsMatch(false);
+                        //move the displayed profiles forward by one index.
+                        props.forward();
+                    }}>View Matches</div>
                 </Link>
             </div>
         </div>

@@ -2,7 +2,6 @@
 import React, { useState }from 'react'
 import axios from "axios"
 import {loginUser} from '../../ducks/userReducer'
-import {getViewableProfiles} from '../../ducks/profileReducer'
 import {connect} from 'react-redux'
 
 
@@ -28,9 +27,14 @@ const Login = (props) => {
         props.history.push('/');
         
 
-        // Next step: get swipe-able profiles onto redux
+        // // add the logged in user to local storage
+        localStorage.setItem('isLoggedIn', JSON.stringify(true));
+        localStorage.setItem('loggedInUser', JSON.stringify(loggedInUser.data));
         
-        // props.getViewableProfiles(props.userReducer.user.profile_id)
+        // Next step: give redux or object we got from backend
+        props.loginUser(loggedInUser.data);
+        
+        props.history.push('/');
     }
 
 
@@ -67,4 +71,4 @@ const Login = (props) => {
 const mapStateToProps = reduxState => {
     return reduxState
 }
-export default connect (mapStateToProps,{loginUser, getViewableProfiles})(Login);
+export default connect (mapStateToProps,{loginUser})(Login);

@@ -45,13 +45,18 @@ module.exports = {
             } else{
             
             delete verifiedUser.hash
+            
+
+            //add the viewable profiles to the verified user
+            verifiedUser.viewableProfiles = await db.get_viewable_profiles(verifiedUser.profile_id)
+
             req.session.user = verifiedUser
             res.status(200).send(req.session.user)
             }}
             
        } catch(err) {
-           console.log(err)
-        res.sendStatus(500)
+
+            res.sendStatus(500)
        }
     },
 
@@ -61,7 +66,7 @@ module.exports = {
         res.status(200).send(req.session)
     },
 
-
+    
     updateUser: async (req,res) => {
         const db = req.app.get("db");
         const {id} = req.params;

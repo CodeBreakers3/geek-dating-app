@@ -1,7 +1,8 @@
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import promiseMiddleware from 'redux-promise-middleware';
 import userReducer from './userReducer';
-import profileReducer from './profileReducer'
+import profileReducer from './profileReducer';
+import { composeWithDevTools } from 'redux-devtools-extension';
 
 
 const rootReducer = combineReducers({
@@ -9,4 +10,4 @@ const rootReducer = combineReducers({
   profileReducer
 })
 
-export default createStore(rootReducer, applyMiddleware(promiseMiddleware));
+export default createStore(rootReducer, composeWithDevTools(applyMiddleware(promiseMiddleware)));
