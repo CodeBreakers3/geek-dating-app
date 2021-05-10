@@ -79,11 +79,7 @@ app.delete("/auth/logout", authCtrl.logOut);
 app.put("/auth/updateuser/:id", authCtrl.updateUser);
 
 
-// Initialize the Amazon Cognito credentials provider
-// AWS.config.region = 'us-east-2'; // Region
-// AWS.config.credentials = new AWS.CognitoIdentityCredentials({
-    // IdentityPoolId: 'us-east-2:320e892b-7236-43ce-846a-61e6fb109017',
-// });
+
 
 //establish the database connection and start the server
 massive(
