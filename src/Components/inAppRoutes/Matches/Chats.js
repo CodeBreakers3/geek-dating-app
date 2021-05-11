@@ -1,16 +1,22 @@
 import MappedChats from "./MappedChats";
+import io from "socket.io-client";
 import "./chats.css";
 import axios from "axios";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { connect } from "react-redux";
-import BackButton from '../BackButton'
+import BackButton from "../BackButton";
+import pop from '../../../pop.mp3'
+const notificationSound = new Audio(pop);
+
 
 const Chats = (props) => {
   const [messages, setMessages] = useState([]);
   const [game, setGame] = useState("");
+  const [socket, setSocket] = useState(null);
+  const [joined, setJoined] = useState(false);
   const [chat_content, setchat_content] = useState("");
   const { match_id } = props.match.params;
-  const {profile_id}=props.userReducer.user
+  const { profile_id } = props.userReducer.user;
 
   useEffect(() => {
     console.log(props);
@@ -19,6 +25,76 @@ const Chats = (props) => {
     });
     getGame();
   }, [messages]);
+
+  const handleSocketConnect = useCallback(() => {
+    if (!socket) {
+      const skt = io();
+      setSocket(skt);
+    }
+  }, [socket]);
+
+  const handleSocketDisconnect = useCallback(() => {
+    if (socket) {
+      socket.close();
+      setSocket(null);
+    }
+  }, [socket]);
+
+  const joinRoom = useCallback(() => {
+    if (!joined && socket) {
+      setJoined(true);
+      socket.emit("join room", `${match_id}`);
+    }
+  }, [joined, socket, match_id]);
+
+  const leaveRoom = useCallback(() => {
+    if (joined && socket) {
+      setJoined(false);
+      socket.emit("leave room", `${match_id}`);
+    }
+  }, [socket, joined, match_id]);
+
+  useEffect(() => {
+    joinRoom();
+    return () => {
+      leaveRoom();
+    };
+  }, [joinRoom, leaveRoom]);
+
+  useEffect(() => {
+    handleSocketConnect();
+    return () => {
+      handleSocketDisconnect();
+    };
+  }, [handleSocketConnect, handleSocketDisconnect]);
+
+  const handleIncomingMsg = useCallback((msg) => {
+    setMessages((prevState) => {
+      const msgs = [...prevState];
+      msgs.unshift(msg);
+      return msgs;
+    });
+    notificationSound.play();
+  }, []);
+
+  const setupSubscriptions = useCallback(() => {
+    if (socket) {
+      socket.on("incoming msg", handleIncomingMsg);
+    }
+  }, [handleIncomingMsg, socket]);
+
+  const unsubscribe = useCallback(() => {
+    if (socket) {
+      socket.removeEventListener("incoming msg", handleIncomingMsg);
+    }
+  }, [handleIncomingMsg, socket]);
+
+  useEffect(() => {
+    setupSubscriptions();
+    return () => {
+      unsubscribe();
+    };
+  }, [setupSubscriptions, unsubscribe]);
 
   const getGame = () => {
     let gotGame = false;
@@ -32,11 +108,17 @@ const Chats = (props) => {
     }
   };
   const handleClick = () => {
-    console.log(match_id)
-    axios
-      .post(`/api/chat/${match_id}`,{chat_content,profile_id})
-      .then((res) => setMessages(res.data))
-      .catch((err) => console.log(err));
+    // axios
+    //   .post(`/api/chat/${match_id}`,{chat_content,profile_id})
+    //   .then((res) => setMessages(res.data))
+    //   .catch((err) => console.log(err));
+    socket.emit("new msg", match_id, { match_id, chat_content, profile_id });
+    setMessages((prevState) => {
+      const msg = [...prevState];
+      msg.unshift({ match_id, chat_content, profile_id });
+      return msg;
+    });
+    notificationSound.play();
     setchat_content("");
   };
 
@@ -62,8 +144,8 @@ const Chats = (props) => {
             Send
           </div>
         </section>
-      </div>  
-      <BackButton/>
+      </div>
+      <BackButton />
     </div>
   );
 };

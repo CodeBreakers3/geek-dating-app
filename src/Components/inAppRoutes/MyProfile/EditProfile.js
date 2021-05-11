@@ -185,7 +185,7 @@ console.log(count)
                         <input value={sexual_orientation} onChange={(e)=>setsexualorientation(e.target.value)}></input>
                 </div>
                 <div className="edit-profile-edit-details-sexual-orientation-container">
-                        <p>Orientation:</p>
+                        <p>Preferred Pronoun:</p>
                         <input value={preferred_pronoun} onChange={(e)=>setpreferred_pronoun(e.target.value)}></input>
                 </div>
 

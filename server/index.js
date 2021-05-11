@@ -4,6 +4,7 @@ require("dotenv").config({ path: path.resolve(__dirname, "../.env") });
 const massive = require("massive");
 const session = require("express-session");
 const express = require("express");
+
 // const FileStore = require('session-file-store')(session);
 const profileController = require("./controllers/profileController");
 const matchesController = require("./controllers/matchesController");
@@ -13,6 +14,10 @@ const authCtrl = require("./controllers/authController");
 const { SERVER_PORT, CONNECTION_STRING, SESSION_SECRET } = process.env;
 
 const app = express();
+//creating server passing app
+const httpServer = require("http").createServer(app);
+//pass server to io connection
+const io = require("socket.io")(httpServer);
 app.use(express.json());
 
 app.use(
@@ -33,6 +38,24 @@ app.use(
 
   }));
 
+io.on('connection',(socket)=>{
+socket.on('join room',(room)=>{
+  socket.join(room,(err)=>{
+      if (err) console.log('error on join', err);
+      else console.log('joined room', room);
+  })
+})
+socket.on('new msg',(room,msg)=>{
+//still needs to send to db
+const db = app.get('db')
+
+  socket.to(room).emit('incoming msg',msg)
+
+  const { match_id,chat_content, profile_id} = msg;
+
+  db.create_chat(match_id, chat_content, profile_id)
+})
+})
 
 //Controller endpoints here
 
@@ -69,7 +92,7 @@ app.get(`/api/matchedchat/:match_id`, chatsController.getMatchedChat);
 app.get(`/api/message/:match_id`, chatsController.getMessage);
 app.post(`/api/chat/:match_id`, chatsController.addChatReply);
 app.put("/api/chat/:chat_id", chatsController.updateChatReply);
-app.delete("/api/chat/:chat_id", chatsController.deleteChatReply);
+
 
 // app.post(`/auth/register`, authController.login);
 
@@ -94,7 +117,7 @@ massive(
 )
   .then((dbInstance) => {
     app.set("db", dbInstance);
-    app.listen(SERVER_PORT, () => {
+    httpServer.listen(SERVER_PORT, () => {
       console.log(`Server running on port ${SERVER_PORT}`);
     });
   })
