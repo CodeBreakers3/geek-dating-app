@@ -47,8 +47,8 @@ let values ={
         axios.put(`/api/updateprofile/${profile_id}`,{first_name, last_name, gamer_tag, location, about_me, sexual_orientation, sex,preferred_pronoun, height, activity_level, religion, education, occupation, kids, alcohol, smoking, cannabis, recreational_drugs, favorite_food, current_game, photo_one, photo_two, photo_three, photo_four, photo_five, user_id}).then(res =>console.log(res.data)).catch(err =>console.log(err))
     }  
     let i = 0;
+
 useEffect(()=>{
-  setCount(i)
     !current_game ? i++: console.log(i)
     !first_name ? i++: console.log(i)
 !last_name ? i++: console.log(i)
@@ -75,9 +75,12 @@ useEffect(()=>{
 !photo_three ? i++: console.log(i)
 !photo_four ? i++: console.log(i)
 !photo_five ? i++: console.log(i)
+i=(i/25)*100
+i = 100-i
+setCount(i)
+},[count])
 
-console.log(i)
-})
+console.log(count)
     return (
         <div className="edit-profile-container">
             <BackButton/>
@@ -202,11 +205,13 @@ console.log(i)
                     </div>
                     <input value={sexual_orientation} onChange={(e)=>setsexualorientation(e.target.value)}></input>
                 </div>
+
                 <div className="edit-profile-edit-details-container">
                     <div className="edit-profile-edit-details-text">
                         <p>Preferred Pronouns:</p>
                     </div>
                     <input value={preferred_pronoun} onChange={(e)=>setpreferred_pronoun(e.target.value)}></input>
+
                 </div>
 
                 <div className="edit-profile-edit-details-container">

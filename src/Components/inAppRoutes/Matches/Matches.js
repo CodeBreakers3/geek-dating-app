@@ -1,5 +1,6 @@
 import React, { useEffect,useState } from "react";
 import { connect } from "react-redux";
+import MappedMatchChat from './MappedMatchChat'
 import axios from "axios";
 import Header from '../../Header'
 import MatchedChats from './MatchedChats'
@@ -8,8 +9,12 @@ import { getMatches,getMatchedChat } from "../../../ducks/profileReducer";
 import "./matches.css";
 
 const Matches = (props) => {
+
   const [allMatches,setAllMatches]= useState([])
+  const [toggle,setToggle]= useState(false)
+
   const {profile_id}= props.userReducer.user
+
   useEffect(() => {
     props.getMatches(profile_id);
     axios.get(`/api/allmatches/${profile_id}`)
@@ -19,6 +24,11 @@ const Matches = (props) => {
     .catch(err=>console.log(err))
   
   },[profile_id]);
+
+  const handleClick=()=>{
+    setToggle(!toggle)
+  }
+
 
   let mappedPhotos = allMatches.map((match, i) => {
     return (
@@ -31,12 +41,37 @@ const Matches = (props) => {
         <MatchedChats key={i} match={match} />
     );
   });
+  let mappedMatchChat = allMatches.map((match,i) =>{
+    return(
+      <MappedMatchChat match={match} key={i}/>
+    )
+  })
 
   return (
     <div id="matches-view">
       <Header/>
+      
+  
+     {!toggle ?   (
+     <div>    
       <div className="matches-picture-view">{mappedPhotos}</div>
-      <div id="mapped-matches-container">{mappedMatches}</div>
+     <div id="mapped-matches-container">
+      <div onClick={()=>handleClick()}className='startChat'>Start Chatting</div>
+        {mappedMatches}
+        </div>
+      </div>
+        ):(
+        <div>
+          <div id='chatSelection'>
+            <div className='startChat'>
+              <div onClick={()=>handleClick()}id='toggle2'></div>
+              <div>{mappedMatchChat}</div>
+              </div>
+              
+          </div>     
+        </div>
+        )
+        }
     </div>
   );
 };
