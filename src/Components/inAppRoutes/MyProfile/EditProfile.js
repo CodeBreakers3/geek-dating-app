@@ -1,4 +1,5 @@
 //non component imports
+import './editProfile.css';
 import axios from 'axios';
 import React, {useState,useEffect} from 'react';
 import {connect} from 'react-redux';
@@ -88,145 +89,183 @@ console.log(count)
             </div>
 
             <div className="edit-profile-edit-images-flex-container">
+                
                 <div className="edit-profile-edit-images-title-text">
                     <h1>Profile Images</h1>
                 </div>
                 <div className="edit-profile-edit-images-image-container">
-                    <img alt='.' src={user.photo_one}/>
+                    <img alt='profile image 1' src={user.photo_one}/>
                     <input value={photo_one} onChange={(e)=>setphoto_one(e.target.value)} ></input>
-                    <div className="edit-profile-edit-images-x-icon">X</div>
                 </div>
 
                 <div className="edit-profile-edit-images-image-container">
-                    <img alt='.' src={user.photo_two}/>
+                    <img alt='profile image 2' src={user.photo_two}/>
                     <input value={photo_two} onChange={(e)=>setphoto_two(e.target.value)} ></input>
-                    <div className="edit-profile-edit-images-x-icon">X</div>
                 </div>
 
                 <div className="edit-profile-edit-images-image-container">
-                    <img alt='.' src={user.photo_three}/>
+                    <img alt='profile image 3' src={user.photo_three}/>
                     <input value={photo_three} onChange={(e)=>setphoto_three(e.target.value)} ></input>
-                    <div className="edit-profile-edit-images-x-icon">X</div>
                 </div>
 
                 <div className="edit-profile-edit-images-image-container">
-                    <img alt='.' src={user.photo_four}/>
+                    <img alt='profile image 4' src={user.photo_four}/>
                     <input value={photo_four} onChange={(e)=>setphoto_four(e.target.value)} ></input>
-                    <div className="edit-profile-edit-images-x-icon">X</div>
                 </div>
 
                 <div className="edit-profile-edit-images-image-container">
-                    <img alt='.' src={user.photo_five}/>
+                    <img alt='profile image 5' src={user.photo_five}/>
                     <input value={photo_five} onChange={(e)=>setphoto_five(e.target.value)} ></input>
-                    <div className="edit-profile-edit-images-x-icon">X</div>
                 </div>
             </div>
 
             <div className="edit-profile-edit-details-flex-container">
 
-                <div className="edit-profile-edit-details-about-me-container">
+                <div className="edit-profile-edit-details-container">
+                    <div className="edit-profile-edit-details-text">
                         <p>First Name:</p>
-                        <input value={first_name} onChange={(e)=>setfirst_name(e.target.value)}></input>
+                    </div>
+                    <input value={first_name} onChange={(e)=>setfirst_name(e.target.value)}></input>
                 </div>
-                <div className="edit-profile-edit-details-about-me-container">
+                <div className="edit-profile-edit-details-container">
+                    <div className="edit-profile-edit-details-text">
                         <p>Last Name:</p>
+                    </div>
                         <input value={last_name} onChange={(e)=>setlast_name(e.target.value)}></input>
                 </div>         
 
-                <div className="edit-profile-edit-details-gamer-tag-container">
+                <div className="edit-profile-edit-details-container">
+                    <div className="edit-profile-edit-details-text">
                         <p>Gamer Tag:</p>
-                        <input value={gamer_tag} onChange={(e)=>setgamer_tag(e.target.value)}></input>
+                    </div>
+                    <input value={gamer_tag} onChange={(e)=>setgamer_tag(e.target.value)}></input>
                 </div>
 
-                <div className="edit-profile-edit-details-about-me-container">
+                <div id="edit-profile-edit-details-about-me" className="edit-profile-edit-details-container">
+                    <div className="edit-profile-edit-details-text">
                         <p>About Me:</p>
-                        <input value={about_me} onChange={(e)=>setabout_me(e.target.value)}></input>
+                    </div>
+                        <textarea value={about_me} onChange={(e)=>setabout_me(e.target.value)}></textarea>
                 </div>
-                <div className="edit-profile-edit-details-about-me-container">
+                <div className="edit-profile-edit-details-container">
+                    <div className="edit-profile-edit-details-text">
                         <p>Location:</p>
-                        <input value={location} onChange={(e)=>setlocation(e.target.value)}></input>
+                    </div>
+                    <input value={location} onChange={(e)=>setlocation(e.target.value)}></input>
                 </div>
 
        
 
-                <div className="edit-profile-edit-details-religion-container">
+                <div className="edit-profile-edit-details-container">
+                    <div className="edit-profile-edit-details-text">
                         <p>Religion:</p>
-                        <input value={religion} onChange={(e)=>setreligion(e.target.value)}></input>
+                    </div>
+                    <input value={religion} onChange={(e)=>setreligion(e.target.value)}></input>
                 </div>
 
-                <div className="edit-profile-edit-details-height-container">
+                <div className="edit-profile-edit-details-container">
+                    <div className="edit-profile-edit-details-text">
                         <p>Height:</p>
-                        <input value={height} onChange={(e)=>setheight(e.target.value)}></input>
+                    </div>
+                    <input value={height} onChange={(e)=>setheight(e.target.value)}></input>
                 </div>
 
-                <div className="edit-profile-edit-details-sex-container">
+                <div className="edit-profile-edit-details-container">
+                    <div className="edit-profile-edit-details-text">
                         <p>Sex:</p>
-                        <input value={sex} onChange={(e)=>setsex(e.target.value)}></input>
+                    </div>
+                    <input value={sex} onChange={(e)=>setsex(e.target.value)}></input>
                 </div>
 
-                <div className="edit-profile-edit-details-activity-level-container">
+                <div className="edit-profile-edit-details-container">
+                    <div className="edit-profile-edit-details-text">
                         <p>Activity Level:</p>
-                        <input value={activity_level} onChange={(e)=>setactivity_level(e.target.value)}></input>
+                    </div>
+                    <input value={activity_level} onChange={(e)=>setactivity_level(e.target.value)}></input>
                     </div>
 
 
-                <div className="edit-profile-edit-details-education-container">
+                <div className="edit-profile-edit-details-container">
+                    <div className="edit-profile-edit-details-text">
                         <p>Education:</p>
-                        <input value={education} onChange={(e)=>seteducation(e.target.value)}></input>
+                    </div>
+                    <input value={education} onChange={(e)=>seteducation(e.target.value)}></input>
                 </div>
 
-                <div className="edit-profile-edit-details-work-container">
-                        <p>Work:</p>
-                        <input value={occupation} onChange={(e)=>setoccupation(e.target.value)}></input>
+                <div className="edit-profile-edit-details-container">
+                    <div className="edit-profile-edit-details-text">
+                        <p>Occupation:</p>
+                    </div>
+                    <input value={occupation} onChange={(e)=>setoccupation(e.target.value)}></input>
                 </div>
 
-                <div className="edit-profile-edit-details-sexual-orientation-container">
-                        <p>Orientation:</p>
-                        <input value={sexual_orientation} onChange={(e)=>setsexualorientation(e.target.value)}></input>
-                </div>
-                <div className="edit-profile-edit-details-sexual-orientation-container">
-                        <p>Preferred Pronoun:</p>
-                        <input value={preferred_pronoun} onChange={(e)=>setpreferred_pronoun(e.target.value)}></input>
+                <div className="edit-profile-edit-details-container">
+                    <div className="edit-profile-edit-details-text">
+                        <p>Sexual Orientation:</p>
+                    </div>
+                    <input value={sexual_orientation} onChange={(e)=>setsexualorientation(e.target.value)}></input>
                 </div>
 
-                <div className="edit-profile-edit-details-alcohol-container">
+                <div className="edit-profile-edit-details-container">
+                    <div className="edit-profile-edit-details-text">
+                        <p>Preferred Pronouns:</p>
+                    </div>
+                    <input value={preferred_pronoun} onChange={(e)=>setpreferred_pronoun(e.target.value)}></input>
+
+                </div>
+
+                <div className="edit-profile-edit-details-container">
+                    <div className="edit-profile-edit-details-text">
                         <p>Alcohol:</p>
-                        <input value={alcohol} onChange={(e)=>setalcohol(e.target.value)}></input>
+                    </div>
+                    <input value={alcohol} onChange={(e)=>setalcohol(e.target.value)}></input>
                 </div>
 
-                <div className="edit-profile-edit-details-smoking-container">
+                <div className="edit-profile-edit-details-container">
+                    <div className="edit-profile-edit-details-text">
                         <p>Smoking:</p>
-                        <input value={smoking} onChange={(e)=>setsmoking(e.target.value)}></input>
+                    </div>
+                    <input value={smoking} onChange={(e)=>setsmoking(e.target.value)}></input>
                 </div>
 
-                <div className="edit-profile-edit-details-weed-container">
-                        <p>Weed:</p>
-                        <input value={cannabis} onChange={(e)=>setcannabis(e.target.value)}></input>
+                <div className="edit-profile-edit-details-container">
+                    <div className="edit-profile-edit-details-text">
+                        <p>Cannabis:</p>
+                    </div>
+                    <input value={cannabis} onChange={(e)=>setcannabis(e.target.value)}></input>
                 </div>
 
-                <div className="edit-profile-edit-details-drugs-container">
-                        <p>Drugs:</p>
-                        <input value={recreational_drugs} onChange={(e)=>setrecreational_drugs(e.target.value)}></input>
+                <div className="edit-profile-edit-details-container">
+                    <div className="edit-profile-edit-details-text">
+                        <p>Recreational Drugs:</p>
+                    </div>
+                    <input value={recreational_drugs} onChange={(e)=>setrecreational_drugs(e.target.value)}></input>
                 </div>
 
-                <div className="edit-profile-edit-details-kids-container">
+                <div className="edit-profile-edit-details-container">
+                    <div className="edit-profile-edit-details-text">
                         <p>Kids:</p>
-                        <input value={kids} onChange={(e)=>setkids(e.target.value)}></input>
+                    </div>
+                    <input value={kids} onChange={(e)=>setkids(e.target.value)}></input>
                 </div>
 
-                <div className="edit-profile-edit-details-favorite-food-container">
+                <div className="edit-profile-edit-details-container">
+                    <div className="edit-profile-edit-details-text">
                         <p>Favorite Food:</p>
-                        <input value={favorite_food} onChange={(e)=>setfavorite_food(e.target.value)}></input>
+                    </div>
+                    <input value={favorite_food} onChange={(e)=>setfavorite_food(e.target.value)}></input>
                 </div>
 
-                <div className="edit-profile-edit-details-current-game-container">
+                <div className="edit-profile-edit-details-container">
+                    <div className="edit-profile-edit-details-text">
                         <p>Current Game:</p>
-                        <input value={current_game} onChange={(e)=>setcurrent_game(e.target.value)}></input>
+                    </div>
+                    <input value={current_game} onChange={(e)=>setcurrent_game(e.target.value)}></input>
                 </div>
             </div>
 
-            <div className="edit-profile-edit-details-save-button">
-                <button onClick={()=>handleClick()}>Save Changes</button>
+            <div className="edit-profile-edit-details-save-button-container">
+                <div className="edit-profile-edit-details-save-button" onClick={()=>handleClick()}>Save Changes</div>
             </div>
 
         </div>
