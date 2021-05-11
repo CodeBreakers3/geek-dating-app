@@ -1,5 +1,4 @@
 //non-component imports
-import React from 'react'
 import './swipe.css';
 import React, {useEffect} from 'react';
 import {useState} from 'react';

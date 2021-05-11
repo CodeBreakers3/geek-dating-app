@@ -1,5 +1,4 @@
 import './App.css';
-import React from 'react'
 import {connect} from 'react-redux';
 import React, {useEffect} from 'react';
 //import the routes for the auth/registration views
@@ -16,7 +15,9 @@ function App(props) {
 
   useEffect(() => {
     if(JSON.parse(localStorage.getItem('isLoggedIn'))) {
-      props.loginUser(JSON.parse(localStorage.getItem('loggedInUser')));
+      console.log((localStorage.getItem('isLoggedIn')))
+      console.log((localStorage.getItem('loggedInUser')))
+      // props.loginUser(JSON.parse(localStorage.getItem('loggedInUser')));
     }
 
   },[])

@@ -1,5 +1,5 @@
 //non component imports
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import React from 'react'
 import './profilesmall.css';
 import {Link} from 'react-router-dom';
@@ -8,12 +8,22 @@ import {connect} from 'react-redux';
 //component imports
 
 //ProfileSmall component
+
+// Add useEffect thats watching user variable on the userReducer
 function ProfileSmall(props) {
     const {idx}=props
-    const {viewableProfiles}=props.userReducer.user;
+    // const {user} = props.userReducer
+    const {viewableProfiles}=props.profileReducer;
+    console.log(viewableProfiles)
+    console.log(idx)
     let profile = viewableProfiles[idx];
     let profile_id = profile.profile_id;
 
+    // useEffect(() => {
+    //     if(user.hasOwnProperty("user_id")){
+
+    //     }
+    // }, [user])
 
 
     const imageDisplaySwipe = 
