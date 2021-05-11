@@ -121,7 +121,7 @@ const Chats = (props) => {
     notificationSound.play();
     setchat_content("");
   };
-
+// seriusly
   let mappedChats = messages.map((message) => {
     return (
       <MappedChats key={message.chat_id} setGame={setGame} message={message} />
