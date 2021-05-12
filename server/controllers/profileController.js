@@ -77,7 +77,6 @@ const {profile_id} = req.params
         let [profile]= viewableProfiles
             if(profile){
                 res.status(200).send(viewableProfiles)
-                console.log(viewableProfiles)
             }else{
                 try{
                 let me = await db.get_single_profile(profile_id)
