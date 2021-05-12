@@ -9,11 +9,11 @@ import ProfPic from './ProfPic';
 import Welcome from './Welcome';
 
 const Registration = () => {
-    let [indexTracker, setIndexTracker] = useState(1)
+    let [indexTracker, setIndexTracker] = useState(1);
     let [newUser, setNewUser] = useState({
         email: "",
         password: ""
-    })
+    });
     let [newProfile, setNewProfile] = useState({
         first_name : "",
         last_name: "",
@@ -41,39 +41,63 @@ const Registration = () => {
         photo_four : "", 
         photo_five : "", 
         user_id : ""
-    })
+    });
 
-    const createNewUser =() => {
-        axios.post("/auth/signup", {newUser})
-            .then(() => axios.post("/api/createprofile", {newProfile})
-                .then(res => res.data))
+    const createNewUser = () => {
+        //create the new user in the DB
+        axios.post("/auth/signup", newUser)
+            .then((res) => {
+                console.log(res.data);
+                //code to execute if the newUser was successfully created
+                //add the new users user_id to to the user on state
+
+                //create the profile in the DB
+                // axios.post("/api/createprofile", {newProfile})
+                // .then(res => res.data)
+                return true;
+                })
+            .catch(err=>{
+                //this catch occurs only if the username/email already exists in the DB. 
+                console.log(err);
+                return false;
+            })
         };
-
-
-
-
-
-    
-
-
-    
-    console.log(indexTracker)
 
     return (
         <div className='registration-components-container-wrapper'>
-            {indexTracker === 1?<CoreInfo
-            actualUser= {newUser} 
-            setNewUser={setNewUser} 
-            actualProfile={newProfile} 
-            setNewProfile={setNewProfile} 
-            setIndexTracker={setIndexTracker}>  
-            </CoreInfo>:
-            indexTracker === 2?<ProfPic actualProfile={newProfile} setNewProfile={setNewProfile} setIndexTracker={setIndexTracker}></ProfPic>:
-
-            indexTracker === 3?<Credentials actualUser={newUser} setNewUser={setNewUser} actualProfile={newProfile} setNewProfile={setNewProfile} setIndexTracker={setIndexTracker}></Credentials>:
-
-            indexTracker === 4?<Welcome createNewUser={createNewUser} actualProfile={newProfile} setNewProfile={setNewProfile} setIndexTracker={setIndexTracker}></Welcome>:
-             <div>"There is an error loading the page"</div>}
+            {indexTracker === 1?
+                <CoreInfo
+                    actualUser= {newUser} 
+                    setNewUser={setNewUser} 
+                    actualProfile={newProfile} 
+                    setNewProfile={setNewProfile} 
+                    setIndexTracker={setIndexTracker}
+                    indexTracker={indexTracker}>  
+                </CoreInfo>:
+                    indexTracker === 2?
+                        <ProfPic 
+                            actualProfile={newProfile} 
+                            setNewProfile={setNewProfile} 
+                            setIndexTracker={setIndexTracker}
+                            indexTracker={indexTracker}>
+                        </ProfPic>:
+                            indexTracker === 3?
+                                <Credentials                           createNewUser={createNewUser}
+                                    actualUser={newUser} 
+                                    setNewUser={setNewUser} 
+                                    actualProfile={newProfile} 
+                                    setNewProfile={setNewProfile} 
+                                    setIndexTracker={setIndexTracker}
+                                    indexTracker={indexTracker}>
+                                </Credentials>:
+                                    indexTracker === 4?
+                                        <Welcome  
+                                            actualProfile={newProfile} 
+                                            setNewProfile={setNewProfile} 
+                                            setIndexTracker={setIndexTracker}
+                                            indexTracker={indexTracker}>
+                                        </Welcome>:
+                                            <div>"There is an error loading the page"</div>}
         </div>
 
     )

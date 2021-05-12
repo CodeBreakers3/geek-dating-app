@@ -82,10 +82,10 @@ console.log(viewableProfile)
 
                 <div className="large-profile-details-text">
                     <div className="large-profile-details-text-sub">
-                        <p>Relgion: {viewableProfile.height}</p>
+                        <p>Religion: {viewableProfile.height}</p>
                     </div>
                     <div className="large-profile-details-text-sub">
-                        <p>Education: {viewableProfile.preferred_pronoun}</p>
+                        <p>Preferred Pronoun: {viewableProfile.preferred_pronoun}</p>
                     </div>
                     <div className="large-profile-details-text-sub">
                         <p>Occupation: {viewableProfile.favorite_food}</p>

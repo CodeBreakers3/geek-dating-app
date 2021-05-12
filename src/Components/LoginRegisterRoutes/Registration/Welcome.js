@@ -1,16 +1,13 @@
 import axios from 'axios';
 import React, {useState} from 'react'
 import { Link } from "react-router-dom";
+import BackButton2 from '../BackButton2';
 
 //Welcome component
 const Welcome = (props) => {
-
-        
-    //    Connect props functions to buttons
-    
- 
     return (
         <div>
+        <BackButton2 setIndexTracker={props.setIndexTracker} indexTracker={props.indexTracker}/>
             <div>
                 <p>Welcome!</p>
             </div>
@@ -19,7 +16,7 @@ const Welcome = (props) => {
                     {/* <button onClick={() => props.createNewUser()}>I agree to the guidelines</button> */}
 
                 <Link to='/login'>
-                    <button onClick={() => props.createNewUser()}>Venture Forth!</button>
+                    <button>Venture Forth!</button>
                 </Link>
             </div>
         </div>
