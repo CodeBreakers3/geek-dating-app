@@ -6,28 +6,31 @@ module.exports = {
         const {email, password} = req.body;
         const db = req.app.get('db');
         try{
+            //check if  the user already exists in the db
             const [existingUser] = await db.get_new_user(email)
+            console.log(existingUser);
+            //if the user already exists, then respond to the front end.
             if (existingUser){
                 res.status(409).send("User already registered!")
             } else {
+                //if the user doesn't exist. Create a new user object
                 let salt = bcrypt.genSaltSync(10);
                 let hash = bcrypt.hashSync(password, salt);
                 let [newUser] = await db.create_user(email, hash);
 
+                try{
+                    //
+                    let [registeredUser] = await db.get_new_user(email)
+                    res.status(200).send(registeredUser)
+                } catch (err) {
+                    console.log(err);
+                    res.send(err).status(500)
+                }
             }
 
         } catch (err) {
             res.sendStatus(500)
         }
-
-        try{
-            let [registeredUser] = await db.get_new_user(email)
-            res.status(200).send(registeredUser)
-        } catch (err) {
-            res.sendStatus(500)
-        }
-
-        
     },
     
     login: async (req, res) => {

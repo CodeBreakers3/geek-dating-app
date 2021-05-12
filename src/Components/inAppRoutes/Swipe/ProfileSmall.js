@@ -24,7 +24,7 @@ function ProfileSmall(props) {
             <div className="small-profile-image-flex-container">
                 
                 <div className="small-profile-image-container">
-                    {props.matched?imageDisplayMatched:imageDisplaySwipe}
+                    {(props.matched==="match")?imageDisplayMatched:imageDisplaySwipe}
                 </div>
                 
                 <div className="small-profile-details-container">
