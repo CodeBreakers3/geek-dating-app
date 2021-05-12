@@ -11,17 +11,18 @@ const Credentials = (props) => {
 
     const nextView = () => {
         if(password === password2) {
-            props.setNewProfile({
-                ...props.actualProfile,
-                email,
-                password 
+            props.setNewUser({
+                ...props.actualUser,
+                email: email,
+                password: password 
             }) } else {
                 alert("Passwords do NOT match!")
             }
-        props.setIndexTracker(2)
+        props.setIndexTracker(4)
     }
 
     
+
 
 
     return (
