@@ -11,14 +11,16 @@ function ProfileLarge(props) {
 
 const [viewableProfile,setViewableProfile]=useState({})
 const {profile_id}=props.match.params
+const {params} = props.match
+let exists = !viewableProfile ? false :true 
 useEffect(()=>{
-    if(viewableProfile){    
+    if(exists){
         axios.get(`/api/getprofile/${profile_id}`).then(res=>{
             const[profile]=res.data
         setViewableProfile(profile)
-    }).catch(err =>console.log(err))
-}
-},[props.match.params])
+    }).catch(err =>console.log(err))}
+},[exists,profile_id,params])
+
 console.log(viewableProfile)
     return (
         <div className="large-profile">

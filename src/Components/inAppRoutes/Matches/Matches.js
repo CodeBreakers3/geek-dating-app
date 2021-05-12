@@ -14,16 +14,16 @@ const Matches = (props) => {
   const [toggle,setToggle]= useState(false)
 
   const {profile_id}= props.userReducer.user
-
+const {getMatches} =props
   useEffect(() => {
-    props.getMatches(profile_id);
+    getMatches(profile_id);
     axios.get(`/api/allmatches/${profile_id}`)
     .then(res=>{
       setAllMatches(res.data)
     })
     .catch(err=>console.log(err))
   
-  },[profile_id]);
+  },[profile_id,getMatches]);
 
   const handleClick=()=>{
     setToggle(!toggle)
@@ -41,6 +41,7 @@ const Matches = (props) => {
         <MatchedChats key={i} match={match} />
     );
   });
+  
   let mappedMatchChat = allMatches.map((match,i) =>{
     return(
       <MappedMatchChat match={match} key={i}/>
@@ -50,23 +51,20 @@ const Matches = (props) => {
   return (
     <div id="matches-view">
       <Header/>
-      
-  
      {!toggle ?   (
      <div>    
       <div className="matches-picture-view">{mappedPhotos}</div>
-     <div id="mapped-matches-container">
       <div onClick={()=>handleClick()}className='startChat'>Start Chatting</div>
+     <div id="mapped-matches-container">
         {mappedMatches}
         </div>
       </div>
         ):(
-        <div>
+        <div id='chat-view'>
           <div id='chatSelection'>
-            <div className='startChat'>
+
               <div onClick={()=>handleClick()}id='toggle2'></div>
               <div>{mappedMatchChat}</div>
-              </div>
               
           </div>     
         </div>

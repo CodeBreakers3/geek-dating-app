@@ -17,14 +17,9 @@ const Chats = (props) => {
   const [chat_content, setchat_content] = useState("");
   const { match_id } = props.match.params;
   const { profile_id } = props.userReducer.user;
+  
 
-  useEffect(() => {
-    console.log(props);
-    axios.get(`/api/matchedchat/${match_id}`).then((res) => {
-      setMessages(res.data);
-    });
-    getGame();
-  }, [messages]);
+
 
   const handleSocketConnect = useCallback(() => {
     if (!socket) {
@@ -32,42 +27,42 @@ const Chats = (props) => {
       setSocket(skt);
     }
   }, [socket]);
-
+  
   const handleSocketDisconnect = useCallback(() => {
     if (socket) {
       socket.close();
       setSocket(null);
     }
   }, [socket]);
-
+  
   const joinRoom = useCallback(() => {
     if (!joined && socket) {
       setJoined(true);
       socket.emit("join room", `${match_id}`);
     }
   }, [joined, socket, match_id]);
-
+  
   const leaveRoom = useCallback(() => {
     if (joined && socket) {
       setJoined(false);
       socket.emit("leave room", `${match_id}`);
     }
   }, [socket, joined, match_id]);
-
+  
   useEffect(() => {
     joinRoom();
     return () => {
       leaveRoom();
     };
   }, [joinRoom, leaveRoom]);
-
+  
   useEffect(() => {
     handleSocketConnect();
     return () => {
       handleSocketDisconnect();
     };
   }, [handleSocketConnect, handleSocketDisconnect]);
-
+  
   const handleIncomingMsg = useCallback((msg) => {
     setMessages((prevState) => {
       const msgs = [...prevState];
@@ -108,10 +103,6 @@ const Chats = (props) => {
     }
   };
   const handleClick = () => {
-    // axios
-    //   .post(`/api/chat/${match_id}`,{chat_content,profile_id})
-    //   .then((res) => setMessages(res.data))
-    //   .catch((err) => console.log(err));
     socket.emit("new msg", match_id, { match_id, chat_content, profile_id });
     setMessages((prevState) => {
       const msg = [...prevState];
@@ -121,6 +112,12 @@ const Chats = (props) => {
     notificationSound.play();
     setchat_content("");
   };
+    useEffect(() => {
+    axios.get(`/api/matchedchat/${match_id}`).then((res) => {
+      setMessages(res.data);
+    }); 
+    getGame();
+  }, [messages,match_id]);
 // seriusly
   let mappedChats = messages.map((message) => {
     return (
@@ -154,72 +151,3 @@ const mapStateToProps = (reduxState) => {
   return reduxState;
 };
 export default connect(mapStateToProps)(Chats);
-
-// const Chat = ()=> {
-//     const [yourID, setYourID] = useState();
-//         const [messages,setMessages] = useState([]);
-//         const [message, setMessage] = useState('');
-
-//     const socketRef = useRef()
-
-// useEffect(()=>{
-//     socketRef.current = io.connect('http://localhost:3111');
-
-//     socketRef.current.on('your id', id =>{
-//         setYourID(id)
-//     })
-
-// socketRef.current.on('message', (message)=>{
-// recievedMessage(message)
-// })
-
-// })
-// function recievedMessage(message){
-//     setMessages(oldMessages => [...oldMessages,message])
-// }
-// function sendMessage(e){
-//     e.preventDefault()
-//     const messageObject ={
-//         body: message,
-//         id:yourID,
-//     }
-//     setMessage('')
-// socketRef.current.emit('send message', messageObject)
-// }
-
-// function handleChange(e){
-// setMessage(e.target.value)
-// }
-
-//     return(
-//     <div>
-//         <section>
-// {messages.map((message,i)=> {
-//     if(message.id === yourID){
-//         return(
-//             <div key={i}>
-//                 <div>
-//                 {message.body}
-//                 </div>
-//             </div>
-//         )
-//     }
-//     return(
-//         <div key={i}>
-// <div>
-//     {message.body}
-// </div>
-//         </div>
-//     )
-// })}
-//         </section>
-//         <form onSubmit={sendMessage} >
-// <textarea value={message} onChange={handleChange} placeholder='LEEROY JENKINS!'>
-
-// </textarea>
-// <button>send</button>
-//         </form>
-//     </div>
-//     )
-// }
-// export default Chat

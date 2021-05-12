@@ -1,16 +1,33 @@
 #matches-view{
     background-color: rgb(97, 198, 146);
-    height: 100vh;
+width:100%;
     font-family: 'Space Grotesk';
+
 }
+#mappedMatches{
+    width:100%;
+}
+.matches{
+    margin-top:1.3rem;
+    padding:.25rem;
+    margin-left:2rem;
+    overflow-x:scroll;
+}
+
 .matches-picture-view{
+margin-left:1vw;
+
     display: flex;
     justify-content: center;
     flex-direction: row;
-    width:100vw;
 
 }
-
+#mapped-matches-container{
+    margin-bottom: 1rem;
+    height:58vh;
+    overflow-x: scroll;
+    overflow-y: hidden;
+}
 .matches-profile-photo{
     height:3rem;
     width:3rem;
@@ -19,11 +36,43 @@ border-radius: 50%;
 box-shadow: 3px 3px 6px 1px rgb(62,62, 62)
 }
 .matches-picture{
-    height: 6rem;
+    height:6rem;
     width: 6rem;
 border:5px inset rgb(68,103,85);
 border-radius: 50%;
 box-shadow: 3px 3px 6px 1px rgb(62, 62, 62)
+}
+
+.startChat{
+    height: 3rem;
+    margin-top:1rem;
+margin-left:5rem;
+margin-right:5rem;
+    background-color: blue;
+    border:5px outset rgb(68,103,85);
+    border-radius:30px 30px 30px 30px;
+    box-shadow: 3px 3px 6px 1px rgb(62,62, 62)
+}
+
+#chatSelection{
+    position:absolute;
+    margin-left:5%;
+    margin-top:2.5%;
+    width: 90%;
+    height:85%;
+    overflow:scroll;
+    background-color: rgb(97, 198, 146);
+    border:5px inset rgb(68,103,85);
+    border-radius: 50px 50px 50px 50px;
+    box-shadow: 3px 3px 6px 1px rgb(62,62, 62)
+}
+#toggle2{
+    height:2rem;
+    width:2rem;
+    background-color:whitesmoke;
+    border:5px inset rgb(68,103,85);
+    border-radius: 50px 50px 50px 50px;
+    box-shadow: 3px 3px 6px 1px rgb(62,62, 62)
 }
 .row{
     display: flex;
@@ -37,33 +86,4 @@ h6{
 }
 p{
     font-family:'Poppins ExtraLight', Poppins
-}
-.startChat{
-    height: 3rem;
-    margin-top:1rem;
-margin-left:5rem;
-margin-right:5rem;
-    background-color: blue;
-    border:5px outset rgb(68,103,85);
-    border-radius:30px 30px 30px 30px;
-    box-shadow: 3px 3px 6px 1px rgb(62,62, 62)
-}
-#chatSelection{
-    position:absolute;
-    margin-left:10%;
-    margin-top:7%;
-    height: 60%;
-    width: 80%;
-    background-color: blue;
-    border:5px inset rgb(68,103,85);
-    border-radius: 50px 50px 50px 50px;
-    box-shadow: 3px 3px 6px 1px rgb(62,62, 62)
-}
-#toggle2{
-    height:2rem;
-    width:2rem;
-    background-color:whitesmoke;
-    border:5px inset rgb(68,103,85);
-    border-radius: 50px 50px 50px 50px;
-    box-shadow: 3px 3px 6px 1px rgb(62,62, 62)
 }

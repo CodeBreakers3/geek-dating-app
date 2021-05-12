@@ -1,25 +1,13 @@
-// import React, {useState, useEffect, useRef} from 'react'
-import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-// import io from 'socket.io-client';
 
 const MappedMatches = (props) => {
   const { match } = props;
   const { profile1, profile2 } = match;
-  // useEffect(()=>{
-  //   decide()
-  // })
-
-  // const decide =()=>{
-  //   if(profile1=== props.userReducer.user.profile_id){
-  //     setProfile_id(profile1)
-  //   }else{
-  //     setProfile_id(profile2)
-  //   }
-  // }
+ 
+  
   return props.userReducer.user.profile_id === match.profile1 ? (
-    <div>
+    <div id="mappedMatches">
       <Link to={`/largeprofile/${profile2}`}>
         <img className="matches-picture" src={match.photo2} alt={"p"}></img>
       </Link>

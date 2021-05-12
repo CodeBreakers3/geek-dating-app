@@ -9,8 +9,9 @@ const {user}=props.userReducer
 const {profile_id}=props.message
 const[toggle,setToggle]=useState(false)
 const[messageInput,setMessageInput]=useState(message.message)
+
 const handleClick=()=>{
-axios.put(`/api/chat/${props.message.chat_id}`,{})
+axios.put(`/api/chat/${props.message.chat_id}`).then(res=>res.data)
 }
     return(
         <div id='mappedChats'>
