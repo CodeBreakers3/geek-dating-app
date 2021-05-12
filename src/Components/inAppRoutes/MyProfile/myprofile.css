@@ -2,7 +2,7 @@
   padding: 10px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-evenly;
   height: -moz-calc(100% - (85px));
   height: -webkit-calc(100% - (85px));
   height: calc(100% - (85px));
@@ -10,6 +10,7 @@
 
 .my-profile-achievement-bar-flex-container {
   padding: 10px 0px;
+  display: none;
 }
 
 .my-profile-image-container img {
@@ -62,4 +63,21 @@
   height: 75px;
   width: 75px;
   border-radius: 50%;
+}
+
+.edit-profile-edit-details-save-button-container {
+  display: flex;
+  justify-content: center;
+}
+
+.edit-profile-edit-details-save-button {
+  background-color: #61c692;
+  width: 100px;
+  height: 35px;
+  margin: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 1px 1px 3px black;
+  border-radius: 25px;
 }

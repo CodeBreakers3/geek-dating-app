@@ -65,7 +65,7 @@ const {profile_id} = req.params
         // Get the profile id from the logged in user form the params
         const {profile_id} = req.params;
 
-let viewableProfiles;
+        let viewableProfiles;
 
         try{
         viewableProfiles = await db.get_viewable_profiles(profile_id) 
@@ -77,12 +77,10 @@ let viewableProfiles;
         let [profile]= viewableProfiles
             if(profile){
                 res.status(200).send(viewableProfiles)
-                console.log(viewableProfiles)
             }else{
                 try{
                 let me = await db.get_single_profile(profile_id)
                 res.status(200).send(me)
-                console.log(viewableProfiles)
             }
             catch(err){
                 res.sendStatus(404)

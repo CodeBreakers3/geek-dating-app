@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 
 const MappedMatches = (props) => {
   const { match } = props;
-  const [profile_id, setProfile_id] = useState(0);
   const { profile1, profile2 } = match;
   // useEffect(()=>{
   //   decide()

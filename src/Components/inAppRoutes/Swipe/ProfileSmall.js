@@ -1,5 +1,4 @@
 //non component imports
-import {useState, useEffect} from 'react';
 import './profilesmall.css';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';

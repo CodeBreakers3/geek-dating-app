@@ -7,8 +7,8 @@ export default function AchievementBar(props) {
     const [percentage, setPercentage] = useState(0);
 const {count}=props
 useEffect(()=>{
-    setPercentage(count/25)
-    console.log(percentage)
+    setPercentage(count)
+
 })
 
     const achievementBarStyles = {
