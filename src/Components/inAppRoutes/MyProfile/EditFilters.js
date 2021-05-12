@@ -1,12 +1,22 @@
 //non component imports
 import './editfilters.css';
+import {connect} from 'react-redux';
+import axios from 'axios';
 import {useState} from 'react';
+import {updateUser} from './../../../ducks/userReducer';
 
 //component imports
 import BackButton from './../BackButton';
 
 //EditFilters Component
-function EditFilters() {
+function EditFilters(props) {
+    const [oldEmail, setOldEmail] = useState('');
+    const [newEmail, setNewEmail] = useState('');
+    const [oldPassword, setOldPassword] = useState('');
+    const [newPassword, setNewPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
+    const [confirmMatch, setConfirmMatch] = useState(true);
+    const [badLogin, setBadLogin] = useState(false); 
 
     const toggleButton = ev => {
         //toggle the CSS for the button so it shows as "selected" or "unselected"
@@ -15,18 +25,49 @@ function EditFilters() {
         } else if (ev.target.className==="edit-filters-topic-selected") {
             ev.target.className = "edit-filters-topic-unselected";
         }
-        
-
-
     }
 
     const updateProfile = () => {
-        //THIS STILL NEEDS TO BE BUILT OUT - WAITING ON REDUX FUNCTIONALITY
+        //this still needs to be built out
         alert(`You've updated your profile.`);
     }
 
-    const updateCredentials = () => {
-        //THIS STILL NEEDS TO BE BUILT OUT - WAITING ON REDUX FUNCTIONALITY
+    const updateCredentials = async () => {
+        //reset the error messages display
+        setConfirmMatch(true);
+        setBadLogin(false);
+        //check that the newPassword matches the confirm password. If it doesn't then display the error message and return.
+        if (confirmPassword!==newPassword) {
+            setConfirmMatch(false);
+            return;
+        }
+
+        //call the backend to update the user
+        let updatedUser;
+        try {
+            let data = await axios.put(`/auth/updatecredentials/${props.userReducer.user.user_id}`, 
+            {
+                oldEmail: oldEmail,
+                newEmail: newEmail,
+                oldPassword: oldPassword,
+                newPassword: newPassword
+            });
+            updatedUser = data.data;
+        } catch (err) {
+            console.log("Failed to update credentials - " + err);
+            //if this is caught then it means the credentials were bad. Display the bad credentials message.
+            setBadLogin(true);
+            return;
+        }
+        //if successful, update the redux with the new user details (email has changed). 
+        let newReduxUser = props.userReducer.user;
+        newReduxUser.email = updatedUser.email;
+        props.updateUser(newReduxUser);
+
+        //update local storage with the new user as well
+        localStorage.setItem('loggedInUser', JSON.stringify(newReduxUser));
+
+        //alert the user that it was successful
         alert(`You've updated your credentials.`);
     }
 
@@ -210,10 +251,10 @@ function EditFilters() {
 
                         <div className="edit-filters-account-setting">
                             <div className="edit-filters-account-setting-text">
-                                <p>Username:</p>
+                                <p>Old Email:</p>
                             </div>
                             <div className="edit-filters-account-setting-input">
-                                <input></input>
+                                <input onChange={ev => setOldEmail(ev.target.value)}></input>
                             </div>
                         </div>
 
@@ -222,7 +263,18 @@ function EditFilters() {
                                 <p>Old Password:</p>
                             </div>
                             <div className="edit-filters-account-setting-input">
-                                <input></input>
+                                <input onChange={ev => setOldPassword(ev.target.value)}></input>
+                            </div>
+                        </div>
+
+                        <div className="divider"></div>
+                        
+                        <div className="edit-filters-account-setting">
+                            <div className="edit-filters-account-setting-text">
+                                <p>New Email:</p>
+                            </div>
+                            <div className="edit-filters-account-setting-input">
+                                <input onChange={ev => setNewEmail(ev.target.value)}></input>
                             </div>
                         </div>
 
@@ -231,7 +283,7 @@ function EditFilters() {
                                 <p>New Password:</p>
                             </div>
                             <div className="edit-filters-account-setting-input">
-                                <input></input>
+                                <input onChange={ev => setNewPassword(ev.target.value)}></input>
                             </div>
                         </div>
 
@@ -240,13 +292,26 @@ function EditFilters() {
                                 <p>Confirm New Password:</p>
                             </div>
                             <div className="edit-filters-account-setting-input">
-                                <input></input>
+                                <input onChange={ev => setConfirmPassword(ev.target.value)}></input>
                             </div>
                         </div>
+
+                        {confirmMatch?null:
+                        <div className="mismatch-passwords-error-display">
+                            <p>The old and new passwords must match exactly.</p>
+                        </div>
+                        }
+
+                        {badLogin?
+                        <div className="mismatch-passwords-error-display">
+                            <p>Old Credentials Incorrect.</p>
+                        </div>:null
+                        }
                         
                         <div className="edit-filters-button">
                             <div onClick={updateCredentials}>Update Credentials</div>
                         </div>
+
 
                     </div>
 
@@ -258,4 +323,8 @@ function EditFilters() {
     )
 }
 
-export default EditFilters;
+const mapStateToProps = reduxState => {
+    return reduxState
+}
+
+export default connect(mapStateToProps, {updateUser})(EditFilters);
