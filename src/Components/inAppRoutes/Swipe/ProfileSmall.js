@@ -6,6 +6,8 @@ import {connect} from 'react-redux';
 //component imports
 
 //ProfileSmall component
+
+// Add useEffect thats watching user variable on the userReducer
 function ProfileSmall(props) {
 
     const imageDisplaySwipe = 

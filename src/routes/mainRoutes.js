@@ -1,4 +1,5 @@
 //non component imports
+import React from 'react'
 import {Switch, Route} from 'react-router-dom';
 //component imports
 import Swipe from '../Components/inAppRoutes/Swipe/Swipe';

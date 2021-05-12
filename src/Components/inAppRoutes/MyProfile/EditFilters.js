@@ -1,4 +1,5 @@
 //non component imports
+import React from 'react'
 import './editfilters.css';
 import {connect} from 'react-redux';
 import axios from 'axios';

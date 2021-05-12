@@ -6,8 +6,7 @@ module.exports = {
         const {email, password} = req.body;
         const db = req.app.get('db');
         try{
-            const [existingUser] = await db.get_user(email)
-            
+            const [existingUser] = await db.get_new_user(email)
             if (existingUser){
                 res.status(409).send("User already registered!")
             } else {
@@ -15,12 +14,20 @@ module.exports = {
                 let hash = bcrypt.hashSync(password, salt);
                 let [newUser] = await db.create_user(email, hash);
 
-                res.status(200).send(newUser)
             }
 
         } catch (err) {
             res.sendStatus(500)
         }
+
+        try{
+            let [registeredUser] = await db.get_new_user(email)
+            res.status(200).send(registeredUser)
+        } catch (err) {
+            res.sendStatus(500)
+        }
+
+        
     },
     
     login: async (req, res) => {

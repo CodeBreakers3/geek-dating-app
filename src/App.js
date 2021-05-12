@@ -15,7 +15,9 @@ function App(props) {
 
   useEffect(() => {
     if(JSON.parse(localStorage.getItem('isLoggedIn'))) {
-      props.loginUser(JSON.parse(localStorage.getItem('loggedInUser')));
+      console.log((localStorage.getItem('isLoggedIn')))
+      console.log((localStorage.getItem('loggedInUser')))
+      // props.loginUser(JSON.parse(localStorage.getItem('loggedInUser')));
     }
 
   },[])

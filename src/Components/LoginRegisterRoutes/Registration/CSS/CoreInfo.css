@@ -1,0 +1,34 @@
+
+.info-view-wrapper-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* padding: 10px; */
+}
+/* All info titles (ex. What is your name?, etc.) */
+.info-titles{
+    padding: 20px;
+    margin-top: 10px;
+    font-size: 25px;
+
+}
+
+/* Main div around name-plate and name-input */
+.info-view-main-name-container{
+    display: flex;
+    justify-content: center;
+}
+/* Wraps name info identifiers: */
+.info-view-name-plate-container{
+
+}
+/* Wraps name info inputs */
+.info-view-name-input-container{
+    display: flex;
+    flex-direction: column;
+}
+
+.info-view-age-container{
+    display: flex;
+    justify-content: center;
+}
