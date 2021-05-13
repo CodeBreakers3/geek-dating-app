@@ -3,6 +3,7 @@ import React, { useState }from 'react'
 import axios from "axios"
 import {loginUser} from '../../ducks/userReducer'
 import {connect} from 'react-redux'
+import BackButton from './../inAppRoutes/BackButton';
 
 
 
@@ -22,8 +23,7 @@ const Login = (props) => {
         }
        
         // Next step: give redux or object we got from backend
-        props.loginUser(loggedInUser.data)
-        console.log(props)
+        props.loginUser(loggedInUser.data);
         props.history.push('/');
         
 
@@ -40,7 +40,7 @@ const Login = (props) => {
 
     return (
         <div className="login-view-wrapper-container">
-
+            <BackButton/>
             <div className="login-view-image-container">
             <img alt="Main OneUp Logo"></img>
             </div>

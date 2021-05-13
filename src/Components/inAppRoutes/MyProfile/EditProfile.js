@@ -5,6 +5,7 @@ import React, {useState,useEffect} from 'react';
 import {connect} from 'react-redux';
 import BackButton from './../BackButton';
 import AchievementBar from './AchievementBar';
+import {updateUser} from './../../../ducks/userReducer';
 
 //EditProfile component
 const EditProfile=(props)=>{
@@ -37,50 +38,54 @@ const{user_id}=props.userReducer.user
     const [photo_four,setphoto_four]=useState(user.photo_four)
     const [photo_five,setphoto_five]=useState(user.photo_five)
     const [count,setCount]=useState(0)
-
-let values ={
-    first_name:first_name, last_name:last_name, gamer_tag:gamer_tag, location:location, about_me:about_me, sexual_orientation:sexual_orientation, sex:sex,preferred_pronoun:preferred_pronoun, height:height, activity_level:activity_level, religion:religion, education:education, occupation:occupation, kids:kids, alcohol:alcohol, smoking:smoking, cannabis:cannabis, recreational_drugs:recreational_drugs, favorite_food:favorite_food, current_game:current_game, photo_one:photo_one, photo_two:photo_two, photo_three:photo_three, photo_four:photo_four, photo_five:photo_five, user_id:user_id        
-}
-        console.log(values)
     
-    const handleClick=()=>{
-        axios.put(`/api/updateprofile/${profile_id}`,{first_name, last_name, gamer_tag, location, about_me, sexual_orientation, sex,preferred_pronoun, height, activity_level, religion, education, occupation, kids, alcohol, smoking, cannabis, recreational_drugs, favorite_food, current_game, photo_one, photo_two, photo_three, photo_four, photo_five, user_id}).then(res =>console.log(res.data)).catch(err =>console.log(err))
+    const handleClick=  ()=>{
+        axios.put(`/api/updateprofile/${profile_id}`,{first_name, last_name, gamer_tag, location, about_me, sexual_orientation, sex,preferred_pronoun, height, activity_level, religion, education, occupation, kids, alcohol, smoking, cannabis, recreational_drugs, favorite_food, current_game, photo_one, photo_two, photo_three, photo_four, photo_five, user_id})
+        .then(res => {
+            let updatedUser = res.data[0];
+            //save new user data to redux.
+            props.updateUser(updatedUser);
+
+            //save new user data to local storage.
+            localStorage.setItem('loggedInUser', JSON.stringify(updatedUser));
+            alert("Profile successfully updated!");
+        })
+        .catch(err =>console.log(err));
     }  
     let i = 0;
 
 useEffect(()=>{
-    !current_game ? i++: console.log(i)
-    !first_name ? i++: console.log(i)
-!last_name ? i++: console.log(i)
-!gamer_tag ? i++: console.log(i)
-!location ? i++: console.log(i)
-!about_me ? i++: console.log(i)
-!sexual_orientation ? i++: console.log(i)
-!sex ? i++: console.log(i)
-!preferred_pronoun ? i++: console.log(i)
-!height ? i++: console.log(i)
-!activity_level ? i++: console.log(i)
-!religion ? i++: console.log(i)
-!education ? i++: console.log(i)
-!occupation ? i++: console.log(i)
-!kids ? i++: console.log(i)
-!alcohol ? i++: console.log(i)
-!smoking ? i++: console.log(i)
-!cannabis ? i++: console.log(i)
-!recreational_drugs ? i++: console.log(i)
-!favorite_food ? i++: console.log(i)
-!current_game ? i++: console.log(i)
-!photo_one ? i++: console.log(i)
-!photo_two ? i++: console.log(i)
-!photo_three ? i++: console.log(i)
-!photo_four ? i++: console.log(i)
-!photo_five ? i++: console.log(i)
+    !current_game ? i++: 
+        !first_name ? i++: 
+            !last_name ? i++: 
+                !gamer_tag ? i++: 
+!location ? i++: 
+!about_me ? i++: 
+!sexual_orientation ? i++: 
+!sex ? i++: 
+!preferred_pronoun ? i++: 
+!height ? i++: 
+!activity_level ? i++: 
+!religion ? i++: 
+!education ? i++: 
+!occupation ? i++: 
+!kids ? i++: 
+!alcohol ? i++: 
+!smoking ? i++: 
+!cannabis ? i++: 
+!recreational_drugs ? i++: 
+!favorite_food ? i++: 
+!current_game ? i++: 
+!photo_one ? i++: 
+!photo_two ? i++: 
+!photo_three ? i++: 
+!photo_four ? i++: 
+!photo_five ? i++: 
 i=(i/25)*100
 i = 100-i
 setCount(i)
 },[count])
 
-console.log(count)
     return (
         <div className="edit-profile-container">
             <BackButton/>
@@ -94,27 +99,27 @@ console.log(count)
                     <h1>Profile Images</h1>
                 </div>
                 <div className="edit-profile-edit-images-image-container">
-                    <img alt='profile image 1' src={user.photo_one}/>
+                    <img alt='profile image 1' src={photo_one}/>
                     <input value={photo_one} onChange={(e)=>setphoto_one(e.target.value)} ></input>
                 </div>
 
                 <div className="edit-profile-edit-images-image-container">
-                    <img alt='profile image 2' src={user.photo_two}/>
+                    <img alt='profile image 2' src={photo_two}/>
                     <input value={photo_two} onChange={(e)=>setphoto_two(e.target.value)} ></input>
                 </div>
 
                 <div className="edit-profile-edit-images-image-container">
-                    <img alt='profile image 3' src={user.photo_three}/>
+                    <img alt='profile image 3' src={photo_three}/>
                     <input value={photo_three} onChange={(e)=>setphoto_three(e.target.value)} ></input>
                 </div>
 
                 <div className="edit-profile-edit-images-image-container">
-                    <img alt='profile image 4' src={user.photo_four}/>
+                    <img alt='profile image 4' src={photo_four}/>
                     <input value={photo_four} onChange={(e)=>setphoto_four(e.target.value)} ></input>
                 </div>
 
                 <div className="edit-profile-edit-images-image-container">
-                    <img alt='profile image 5' src={user.photo_five}/>
+                    <img alt='profile image 5' src={photo_five}/>
                     <input value={photo_five} onChange={(e)=>setphoto_five(e.target.value)} ></input>
                 </div>
             </div>
@@ -276,4 +281,4 @@ const mapStateToProps = reduxState => {
     return reduxState
 }
 
-export default connect(mapStateToProps)(EditProfile);
+export default connect(mapStateToProps, {updateUser})(EditProfile);

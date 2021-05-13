@@ -7,7 +7,6 @@ import BackButton2 from '../BackButton2';
 const Welcome = (props) => {
     return (
         <div>
-        <BackButton2 setIndexTracker={props.setIndexTracker} indexTracker={props.indexTracker}/>
             <div>
                 <p>Welcome!</p>
             </div>

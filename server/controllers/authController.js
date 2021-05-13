@@ -2,34 +2,59 @@
 const bcrypt = require('bcryptjs')
 
 module.exports = {
-    register:async (req, res) => {
-        const {email, password} = req.body;
+    register: async (req, res) => {
+        const {profile, user} = req.body;
         const db = req.app.get('db');
         try{
             //check if  the user already exists in the db
-            const [existingUser] = await db.get_new_user(email)
-            console.log(existingUser);
+            const [existingUser] = await db.get_new_user(user.email)
+
             //if the user already exists, then respond to the front end.
             if (existingUser){
                 res.status(409).send("User already registered!")
             } else {
                 //if the user doesn't exist. Create a new user object
                 let salt = bcrypt.genSaltSync(10);
-                let hash = bcrypt.hashSync(password, salt);
-                let [newUser] = await db.create_user(email, hash);
+                let hash = bcrypt.hashSync(user.password, salt);
+                let [newUser] = await db.create_user(user.email, hash);
 
-                try{
-                    //
-                    let [registeredUser] = await db.get_new_user(email)
-                    res.status(200).send(registeredUser)
-                } catch (err) {
-                    console.log(err);
-                    res.send(err).status(500)
-                }
+                //remove the hash from the newUser object, then send it back to the front end.
+                delete newUser.hash;
+                //create the new profile using the new user ID
+                const [newProfile] = await db.create_profile(
+                    profile.first_name,
+                    profile.last_name,
+                    profile.gamer_tag,
+                    profile.location,
+                    profile.about_me,
+                    profile.sexual_orientation,
+                    profile.sex,
+                    profile.preferred_pronoun,
+                    profile.height,
+                    profile.activity_level,
+                    profile.religion,
+                    profile.education,
+                    profile.occupation,
+                    profile.kids,
+                    profile.alcohol,
+                    profile.smoking,
+                    profile.cannabis,
+                    profile.recreational_drugs,
+                    profile.favorite_food,
+                    profile.current_game,
+                    profile.photo_one,
+                    profile.photo_two,
+                    profile.photo_three,
+                    profile.photo_four,
+                    profile.photo_five,
+                    newUser.user_id
+                );
+                res.sendStatus(200);
             }
 
         } catch (err) {
-            res.sendStatus(500)
+            console.log("Error creating the new user and profile - " + err)
+            res.status(500).send("Error creating the new user and profile - " + err)
         }
     },
     
@@ -133,5 +158,17 @@ module.exports = {
 
 
 
+    },
+    duplicate: async (req, res) => {
+        const db = req.app.get("db");
+        const { email } = req.body;
+        //check the DB to see if the email already exists.
+        const [checkedEmail] = await db.check_duplicate_email(email);
+        console.log(checkedEmail)
+        if (checkedEmail) {
+            res.status(200).send(true);
+        } else {
+            res.status(200).send(false);
+        }
     }
 }

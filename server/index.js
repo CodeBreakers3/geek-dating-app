@@ -94,15 +94,13 @@ app.post(`/api/chat/:match_id`, chatsController.addChatReply);
 app.put("/api/chat/:chat_id", chatsController.updateChatReply);
 
 
-// app.post(`/auth/register`, authController.login);
-
 // Authentication Controller Endpoints
+app.get("/auth/duplicate", authCtrl.duplicate);
 app.post("/auth/signup", authCtrl.register);
 app.post("/auth/login", authCtrl.login);
 app.delete("/auth/logout", authCtrl.logOut);
 app.put("/auth/updateuser/:id", authCtrl.updateUser);
 app.put("/auth/updatecredentials/:id", authCtrl.updateCredentials);
-
 
 
 //establish the database connection and start the server
