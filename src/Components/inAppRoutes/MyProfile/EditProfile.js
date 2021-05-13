@@ -5,12 +5,13 @@ import React, {useState,useEffect} from 'react';
 import {connect} from 'react-redux';
 import BackButton from './../BackButton';
 import AchievementBar from './AchievementBar';
-
+import {updateUser}from '../../../ducks/userReducer'
 //EditProfile component
 const EditProfile=(props)=>{
     const{profile_id}=props.userReducer.user
-const{user_id}=props.userReducer.user
+    const id =profile_id
     const{user}=props.userReducer
+    const{user_id}=props.userReducer.user
     const [about_me,setabout_me]=useState(user.about_me)
     const [gamer_tag,setgamer_tag]=useState(user.gamer_tag)
     const [religion,setreligion]=useState(user.religion)
@@ -38,17 +39,14 @@ const{user_id}=props.userReducer.user
     const [photo_five,setphoto_five]=useState(user.photo_five)
     const [count,setCount]=useState(0)
 
-let values ={
-    first_name:first_name, last_name:last_name, gamer_tag:gamer_tag, location:location, about_me:about_me, sexual_orientation:sexual_orientation, sex:sex,preferred_pronoun:preferred_pronoun, height:height, activity_level:activity_level, religion:religion, education:education, occupation:occupation, kids:kids, alcohol:alcohol, smoking:smoking, cannabis:cannabis, recreational_drugs:recreational_drugs, favorite_food:favorite_food, current_game:current_game, photo_one:photo_one, photo_two:photo_two, photo_three:photo_three, photo_four:photo_four, photo_five:photo_five, user_id:user_id        
-}
-        console.log(values)
-    
     const handleClick=()=>{
         axios.put(`/api/updateprofile/${profile_id}`,{first_name, last_name, gamer_tag, location, about_me, sexual_orientation, sex,preferred_pronoun, height, activity_level, religion, education, occupation, kids, alcohol, smoking, cannabis, recreational_drugs, favorite_food, current_game, photo_one, photo_two, photo_three, photo_four, photo_five, user_id}).then(res =>console.log(res.data)).catch(err =>console.log(err))
-    }  
-    let i = 0;
 
-useEffect(()=>{
+    }  
+
+
+useEffect(()=>{ 
+    let i = 0;
     !current_game ? i++: console.log(i)
     !first_name ? i++: console.log(i)
 !last_name ? i++: console.log(i)
@@ -78,7 +76,9 @@ useEffect(()=>{
 i=(i/25)*100
 i = 100-i
 setCount(i)
-},[count])
+let update = axios.get(`/auth/updateuser/${id}`).then(res=>res.data).catch(err=>console.log(err))
+props.updateUser(update)
+},[id,count, first_name, last_name, gamer_tag, location, about_me, sexual_orientation, sex,preferred_pronoun, height, activity_level, religion, education, occupation, kids, alcohol, smoking, cannabis, recreational_drugs, favorite_food, current_game, photo_one, photo_two, photo_three, photo_four, photo_five, user_id])
 
 console.log(count)
     return (
@@ -94,27 +94,27 @@ console.log(count)
                     <h1>Profile Images</h1>
                 </div>
                 <div className="edit-profile-edit-images-image-container">
-                    <img alt='profile image 1' src={user.photo_one}/>
+                    <img alt='1' src={user.photo_one}/>
                     <input value={photo_one} onChange={(e)=>setphoto_one(e.target.value)} ></input>
                 </div>
 
                 <div className="edit-profile-edit-images-image-container">
-                    <img alt='profile image 2' src={user.photo_two}/>
+                    <img alt='2' src={user.photo_two}/>
                     <input value={photo_two} onChange={(e)=>setphoto_two(e.target.value)} ></input>
                 </div>
 
                 <div className="edit-profile-edit-images-image-container">
-                    <img alt='profile image 3' src={user.photo_three}/>
+                    <img alt='3' src={user.photo_three}/>
                     <input value={photo_three} onChange={(e)=>setphoto_three(e.target.value)} ></input>
                 </div>
 
                 <div className="edit-profile-edit-images-image-container">
-                    <img alt='profile image 4' src={user.photo_four}/>
+                    <img alt='4' src={user.photo_four}/>
                     <input value={photo_four} onChange={(e)=>setphoto_four(e.target.value)} ></input>
                 </div>
 
                 <div className="edit-profile-edit-images-image-container">
-                    <img alt='profile image 5' src={user.photo_five}/>
+                    <img alt='5' src={user.photo_five}/>
                     <input value={photo_five} onChange={(e)=>setphoto_five(e.target.value)} ></input>
                 </div>
             </div>
@@ -276,4 +276,4 @@ const mapStateToProps = reduxState => {
     return reduxState
 }
 
-export default connect(mapStateToProps)(EditProfile);
+export default connect(mapStateToProps,{updateUser})(EditProfile);

@@ -4,8 +4,6 @@ require("dotenv").config({ path: path.resolve(__dirname, "../.env") });
 const massive = require("massive");
 const session = require("express-session");
 const express = require("express");
-
-// const FileStore = require('session-file-store')(session);
 const profileController = require("./controllers/profileController");
 const matchesController = require("./controllers/matchesController");
 const chatsController = require("./controllers/chatsController");
@@ -22,14 +20,9 @@ app.use(express.json());
 
 app.use(
   session({
-    // store: new FileStore({
-    //   path:'./session-store'
-    // }),
-    // name:'_one_up_demo',
     secret: SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
-
     cookie: {
 
       maxAge: 1000 * 60 * 525600,
@@ -37,7 +30,7 @@ app.use(
     },
 
   }));
-
+//sockets io.on connection happens once
 io.on('connection',(socket)=>{
 socket.on('join room',(room)=>{
   socket.join(room,(err)=>{
@@ -45,6 +38,7 @@ socket.on('join room',(room)=>{
       else console.log('joined room', room);
   })
 })
+
 socket.on('new msg',(room,msg)=>{
 //still needs to send to db
 const db = app.get('db')
