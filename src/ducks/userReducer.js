@@ -9,6 +9,7 @@ const initialState ={
 const REGISTER_USER = 'REGISTER_USER';
 const LOGIN_USER = 'LOGIN_USER';
 const LOGOUT_USER = 'LOGOUT_USER';
+const UPDATE_USER = 'UPDATE_USER';
 
 export function loginUser(loggedInUser) {
     return {
@@ -29,6 +30,13 @@ export const logoutUser=()=>{
     return {
         type: LOGOUT_USER,
         payload: axios.delete('/auth/logout')
+    }
+}
+
+export const updateUser = (newUser) => {
+    return {
+        type: UPDATE_USER,
+        payload: newUser
     }
 }
 
@@ -53,7 +61,11 @@ export default function reducer(state = initialState, action) {
                 isLoading: false,
                 isLoggedIn: false
             }
-            
+        case UPDATE_USER:
+            return {
+                ...state,
+                user: action.payload
+            }
         default: return state;
     }
 }

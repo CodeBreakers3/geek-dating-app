@@ -1,74 +1,99 @@
 #matches-view{
     background-color: rgb(97, 198, 146);
-width:100%;
-    font-family: 'Space Grotesk';
+height:100%;
 
 }
+
 #mappedMatches{
-    width:100%;
+    width:90%;
+    display:flex;
+    justify-content: flex-start;
+    flex-direction: column;
 }
 .matches{
-    margin-top:1.3rem;
+    margin-top:1rem;
     padding:.25rem;
-    margin-left:2rem;
-    overflow-x:scroll;
+    margin-left:15%;
+width:70%;
+background-color: rgb(62,62,62,0.3);
+border-radius: 30px 30px 30px 30px;
+    box-shadow: 3px 3px 6px 1px rgb(62,62, 62);
 }
 
 .matches-picture-view{
-margin-left:1vw;
-
+    margin-top:1rem;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     flex-direction: row;
-
+    overflow-x:scroll;
+font-size: 10px;
 }
 #mapped-matches-container{
     margin-bottom: 1rem;
-    height:58vh;
-    overflow-x: scroll;
-    overflow-y: hidden;
+    width:100%;
+height:50vh;
+    overflow-y: scroll;
+    box-shadow: 3px 3px 6px 1px rgb(62,62, 62);
+
 }
+
 .matches-profile-photo{
     height:3rem;
     width:3rem;
-    border:2.5px inset rgb(68,103,85);
+    border:10px ridge rgb(68,103,85);
 border-radius: 50%;
 box-shadow: 3px 3px 6px 1px rgb(62,62, 62)
+
 }
-.matches-picture{
-    height:6rem;
+.matches-picture-div{
+    border-radius: 105px 105px 10px 10px;
+    border: 10px ridge rgb(68,103,85);
+    height: 6rem;
     width: 6rem;
-border:5px inset rgb(68,103,85);
-border-radius: 50%;
-box-shadow: 3px 3px 6px 1px rgb(62, 62, 62)
+    float: right;
+    overflow: hidden;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center; 
+margin-left:1px;
 }
 
 .startChat{
-    height: 3rem;
-    margin-top:1rem;
+    height: 3.5rem;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    align-content: center;
 margin-left:5rem;
 margin-right:5rem;
-    background-color: blue;
     border:5px outset rgb(68,103,85);
     border-radius:30px 30px 30px 30px;
-    box-shadow: 3px 3px 6px 1px rgb(62,62, 62)
+    background-color: rgb(62,62,62,0.3);
+    box-shadow: 3px 3px 6px 1px rgb(62,62, 62);
 }
 
 #chatSelection{
-    position:absolute;
-    margin-left:5%;
     margin-top:2.5%;
-    width: 90%;
-    height:85%;
+    width: 90vw;
+    height:65vh;
     overflow:scroll;
-    background-color: rgb(97, 198, 146);
-    border:5px inset rgb(68,103,85);
-    border-radius: 50px 50px 50px 50px;
-    box-shadow: 3px 3px 6px 1px rgb(62,62, 62)
+
+    box-shadow: 3px 3px 6px 1px rgb(62,62, 62);
+    border-radius: 35% 35% 10px 10px;
+    border: 10px ridge rgb(68,103,85);
+    overflow: scroll;
+
 }
+#chat-view{
+    margin-left:5vw;
+}
+
 #toggle2{
     height:2rem;
     width:2rem;
+position: absolute;
+margin-left:-1vw;
     background-color:whitesmoke;
     border:5px inset rgb(68,103,85);
     border-radius: 50px 50px 50px 50px;
@@ -79,11 +104,24 @@ margin-right:5rem;
     flex-direction: row;
 }
 h1{
-    font-family: 'Space Grotesk SemiBold' 
+    font-family: 'Space Grotesk';
+    font-size: small;
+}
+h3{
+    font-family: 'Space Grotesk SemiBold';
 }
 h6{
-    font-family: 'Space Grotesk Light'
+    font-family: 'Poppins Thin';
+    margin-top:2.5px;
+    margin-bottom:5px;
+    font-size: 30px;
+    background-color: rgb(62,62,62,0.3);
+    box-shadow: 3px 3px 6px 1px rgb(62,62, 62);
+
 }
 p{
-    font-family:'Poppins ExtraLight', Poppins
+    font-family: 'Space Grotesk SemiBold';
+}
+h2{
+    font-family: 'Space Grotesk SemiBold';
 }

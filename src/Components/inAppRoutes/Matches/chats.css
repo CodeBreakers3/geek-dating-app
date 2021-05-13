@@ -1,18 +1,26 @@
 #chatsHolderHolder{
     width:100vw;
-    overflow: scroll;
+height:100vh;
+background-color: rgba(97, 198, 146);
+display:flex;
+justify-content:end;
+flex-direction: column-reverse;
+overflow:scroll;
 }
 .chatsHolder{
     background-color: rgb(88,88,88,);
-    position:absolute;
-    margin-left:10%;
-    bottom:0;
-    overFlow:scroll;
+position:sticky;
+    top:0;
+margin-left:10%;
+overflow:scroll;
 width:80%;
+
 }
+
+
 #chat_contentSection{
     display: flex;
-
+    border:5px ridge rgb(62,62,62,.3);
 }
 .chat_content{
     float:left;
@@ -31,9 +39,8 @@ align-items: center;
     height: 2rem;
 
 }
+
 .mappedChats{
-margin-top:3rem;
-max-height: 90%;
 background-color:rgb(255, 255, 255);
 box-shadow: 3px 3px 6px 1px rgb(62, 62, 62);
 border-radius: 15px 15px 0px 0px;
@@ -41,7 +48,11 @@ border-top:5px inset rgb(39, 68, 53);
 border-left:5px inset rgb(39, 68, 53);
 border-right:5px inset rgb(39, 68, 53);
 border-bottom:2px inset rgb(39, 68, 53);
-overflow: scroll;
+display: flex;
+height:90vh;
+flex-direction: column-reverse;
+overflow-y: auto;
+
 }
 
 .userDiv{

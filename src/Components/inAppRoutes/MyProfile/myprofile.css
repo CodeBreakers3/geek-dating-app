@@ -2,7 +2,7 @@
   padding: 10px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-evenly;
   height: -moz-calc(100% - (85px));
   height: -webkit-calc(100% - (85px));
   height: calc(100% - (85px));
@@ -10,6 +10,7 @@
 
 .my-profile-achievement-bar-flex-container {
   padding: 10px 0px;
+  display: none;
 }
 
 .my-profile-image-container img {

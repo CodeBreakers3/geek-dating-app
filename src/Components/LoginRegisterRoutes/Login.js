@@ -20,6 +20,12 @@ const Login = (props) => {
         catch (err){
             setFailedLogin(true)
         }
+       
+        // Next step: give redux or object we got from backend
+        props.loginUser(loggedInUser.data)
+        console.log(props)
+        props.history.push('/');
+        
 
         // // add the logged in user to local storage
         localStorage.setItem('isLoggedIn', JSON.stringify(true));
@@ -56,6 +62,7 @@ const Login = (props) => {
                 </div>
             </div>
         </div>
+        
     )
 }
 

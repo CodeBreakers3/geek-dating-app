@@ -6,6 +6,8 @@ import {connect} from 'react-redux';
 //component imports
 
 //ProfileSmall component
+
+// Add useEffect thats watching user variable on the userReducer
 function ProfileSmall(props) {
 
     const imageDisplaySwipe = 
@@ -22,7 +24,7 @@ function ProfileSmall(props) {
             <div className="small-profile-image-flex-container">
                 
                 <div className="small-profile-image-container">
-                    {props.matched?imageDisplayMatched:imageDisplaySwipe}
+                    {(props.matched==="match")?imageDisplayMatched:imageDisplaySwipe}
                 </div>
                 
                 <div className="small-profile-details-container">

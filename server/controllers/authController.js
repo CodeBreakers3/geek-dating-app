@@ -6,16 +6,26 @@ module.exports = {
         const {email, password} = req.body;
         const db = req.app.get('db');
         try{
-            const [existingUser] = await db.get_user(email)
-            
+            //check if  the user already exists in the db
+            const [existingUser] = await db.get_new_user(email)
+            console.log(existingUser);
+            //if the user already exists, then respond to the front end.
             if (existingUser){
                 res.status(409).send("User already registered!")
             } else {
+                //if the user doesn't exist. Create a new user object
                 let salt = bcrypt.genSaltSync(10);
                 let hash = bcrypt.hashSync(password, salt);
                 let [newUser] = await db.create_user(email, hash);
 
-                res.status(200).send(newUser)
+                try{
+                    //
+                    let [registeredUser] = await db.get_new_user(email)
+                    res.status(200).send(registeredUser)
+                } catch (err) {
+                    console.log(err);
+                    res.send(err).status(500)
+                }
             }
 
         } catch (err) {
@@ -88,5 +98,40 @@ module.exports = {
             
             }).catch(err => console.log(err))
         }
+    },
+    updateCredentials: async (req,res) => {
+        const db = req.app.get("db");
+        const {id} = req.params;
+        const { oldEmail, newEmail, oldPassword, newPassword } = req.body;
+
+        //first check the old email and password, only make the updates if the old credentials are correct. 
+        try{
+            const [verifiedUser] = await db.get_user(oldEmail)
+            if(!verifiedUser){
+                res.status(403).send('The provided credentials were incorrect - cannot update credentials without the correct old credentials.(Username)')
+            } else{
+            
+            const isAuthenticated = bcrypt.compareSync(oldPassword, verifiedUser.hash)
+
+            if(!isAuthenticated){
+            res.status(403).send('The provided credentials were incorrect - cannot update credentials without the correct old credentials.(Password)')
+            } else{
+            //now that we know the old credentials are correct, update the user with the new credentials. 
+            let salt = bcrypt.genSaltSync(10);
+            let hash = bcrypt.hashSync(newPassword, salt);
+
+            const [updatedUser] = await db.edit_user(id, newEmail, hash);
+
+            delete updatedUser.hash;
+           
+            res.status(200).send(updatedUser);
+            }}
+             
+        } catch(err) {
+             res.sendStatus(500)
+        }
+
+
+
     }
 }

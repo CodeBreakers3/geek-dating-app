@@ -149,3 +149,14 @@
   height: 25px;
   width: 140px;
 }
+
+.mismatch-passwords-error-display {
+  background-color: red;
+  padding: 5px;
+  box-shadow: 1px 1px 3px black;
+}
+
+.divider {
+  border: 1px solid #2f2f2d;
+  width: 100%;
+}

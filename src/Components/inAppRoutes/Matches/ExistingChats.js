@@ -4,7 +4,7 @@ import axios from 'axios'
 import {connect} from 'react-redux';
 import "./matches.css";
 
-const MatchedChats = (props) => {
+const ExistingChats = (props) => {
     const [message,setMessage] = useState('')
   console.log(props);
 
@@ -54,4 +54,4 @@ const mapStateToProps = (reduxState) => {
   return reduxState;
 };
 
-export default connect(mapStateToProps)(MatchedChats);
+export default connect(mapStateToProps)(ExistingChats)

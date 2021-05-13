@@ -1,4 +1,5 @@
 //non-component imports
+import React from 'react'
 import './matched.css';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';

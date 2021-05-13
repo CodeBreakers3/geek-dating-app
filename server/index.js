@@ -95,7 +95,7 @@ app.post("/auth/signup", authCtrl.register);
 app.post("/auth/login", authCtrl.login);
 app.delete("/auth/logout", authCtrl.logOut);
 app.put("/auth/updateuser/:id", authCtrl.updateUser);
-
+app.put("/auth/updatecredentials/:id", authCtrl.updateCredentials);
 
 
 

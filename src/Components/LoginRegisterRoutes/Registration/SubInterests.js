@@ -1,4 +1,5 @@
 //SubInterests Component
+import React from 'react'
 function SubInterests() {
     return (
         <div>
