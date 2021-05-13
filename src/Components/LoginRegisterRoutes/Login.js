@@ -4,7 +4,7 @@ import axios from "axios"
 import {loginUser} from '../../ducks/userReducer'
 import {connect} from 'react-redux'
 import BackButton from './../inAppRoutes/BackButton';
-
+// import '../../Logo/OneUpLogo.png'
 
 
 const Login = (props) => {
@@ -41,10 +41,10 @@ const Login = (props) => {
     return (
         <div className="login-view-wrapper-container">
             <BackButton/>
-            <div className="login-view-image-container">
-            <img alt="Main OneUp Logo"></img>
-            </div>
-             {failedLogin ? <div>Invalid U/P</div> : null}
+                <div className="login-view-image-container">
+                <img src="logo_style_3.png" alt="Main OneUp Logo"></img>
+                </div>
+                {failedLogin ? <div>Invalid U/P</div> : null}
             <div className="login-view-login-details-container">
 
                 <div className="login-view-login-details-email-container">

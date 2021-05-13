@@ -1,0 +1,58 @@
+.auth-view-wrapper-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: solid green;
+    height: 100vh;
+}
+.auth-view-border{
+    /* border: solid green;
+    height: 100vh; */
+}
+/* Logo */
+.auth-view-main-logo-container{
+
+}
+
+.main-logo{
+    height:auto;
+    width:auto;
+    margin-top: 40px;
+    
+}
+
+
+/* Options Container */
+.auth-view-options-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* margin-top: 0vh; */
+}
+
+.log-in-wrapper{
+    margin: 20px;
+    width: 75px;
+    align-self: center;
+    border: 2px solid black;
+    border-radius: 10%;
+}
+/* Log-In */
+.log-in{
+    /* border: 2px solid black ; */
+    padding: 5px;
+    width: auto;
+}
+
+.sign-up-wrapper{
+    margin: 20px;
+    width: 75px;
+    align-self: center;
+    
+}
+/* Sign-Up */
+.sign-up{
+    padding: 5px;
+    border: 2px solid black;
+    border-radius: 10%;
+}
