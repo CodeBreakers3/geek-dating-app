@@ -5,10 +5,11 @@ import React, {useState,useEffect} from 'react';
 import {connect} from 'react-redux';
 import BackButton from './../BackButton';
 import AchievementBar from './AchievementBar';
-
+import {updateUser}from '../../../ducks/userReducer'
 //EditProfile component
 const EditProfile=(props)=>{
     const{profile_id}=props.userReducer.user
+    const id =profile_id
     const{user}=props.userReducer
     const{user_id}=props.userReducer.user
     const [about_me,setabout_me]=useState(user.about_me)
@@ -40,8 +41,9 @@ const EditProfile=(props)=>{
 
     const handleClick=()=>{
         axios.put(`/api/updateprofile/${profile_id}`,{first_name, last_name, gamer_tag, location, about_me, sexual_orientation, sex,preferred_pronoun, height, activity_level, religion, education, occupation, kids, alcohol, smoking, cannabis, recreational_drugs, favorite_food, current_game, photo_one, photo_two, photo_three, photo_four, photo_five, user_id}).then(res =>console.log(res.data)).catch(err =>console.log(err))
+
     }  
-   
+
 
 useEffect(()=>{ 
     let i = 0;
@@ -74,7 +76,9 @@ useEffect(()=>{
 i=(i/25)*100
 i = 100-i
 setCount(i)
-},[count, first_name, last_name, gamer_tag, location, about_me, sexual_orientation, sex,preferred_pronoun, height, activity_level, religion, education, occupation, kids, alcohol, smoking, cannabis, recreational_drugs, favorite_food, current_game, photo_one, photo_two, photo_three, photo_four, photo_five, user_id])
+let update = axios.get(`/auth/updateuser/${id}`).then(res=>res.data).catch(err=>console.log(err))
+props.updateUser(update)
+},[id,count, first_name, last_name, gamer_tag, location, about_me, sexual_orientation, sex,preferred_pronoun, height, activity_level, religion, education, occupation, kids, alcohol, smoking, cannabis, recreational_drugs, favorite_food, current_game, photo_one, photo_two, photo_three, photo_four, photo_five, user_id])
 
 console.log(count)
     return (
@@ -272,4 +276,4 @@ const mapStateToProps = reduxState => {
     return reduxState
 }
 
-export default connect(mapStateToProps)(EditProfile);
+export default connect(mapStateToProps,{updateUser})(EditProfile);

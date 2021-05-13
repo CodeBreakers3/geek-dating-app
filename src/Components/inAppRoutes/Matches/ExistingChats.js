@@ -21,29 +21,32 @@ return (
     (props.userReducer.user.profile_id === match.profile1 && message !== undefined ? (
  <div className="matches row">
 <Link to={`/chats/${match_id}`}>
-        <div className="row">
+        <div className="wow">
+
           <img
             className="matches-profile-photo"
             src={match.photo2}
             alt="1"
           ></img>
-
-          <h1>{match.gamertag2}</h1>
-          <p>{message}</p>
+          <div className='gamer'>
+            <h1 id='gamertag'>{match.gamertag2}</h1>
+            <p id='lastMessage'>{message}</p>
+          </div>
         </div>
         </Link>
       </div>) : (
       <div className="matches row">
         <Link to={`/chats/${match_id}`}>
-        <div className="row">
+        <div className="wow">
           <img
             className="matches-profile-photo"
             src={match.photo1}
             alt="1"
           ></img>
-
-          <h1>{match.gamertag1}</h1>
-           <p>{message}</p>
+<div className='gamer'>
+          <h1 id='gamertag'>{match.gamertag1}</h1>
+           <p id='lastMessage'>{message}</p>
+        </div>
         </div>
         </Link>
       </div>) 

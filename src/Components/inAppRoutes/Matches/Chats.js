@@ -128,7 +128,9 @@ const Chats = (props) => {
   return (
     <div id="chatsHolderHolder">
       <div className="chatsHolder">
-        <div id='holder'><div className="mappedChats">{mappedChats}</div></div>
+        <div id='holder'>
+          <div className="mappedChats">{mappedChats}</div>
+          </div>
         <section id="chat_contentSection">
           <input
             value={chat_content}

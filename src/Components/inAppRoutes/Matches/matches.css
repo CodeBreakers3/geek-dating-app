@@ -19,6 +19,10 @@ background-color: rgb(62,62,62,0.3);
 border-radius: 30px 30px 30px 30px;
     box-shadow: 3px 3px 6px 1px rgb(62,62, 62);
 }
+.matches:hover{
+    background-color: rgb(97, 198, 146);
+    transform: scale(1.05);
+}
 
 .matches-picture-view{
     margin-top:1rem;
@@ -36,15 +40,31 @@ height:50vh;
     box-shadow: 3px 3px 6px 1px rgb(62,62, 62);
 
 }
+#lastMessage{
+    position:sticky;
+margin-left:0.5rem;
+margin-top:1rem;
+height:2rem;
+width:17rem;
+border-right:1px;
+display: flex;
+justify-content: flex-start;
+align-items: flex-start;
+overflow:scroll;
 
+}
+
+.gamer{
+    float: left;
+}
 .matches-profile-photo{
     height:3rem;
     width:3rem;
     border:10px ridge rgb(68,103,85);
 border-radius: 50%;
 box-shadow: 3px 3px 6px 1px rgb(62,62, 62)
-
 }
+
 .matches-picture-div{
     border-radius: 105px 105px 10px 10px;
     border: 10px ridge rgb(68,103,85);
@@ -57,20 +77,26 @@ box-shadow: 3px 3px 6px 1px rgb(62,62, 62)
     background-position: center; 
 margin-left:1px;
 }
+.matches-picture-div:hover{
+    transform:scale(1.02)
+}
 
 .startChat{
     height: 3.5rem;
     display: flex;
     justify-content: center;
-    text-align: center;
     align-items: center;
-    align-content: center;
 margin-left:5rem;
 margin-right:5rem;
     border:5px outset rgb(68,103,85);
-    border-radius:30px 30px 30px 30px;
     background-color: rgb(62,62,62,0.3);
     box-shadow: 3px 3px 6px 1px rgb(62,62, 62);
+
+}
+.startChat:hover{
+    background-color: rgb(97, 198, 146);
+    transform: scale(1.05);
+
 }
 
 #chatSelection{
@@ -78,7 +104,6 @@ margin-right:5rem;
     width: 90vw;
     height:65vh;
     overflow:scroll;
-
     box-shadow: 3px 3px 6px 1px rgb(62,62, 62);
     border-radius: 35% 35% 10px 10px;
     border: 10px ridge rgb(68,103,85);
@@ -99,13 +124,14 @@ margin-left:-1vw;
     border-radius: 50px 50px 50px 50px;
     box-shadow: 3px 3px 6px 1px rgb(62,62, 62)
 }
-.row{
+.wow{
     display: flex;
-    flex-direction: row;
+    flex-direction: flex-start;
 }
-h1{
+#gamertag{
     font-family: 'Space Grotesk';
     font-size: small;
+float:left
 }
 h3{
     font-family: 'Space Grotesk SemiBold';
@@ -119,9 +145,7 @@ h6{
     box-shadow: 3px 3px 6px 1px rgb(62,62, 62);
 
 }
-p{
-    font-family: 'Space Grotesk SemiBold';
-}
+
 h2{
     font-family: 'Space Grotesk SemiBold';
 }

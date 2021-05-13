@@ -57,15 +57,15 @@ useEffect(()=>{
   return (
     <div id="matches-view">
       <Header/> 
-      <h6><strong>It's Dangerous To Go Alone...</strong></h6>
+      <h6>It's Dangerous To Go Alone!</h6>
       <div className="matches-picture-view">{mappedPhotos}</div>
      {!toggle ?   (
      <div id='match1'>    
-     <h6>Recent Chats</h6>
+     <h6>Rekindle A Spark...</h6>
      <div id="mapped-matches-container">
         {mappedMatches}
         </div> 
-        <div onClick={()=>handleClick()} className='startChat'>Start Chatting</div>
+        <div onClick={()=>handleClick()} className='startChat'>Select Player 2</div>
       </div>
         ):(
         <div id='chat-view'>
