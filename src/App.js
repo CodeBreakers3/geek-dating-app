@@ -15,8 +15,7 @@ function App(props) {
 
   useEffect(() => {
     if(JSON.parse(localStorage.getItem('isLoggedIn'))) {
-      console.log((localStorage.getItem('isLoggedIn')))
-      console.log((localStorage.getItem('loggedInUser')))
+      //set the user on redux and the logged in status
       props.loginUser(JSON.parse(localStorage.getItem('loggedInUser')));
     }
 

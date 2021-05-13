@@ -38,10 +38,19 @@ const EditProfile=(props)=>{
     const [photo_four,setphoto_four]=useState(user.photo_four)
     const [photo_five,setphoto_five]=useState(user.photo_five)
     const [count,setCount]=useState(0)
+    
+    const handleClick=  ()=>{
+        axios.put(`/api/updateprofile/${profile_id}`,{first_name, last_name, gamer_tag, location, about_me, sexual_orientation, sex,preferred_pronoun, height, activity_level, religion, education, occupation, kids, alcohol, smoking, cannabis, recreational_drugs, favorite_food, current_game, photo_one, photo_two, photo_three, photo_four, photo_five, user_id})
+        .then(res => {
+            let updatedUser = res.data[0];
+            //save new user data to redux.
+            props.updateUser(updatedUser);
 
-    const handleClick=()=>{
-        axios.put(`/api/updateprofile/${profile_id}`,{first_name, last_name, gamer_tag, location, about_me, sexual_orientation, sex,preferred_pronoun, height, activity_level, religion, education, occupation, kids, alcohol, smoking, cannabis, recreational_drugs, favorite_food, current_game, photo_one, photo_two, photo_three, photo_four, photo_five, user_id}).then(res =>console.log(res.data)).catch(err =>console.log(err))
-
+            //save new user data to local storage.
+            localStorage.setItem('loggedInUser', JSON.stringify(updatedUser));
+            alert("Profile successfully updated!");
+        })
+        .catch(err =>console.log(err));
     }  
 
 
@@ -80,7 +89,6 @@ let update = axios.get(`/auth/updateuser/${id}`).then(res=>res.data).catch(err=>
 props.updateUser(update)
 },[id,count, first_name, last_name, gamer_tag, location, about_me, sexual_orientation, sex,preferred_pronoun, height, activity_level, religion, education, occupation, kids, alcohol, smoking, cannabis, recreational_drugs, favorite_food, current_game, photo_one, photo_two, photo_three, photo_four, photo_five, user_id])
 
-console.log(count)
     return (
         <div className="edit-profile-container">
             <BackButton/>
@@ -94,27 +102,27 @@ console.log(count)
                     <h1>Profile Images</h1>
                 </div>
                 <div className="edit-profile-edit-images-image-container">
-                    <img alt='1' src={user.photo_one}/>
+                    <img alt='profile image 1' src={photo_one}/>
                     <input value={photo_one} onChange={(e)=>setphoto_one(e.target.value)} ></input>
                 </div>
 
                 <div className="edit-profile-edit-images-image-container">
-                    <img alt='2' src={user.photo_two}/>
+                    <img alt='profile image 2' src={photo_two}/>
                     <input value={photo_two} onChange={(e)=>setphoto_two(e.target.value)} ></input>
                 </div>
 
                 <div className="edit-profile-edit-images-image-container">
-                    <img alt='3' src={user.photo_three}/>
+                    <img alt='profile image 3' src={photo_three}/>
                     <input value={photo_three} onChange={(e)=>setphoto_three(e.target.value)} ></input>
                 </div>
 
                 <div className="edit-profile-edit-images-image-container">
-                    <img alt='4' src={user.photo_four}/>
+                    <img alt='profile image 4' src={photo_four}/>
                     <input value={photo_four} onChange={(e)=>setphoto_four(e.target.value)} ></input>
                 </div>
 
                 <div className="edit-profile-edit-images-image-container">
-                    <img alt='5' src={user.photo_five}/>
+                    <img alt='profile image 5' src={photo_five}/>
                     <input value={photo_five} onChange={(e)=>setphoto_five(e.target.value)} ></input>
                 </div>
             </div>

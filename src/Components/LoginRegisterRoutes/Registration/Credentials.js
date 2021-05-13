@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import {registerUser} from '../../../ducks/userReducer'
 import {connect} from 'react-redux'
 import BackButton2 from '../BackButton2'
+import axios from 'axios'
 
 //Credentials component
 const Credentials = (props) => {
@@ -10,7 +11,7 @@ const Credentials = (props) => {
     const [password2, setPassword2] = useState("")
     
 
-    const nextView = () => {
+    const nextView = async () => {
         //check to make sure they have filled out all forms
         if (email=== "" || password === "" || password2 === "") {
             alert("You must fill out all form fields.");
@@ -18,36 +19,29 @@ const Credentials = (props) => {
         }
 
         //check to make sure that the password and confirm password are correct
-        if(password === password2) {
-            let newUser = {
-                email: email,
-                password: password
-            }
-            ///THIS IS WHERE OUR CURRENT PROBLEM SITS - THE PARENT COMPONENT STATE IS NOT UPDATING BEFORE WE MAKE THE CALL THE THE API
-            props.setNewUser(newUser);
-        } else {
-                alert("Passwords do NOT match!")
-                return;
+        if(password !== password2) {
+            alert("Passwords do NOT match!")
+            return;
         }
-        console.log("Email: " + email);
-        console.log(props.actualUser);
 
-        //send all the gathered data to the db. This function will return a success or fail message to tell us what to do on this component. 
-        let status = props.createNewUser();
-
-        if (status) {
-            //move to the next view    
-            props.setIndexTracker(4);
-        } else {
-            alert("Email already exists. If you already have an account please log in.");
+        //create the new user object now that we know the forms are correctly filled out
+        let newUser = {
+            email: email,
+            password: password
         }
+
+        let res;
+        try {
+            res = await axios.post('/auth/signup',{profile: props.actualProfile, user: newUser});
+        } catch (err) {
+            console.log("Duplicate email - " + err);
+            alert("Email already exists. Please login, or use a different email.");
+            return;
+        }  
+
+        //move to the next view    
+        props.setIndexTracker(4);
     }
-
-
-
-
-
-
 
     return (
         <div className="credentials-view-wrapper-container">

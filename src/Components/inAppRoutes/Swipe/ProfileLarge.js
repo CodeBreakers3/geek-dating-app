@@ -140,17 +140,6 @@ console.log(viewableProfile)
                 <div className="large-profile-details-image">
                     <img alt="fifth" src={viewableProfile.photo_five}/>
                 </div>
-
-                <div className="large-profile-details-text">
-                    <div className="large-profile-details-text-sub">
-                        <p>Interests:
-                        <ul>
-                            <li>Interest 1</li>
-                            <li>Interest 2</li>
-                            <li>Interest 3</li>
-                        </ul></p>
-                    </div>
-                </div>
             </div>
 
         </div>

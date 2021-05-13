@@ -43,32 +43,12 @@ const Registration = () => {
         user_id : ""
     });
 
-    const createNewUser = () => {
-        //create the new user in the DB
-        axios.post("/auth/signup", newUser)
-            .then((res) => {
-                console.log(res.data);
-                //code to execute if the newUser was successfully created
-                //add the new users user_id to to the user on state
 
-                //create the profile in the DB
-                // axios.post("/api/createprofile", {newProfile})
-                // .then(res => res.data)
-                return true;
-                })
-            .catch(err=>{
-                //this catch occurs only if the username/email already exists in the DB. 
-                console.log(err);
-                return false;
-            })
-        };
 
     return (
         <div className='registration-components-container-wrapper'>
             {indexTracker === 1?
                 <CoreInfo
-                    actualUser= {newUser} 
-                    setNewUser={setNewUser} 
                     actualProfile={newProfile} 
                     setNewProfile={setNewProfile} 
                     setIndexTracker={setIndexTracker}
@@ -82,9 +62,9 @@ const Registration = () => {
                             indexTracker={indexTracker}>
                         </ProfPic>:
                             indexTracker === 3?
-                                <Credentials                           createNewUser={createNewUser}
+                                <Credentials
                                     actualUser={newUser} 
-                                    setNewUser={setNewUser} 
+                                    setNewUser={setNewUser}
                                     actualProfile={newProfile} 
                                     setNewProfile={setNewProfile} 
                                     setIndexTracker={setIndexTracker}

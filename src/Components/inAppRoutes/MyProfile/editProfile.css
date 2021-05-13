@@ -81,3 +81,7 @@
   width: 100%;
   margin: 10px 0px;
 }
+
+.edit-profile-edit-details-save-button {
+  cursor: pointer;
+}
