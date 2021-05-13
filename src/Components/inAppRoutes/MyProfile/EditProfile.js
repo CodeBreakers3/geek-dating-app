@@ -5,13 +5,13 @@ import React, {useState,useEffect} from 'react';
 import {connect} from 'react-redux';
 import BackButton from './../BackButton';
 import AchievementBar from './AchievementBar';
-import {updateUser} from './../../../ducks/userReducer';
-
+import {updateUser}from '../../../ducks/userReducer'
 //EditProfile component
 const EditProfile=(props)=>{
     const{profile_id}=props.userReducer.user
-const{user_id}=props.userReducer.user
+    const id =profile_id
     const{user}=props.userReducer
+    const{user_id}=props.userReducer.user
     const [about_me,setabout_me]=useState(user.about_me)
     const [gamer_tag,setgamer_tag]=useState(user.gamer_tag)
     const [religion,setreligion]=useState(user.religion)
@@ -52,39 +52,42 @@ const{user_id}=props.userReducer.user
         })
         .catch(err =>console.log(err));
     }  
-    let i = 0;
 
-useEffect(()=>{
-    !current_game ? i++: 
-        !first_name ? i++: 
-            !last_name ? i++: 
-                !gamer_tag ? i++: 
-!location ? i++: 
-!about_me ? i++: 
-!sexual_orientation ? i++: 
-!sex ? i++: 
-!preferred_pronoun ? i++: 
-!height ? i++: 
-!activity_level ? i++: 
-!religion ? i++: 
-!education ? i++: 
-!occupation ? i++: 
-!kids ? i++: 
-!alcohol ? i++: 
-!smoking ? i++: 
-!cannabis ? i++: 
-!recreational_drugs ? i++: 
-!favorite_food ? i++: 
-!current_game ? i++: 
-!photo_one ? i++: 
-!photo_two ? i++: 
-!photo_three ? i++: 
-!photo_four ? i++: 
-!photo_five ? i++: 
+
+useEffect(()=>{ 
+    let i = 0;
+    !current_game ? i++: console.log(i)
+    !first_name ? i++: console.log(i)
+!last_name ? i++: console.log(i)
+!gamer_tag ? i++: console.log(i)
+!location ? i++: console.log(i)
+!about_me ? i++: console.log(i)
+!sexual_orientation ? i++: console.log(i)
+!sex ? i++: console.log(i)
+!preferred_pronoun ? i++: console.log(i)
+!height ? i++: console.log(i)
+!activity_level ? i++: console.log(i)
+!religion ? i++: console.log(i)
+!education ? i++: console.log(i)
+!occupation ? i++: console.log(i)
+!kids ? i++: console.log(i)
+!alcohol ? i++: console.log(i)
+!smoking ? i++: console.log(i)
+!cannabis ? i++: console.log(i)
+!recreational_drugs ? i++: console.log(i)
+!favorite_food ? i++: console.log(i)
+!current_game ? i++: console.log(i)
+!photo_one ? i++: console.log(i)
+!photo_two ? i++: console.log(i)
+!photo_three ? i++: console.log(i)
+!photo_four ? i++: console.log(i)
+!photo_five ? i++: console.log(i)
 i=(i/25)*100
 i = 100-i
 setCount(i)
-},[count])
+let update = axios.get(`/auth/updateuser/${id}`).then(res=>res.data).catch(err=>console.log(err))
+props.updateUser(update)
+},[id,count, first_name, last_name, gamer_tag, location, about_me, sexual_orientation, sex,preferred_pronoun, height, activity_level, religion, education, occupation, kids, alcohol, smoking, cannabis, recreational_drugs, favorite_food, current_game, photo_one, photo_two, photo_three, photo_four, photo_five, user_id])
 
     return (
         <div className="edit-profile-container">
@@ -281,4 +284,4 @@ const mapStateToProps = reduxState => {
     return reduxState
 }
 
-export default connect(mapStateToProps, {updateUser})(EditProfile);
+export default connect(mapStateToProps,{updateUser})(EditProfile);

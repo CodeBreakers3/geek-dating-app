@@ -7,18 +7,7 @@ import { Link } from "react-router-dom";
 const MappedMatchChat = (props) => {
     const{match_id}=props.match
     const { match } = props;
-    const { profile1, profile2 } = match;
-    // useEffect(()=>{
-    //   decide()
-    // })
-  
-    // const decide =()=>{
-    //   if(profile1=== props.userReducer.user.profile_id){
-    //     setProfile_id(profile1)
-    //   }else{
-    //     setProfile_id(profile2)
-    //   }
-    // }
+    
     return props.userReducer.user.profile_id === match.profile1 ? (
       <div>
         <Link to={`/chats/${match_id}`}>
