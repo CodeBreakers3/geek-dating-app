@@ -1,14 +1,26 @@
 .login-view-wrapper-container{
-
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: 10px solid rgb(97, 198, 146);
+    height: 100vh;
 }
-.login-view-image-container{
-
+.login-view-border{
+    border: solid black;
+    height: 100vh; 
+}
+.login-view-logo{
+    height:auto;
+    width:auto;
+    margin-top: 40px;
 }
 .login-view-login-details-container{
-
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 .login-view-login-details-email-container{
-
+    
 }
 .login-view-login-details-password-container{
 
