@@ -29,9 +29,10 @@ console.log(viewableProfile)
             {/* First large profile section - an image and the name/gamertag/pronouns/primary interest/location. */}
             <div className="large-profile-details">
 
-                <div className="large-profile-details-image">
-                    <img alt="main-profile" src={viewableProfile.photo_one}/>
-                </div>
+                {viewableProfile.photo_one?
+                    <div className="large-profile-details-image">
+                        <img alt="main-profile" src={viewableProfile.photo_one}/>
+                    </div>:null}
 
                 <div className="large-profile-details-text">
                     <div className="large-profile-details-text-sub">
@@ -65,9 +66,10 @@ console.log(viewableProfile)
 
             {/* Second large profile section - an image and the full "about" description text. */}
             <div className="large-profile-details">
-                <div className="large-profile-details-image">
-                    <img alt="second" src={viewableProfile.photo_two}/>
-                </div>
+                {viewableProfile.photo_two?
+                    <div className="large-profile-details-image">
+                        <img alt="second" src={viewableProfile.photo_two}/>
+                    </div>:null}
 
                 <div className="large-profile-details-text">
                     <div className="large-profile-details-text-sub">
@@ -78,9 +80,10 @@ console.log(viewableProfile)
 
             {/* Third large profile section - an image and all the non-core profile details - IF THEY ARE PROVIDED */}
             <div className="large-profile-details">
-                <div className="large-profile-details-image">
-                    <img alt="third" src={viewableProfile.photo_three}/>
-                </div>
+                {viewableProfile.photo_three?
+                    <div className="large-profile-details-image">
+                        <img alt="third" src={viewableProfile.photo_three}/>
+                    </div>:null}
 
                 <div className="large-profile-details-text">
                     <div className="large-profile-details-text-sub">
@@ -112,9 +115,10 @@ console.log(viewableProfile)
 
             {/* Fourth large profile section - an image and alcohol, smoking, weed, drugs, and kids */}
             <div className="large-profile-details">
-                <div className="large-profile-details-image">
-                    <img alt="fourth" src={viewableProfile.photo_four}/>
-                </div>
+                {viewableProfile.photo_four?
+                    <div className="large-profile-details-image">
+                        <img alt="fourth" src={viewableProfile.photo_four}/>
+                    </div>:null}
 
                 <div className="large-profile-details-text">
                     <div className="large-profile-details-text-sub">
@@ -137,9 +141,10 @@ console.log(viewableProfile)
 
             {/* Fifth large profile section - an image and Interests */}
             <div className="large-profile-details">
-                <div className="large-profile-details-image">
-                    <img alt="fifth" src={viewableProfile.photo_five}/>
-                </div>
+                {viewableProfile.photo_five?
+                    <div className="large-profile-details-image">
+                        <img alt="fifth" src={viewableProfile.photo_five}/>
+                    </div>:null}
             </div>
 
         </div>
