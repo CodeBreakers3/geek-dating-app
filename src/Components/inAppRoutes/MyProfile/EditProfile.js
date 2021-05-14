@@ -103,27 +103,27 @@ props.updateUser(update)
                 </div>
                 <div className="edit-profile-edit-images-image-container">
                     <img alt='profile image 1' src={photo_one}/>
-                    <input value={photo_one} onChange={(e)=>setphoto_one(e.target.value)} ></input>
+                    <input placeholder="URL Here" value={photo_one} onChange={(e)=>setphoto_one(e.target.value)} ></input>
                 </div>
 
                 <div className="edit-profile-edit-images-image-container">
                     <img alt='profile image 2' src={photo_two}/>
-                    <input value={photo_two} onChange={(e)=>setphoto_two(e.target.value)} ></input>
+                    <input placeholder="URL Here" value={photo_two} onChange={(e)=>setphoto_two(e.target.value)} ></input>
                 </div>
 
                 <div className="edit-profile-edit-images-image-container">
                     <img alt='profile image 3' src={photo_three}/>
-                    <input value={photo_three} onChange={(e)=>setphoto_three(e.target.value)} ></input>
+                    <input placeholder="URL Here" value={photo_three} onChange={(e)=>setphoto_three(e.target.value)} ></input>
                 </div>
 
                 <div className="edit-profile-edit-images-image-container">
                     <img alt='profile image 4' src={photo_four}/>
-                    <input value={photo_four} onChange={(e)=>setphoto_four(e.target.value)} ></input>
+                    <input placeholder="URL Here" value={photo_four} onChange={(e)=>setphoto_four(e.target.value)} ></input>
                 </div>
 
                 <div className="edit-profile-edit-images-image-container">
                     <img alt='profile image 5' src={photo_five}/>
-                    <input value={photo_five} onChange={(e)=>setphoto_five(e.target.value)} ></input>
+                    <input placeholder="URL Here" value={photo_five} onChange={(e)=>setphoto_five(e.target.value)} ></input>
                 </div>
             </div>
 

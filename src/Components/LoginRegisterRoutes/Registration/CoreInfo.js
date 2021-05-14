@@ -104,6 +104,7 @@ const CoreInfo = (props) => {
             <div className="info-view-save-button">
                 <div onClick={() => nextView()}>Save and Continue</div>
             </div>
+            <p>* indicates a required field</p>
 
         </div>
         
