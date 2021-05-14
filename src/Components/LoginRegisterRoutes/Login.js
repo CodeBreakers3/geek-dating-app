@@ -57,7 +57,7 @@ const Login = (props) => {
 
                     <div className="login-view-login-details-password-container">
                         <p className="text-area">Password:</p>
-                        <input placeholder="Password" onChange={(e) => setPassword(e.target.value)}></input>
+                        <input type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)}></input>
                     </div>
 
                     <div className="login-view-login-details-login-button-container" >
