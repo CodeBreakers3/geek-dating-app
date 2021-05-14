@@ -1,3 +1,7 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap");
+
 .auth-view-wrapper-container{
     display: flex;
     flex-direction: column;

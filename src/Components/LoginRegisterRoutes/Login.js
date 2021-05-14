@@ -51,17 +51,17 @@ const Login = (props) => {
                 <div className="login-view-login-details-container">
 
                     <div className="login-view-login-details-email-container">
-                        <p>Email:</p>
+                        <p className="text-area">Email:</p>
                         <input placeholder="Email" onChange={(e) => setEmail(e.target.value)}></input>
                     </div>
 
                     <div className="login-view-login-details-password-container">
-                        <p>Password:</p>
+                        <p className="text-area">Password:</p>
                         <input placeholder="Password" onChange={(e) => setPassword(e.target.value)}></input>
                     </div>
 
-                    <div className="login-view-login-details-login-button-container">
-                        <button onClick={login}>Log In</button>
+                    <div className="login-view-login-details-login-button-container" >
+                        <button className="login-view-login-details-login-button" onClick={login}>Log In</button>
                     </div>
                 </div>
             </div>
