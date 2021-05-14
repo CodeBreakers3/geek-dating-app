@@ -4,7 +4,8 @@ import axios from "axios"
 import {loginUser} from '../../ducks/userReducer'
 import {connect} from 'react-redux'
 import BackButton from './../inAppRoutes/BackButton';
-
+// import '../../Logo/OneUpLogo.png'
+import './Registration/CSS/Login.css'
 
 
 const Login = (props) => {
@@ -40,25 +41,28 @@ const Login = (props) => {
 
     return (
         <div className="login-view-wrapper-container">
-            <BackButton/>
-            <div className="login-view-image-container">
-            <img alt="Main OneUp Logo"></img>
-            </div>
-             {failedLogin ? <div>Invalid U/P</div> : null}
-            <div className="login-view-login-details-container">
+            <div className="login-view-border">
+                <BackButton/>
 
-                <div className="login-view-login-details-email-container">
-                    <p>Email:</p>
-                    <input placeholder="Email" onChange={(e) => setEmail(e.target.value)}></input>
-                </div>
+                    <div className="login-view-logo-container">
+                    <img className="login-view-logo" src="logo_style_3.png" alt="Main OneUp Logo"></img>
+                    </div>
+                    {failedLogin ? <div>Invalid U/P</div> : null}
+                <div className="login-view-login-details-container">
 
-                <div className="login-view-login-details-password-container">
-                    <p>Password:</p>
-                    <input placeholder="Password" onChange={(e) => setPassword(e.target.value)}></input>
-                </div>
+                    <div className="login-view-login-details-email-container">
+                        <p className="text-area">Email:</p>
+                        <input placeholder="Email" onChange={(e) => setEmail(e.target.value)}></input>
+                    </div>
 
-                <div className="login-view-login-details-login-button-container">
-                    <button onClick={login}>Log In</button>
+                    <div className="login-view-login-details-password-container">
+                        <p className="text-area">Password:</p>
+                        <input placeholder="Password" onChange={(e) => setPassword(e.target.value)}></input>
+                    </div>
+
+                    <div className="login-view-login-details-login-button-container" >
+                        <button className="login-view-login-details-login-button" onClick={login}>Log In</button>
+                    </div>
                 </div>
             </div>
         </div>
