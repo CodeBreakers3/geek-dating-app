@@ -1,3 +1,4 @@
+import "./CSS/Credentials.css"
 import React, {useState} from 'react'
 import {registerUser} from '../../../ducks/userReducer'
 import {connect} from 'react-redux'
@@ -45,26 +46,34 @@ const Credentials = (props) => {
 
     return (
         <div className="credentials-view-wrapper-container">
-            <BackButton2 setIndexTracker={props.setIndexTracker} indexTracker={props.indexTracker}/>
-            <div className="credentials-view-email-container">
-                <div>Email:</div>
-                <input placeholder="Email" type="email" defaultValue={props.actualUser.email} onChange={(e) => setEmail(e.target.value)}></input>
-            </div>
-
-            <div className="credentials-view-password-container">
-                <div>Password:</div>
-                <input placeholder="Password" type="password" onChange={(e) => setPassword(e.target.value)}></input>
-            </div>
-
-            <div className="credentials-view-confirm-password-container">
-                <div>Confirm Password:</div>
-                <input placeholder="Password" type="password" onChange={(e) => setPassword2(e.target.value)}></input>
-            </div>
-        
-            <div className="credentials-view-save-button">
-                <button onClick={() => nextView()}>Save and Continue</button>
-            </div>
             
+
+            <div className="credentials-title-container">
+                <h1>Login Credentials:</h1>
+            </div>
+
+            <div className="credentials-view-wrapper">
+                <p>This is the email and password you will use to login to your account.</p>
+                <div id="credentials-view-container-email" className="credentials-view-container">
+                    <div className="credentials-view-text">Email:</div>
+                    <input placeholder="Email" type="email" defaultValue={props.actualUser.email} onChange={(e) => setEmail(e.target.value)}></input>
+                </div>
+
+                <div className="credentials-view-container">
+                    <div className="credentials-view-text">Password:</div>
+                    <input placeholder="Password" type="password" onChange={(e) => setPassword(e.target.value)}></input>
+                </div>
+
+                <div className="credentials-view-container">
+                    <div className="credentials-view-text">Confirm Password:</div>
+                    <input placeholder="Password" type="password" onChange={(e) => setPassword2(e.target.value)}></input>
+                </div>
+            </div>
+            <div className="credentials-view-save-button">
+                <div onClick={() => nextView()}>Save and Continue</div>
+            </div>
+            <BackButton2 setIndexTracker={props.setIndexTracker} indexTracker={props.indexTracker}/>
+            <div className="credentials-view-spacer"></div>
         </div>
     )
 }
