@@ -1,9 +1,8 @@
 //CoreInfo component
 import React, {useState} from 'react'
 import {connect} from 'react-redux'
-import BackButton from './../../inAppRoutes/BackButton';
+import BackButton from './../../inAppRoutes/BackButton'
 import './CSS/CoreInfo.css'
-import './CSS/Select.css'
 
 const CoreInfo = (props) => {
     const [firstName, setFirstName] = useState(props.actualProfile.first_name)
@@ -39,71 +38,71 @@ const CoreInfo = (props) => {
     return (
         <div className="info-view-wrapper-container">
             <BackButton/>
-            <div className="info-titles">
-                <p>What is your name?</p>
-            </div>
 
-            <div className="info-view-main-name-container">
-                <div className="info-view-name-plate-container">
-                    <p>*First Name:</p>
-                    <p>*Last Name:</p>
-                    <p>Gamertag:</p>
+                <div className="info-titles">
+                    <h1>What is your name?</h1>
                 </div>
 
-                <div className="info-view-name-input-container">
-                    <input placeholder="First Name" type="text" defaultValue={props.actualProfile.first_name} onChange={(e) => setFirstName(e.target.value)}></input>
-                    <input placeholder="Last Name" type="text" defaultValue={props.actualProfile.last_name} onChange={(e) => setLastName(e.target.value)}></input>
-                    <input placeholder="Gamertag" type="text" defaultValue={props.actualProfile.gamer_tag} onChange={(e) => setGamertag(e.target.value)}></input>
+                <div className="info-view-main-container">
+                    <div className="info-view-name-plate-container">
+                        <p>*First Name:</p>
+                        <p>*Last Name:</p>
+                        <p>Gamertag:</p>
+                    </div>
+
+                    <div className="info-view-name-input-container">
+                        <input placeholder="First Name" type="text" defaultValue={props.actualProfile.first_name} onChange={(e) => setFirstName(e.target.value)}></input>
+                        <input placeholder="Last Name" type="text" defaultValue={props.actualProfile.last_name} onChange={(e) => setLastName(e.target.value)}></input>
+                        <input placeholder="Gamertag" type="text" defaultValue={props.actualProfile.gamer_tag} onChange={(e) => setGamertag(e.target.value)}></input>
+                    </div>
+
                 </div>
 
-            </div>
+                <div className="info-titles">
+                    <h1>What is your preferred pronoun?</h1>
+                </div>
 
-            <div className="info-titles">
-                <p>What is your preferred pronoun?</p>
-            </div>
+                <div className="info-view-main-container">
+                    <select defaultValue={(props.actualProfile.preferred_pronoun==="")?"he/him":props.actualProfile.preferred_pronoun} onChange={(e) => setPreferredPronoun(e.target.value)}>
+                        <option value="he/him">He/Him</option>
+                        <option value="she/her">She/Her</option>
+                        <option value="they/them">They/Them</option>
+                    </select>    
+                </div>
 
-            <div className="info-view-age-container">
-                <select className="custom-select" defaultValue={(props.actualProfile.preferred_pronoun==="")?"he/him":props.actualProfile.preferred_pronoun} onChange={(e) => setPreferredPronoun(e.target.value)}>
-                    <option value="he/him">He/Him</option>
-                    <option value="she/her">She/Her</option>
-                    <option value="they/them">They/Them</option>
-                </select>
-                    
-            </div>
+                <div className="info-titles">
+                    <h1>What is your gender identity?</h1>
+                </div>
 
-            <div className="info-titles">
-                <p>What is your gender identity?</p>
-            </div>
+                <div className="info-view-main-container">
+                    <select defaultValue={(props.actualProfile.sex==="")?"male":props.actualProfile.sex} onChange={(e) => setGender(e.target.value)}>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="non-binary">Non Binary</option>
+                    </select>
+                </div>
 
-            <div className="info-view-gender-container">
-                <select defaultValue={(props.actualProfile.sex==="")?"male":props.actualProfile.sex} onChange={(e) => setGender(e.target.value)}>
-                    <option value="male">Male</option>
-                    <option value="female">Female</option>
-                    <option value="non-binary">Non Binary</option>
-                </select>
-            </div>
-
-            <div className="info-titles">
-                <p>How do you identify?</p>
-            </div>
-            
-            <div className="info-view-orientation-container">
-                <select defaultValue={(props.actualProfile.sexual_orientation==="")?"straight":props.actualProfile.sexual_orientation} onChange={(e) => setOrientation(e.target.value)}>
-                    <option value="straight">Straight</option>
-                    <option value="gay">Gay</option>
-                    <option value="bisexual">Bisexual</option>
-                    <option value="pansexual">Pansexual</option>
-                    <option value="asexual">Asexual</option>
-                    <option value="androsexual">Androsexual</option>
-                    <option value="gynesexual">Gynesexual</option>
-                    <option value="demisexual">Demisexual</option>
-                    <option value="polyamorous">Polyamorous</option>
-                    <option value="skoliosexual">Skoliosexual</option>
-                </select>
-            </div>
+                <div className="info-titles">
+                    <h1>How do you identify?</h1>
+                </div>
+                
+                <div className="info-view-main-container">
+                    <select defaultValue={(props.actualProfile.sexual_orientation==="")?"straight":props.actualProfile.sexual_orientation} onChange={(e) => setOrientation(e.target.value)}>
+                        <option value="straight">Straight</option>
+                        <option value="gay">Gay</option>
+                        <option value="bisexual">Bisexual</option>
+                        <option value="pansexual">Pansexual</option>
+                        <option value="asexual">Asexual</option>
+                        <option value="androsexual">Androsexual</option>
+                        <option value="gynesexual">Gynesexual</option>
+                        <option value="demisexual">Demisexual</option>
+                        <option value="polyamorous">Polyamorous</option>
+                        <option value="skoliosexual">Skoliosexual</option>
+                    </select>
+                </div>
 
             <div className="info-view-save-button">
-                <button onClick={() => nextView()}>Save and Continue</button>
+                <div onClick={() => nextView()}>Save and Continue</div>
             </div>
 
         </div>
