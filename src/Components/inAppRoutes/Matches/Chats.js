@@ -127,7 +127,7 @@ const Chats = (props) => {
 
   return (
     <div id="chatsHolderHolder">
-      <div className="chatsHolder">
+      <div id="chatsHolder">
         <div id='holder'>
           <div className="mappedChats">{mappedChats}</div>
           </div>

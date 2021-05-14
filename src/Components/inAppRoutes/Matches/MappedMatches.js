@@ -16,7 +16,7 @@ const MappedMatches = (props) => {
       <h3 >{match.gamertag2}</h3>
     </div>
   ) : (
-    <div ClassName='mappedMatches'>
+    <div className='mappedMatches'>
       <Link to={`/largeprofile/${profile1}`}>
       <div className="matches-picture-div">
         <img className="mappedMatchesPicture" src={match.photo1} alt={"p"}></img>

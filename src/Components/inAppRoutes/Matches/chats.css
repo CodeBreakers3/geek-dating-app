@@ -7,7 +7,7 @@ justify-content:end;
 flex-direction: column-reverse;
 overflow:scroll;
 }
-.chatsHolder{
+#chatsHolder{
     background-color: rgb(88,88,88,);
 position:sticky;
     top:0;
