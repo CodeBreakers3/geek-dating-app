@@ -59,6 +59,7 @@
 .info-view-main-container select {
   height: 35px;
   border: none;
+  overflow-y: scroll;
 }
 
 .info-view-save-button {
@@ -71,4 +72,8 @@
   justify-content: center;
   box-shadow: 1px 1px 3px black;
   border-radius: 25px;
+}
+
+#orientation-select {
+  height: 100px;
 }

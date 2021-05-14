@@ -87,7 +87,7 @@ const CoreInfo = (props) => {
                 </div>
                 
                 <div className="info-view-main-container">
-                    <select defaultValue={(props.actualProfile.sexual_orientation==="")?"straight":props.actualProfile.sexual_orientation} onChange={(e) => setOrientation(e.target.value)}>
+                    <select id="orientation-select" size="6" defaultValue={(props.actualProfile.sexual_orientation==="")?"straight":props.actualProfile.sexual_orientation} onChange={(e) => setOrientation(e.target.value)}>
                         <option value="straight">Straight</option>
                         <option value="gay">Gay</option>
                         <option value="bisexual">Bisexual</option>
