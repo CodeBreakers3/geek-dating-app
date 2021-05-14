@@ -21,6 +21,7 @@ const Login = (props) => {
         }
         catch (err){
             setFailedLogin(true)
+            return
         }
        
         // Next step: give redux or object we got from backend

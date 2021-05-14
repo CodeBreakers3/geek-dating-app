@@ -35,6 +35,7 @@ function Matched(props) {
                         } else {
                             props.setIsMatch("main");
                         }
+                        props.forward();
                     }}>View Matches</div>
                 </Link>
             </div>
